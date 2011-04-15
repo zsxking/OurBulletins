@@ -24,19 +24,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Gemfile" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Gemfile" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="3" selection-start="864" selection-end="864" vertical-scroll-proportion="-17.333334">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="23" selection-start="1502" selection-end="1502" vertical-scroll-proportion="0.7288503">
+            <state line="39" column="3" selection-start="864" selection-end="864" vertical-scroll-proportion="0.98734176">
               <folding />
             </state>
           </provider>
@@ -60,6 +51,7 @@
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/script/rails" />
         <option value="$PROJECT_DIR$/Gemfile" />
+        <option value="$PROJECT_DIR$/README" />
       </list>
     </option>
   </component>
@@ -513,16 +505,16 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
+    <entry file="file://$PROJECT_DIR$/README">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="3" selection-start="864" selection-end="864" vertical-scroll-proportion="-17.333334">
+        <state line="2" column="43" selection-start="61" selection-end="61" vertical-scroll-proportion="0.050632913">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README">
+    <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="23" selection-start="1502" selection-end="1502" vertical-scroll-proportion="0.7288503">
+        <state line="39" column="3" selection-start="864" selection-end="864" vertical-scroll-proportion="0.98734176">
           <folding />
         </state>
       </provider>
