@@ -3,6 +3,10 @@ require "spec_helper"
 describe HomeController do
   # render the views in tests.
   render_views
+
+  before (:each) do
+    @base_title = "Project Lounge";
+  end
   
   describe "GET 'index'" do
     it "should be successful" do
@@ -13,7 +17,7 @@ describe HomeController do
     it "should have the right title" do
       get 'index'
       response.should have_selector("title",
-                        :content => "Project Lounge |")
+                        :content => @base_title)
     end
   end
 
@@ -26,7 +30,7 @@ describe HomeController do
     it "should have the right title" do
       get 'contact'
       response.should have_selector("title",
-                        :content => "Project Lounge | Contact Us")
+                        :content => "Contact Us | " + @base_title)
     end
   end
 
@@ -39,7 +43,7 @@ describe HomeController do
     it "should have the right title" do
       get 'about'
       response.should have_selector("title",
-                        :content => "Project Lounge | About Us")
+                        :content => "About Us | " + @base_title)
     end
   end
 
