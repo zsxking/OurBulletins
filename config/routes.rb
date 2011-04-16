@@ -1,8 +1,10 @@
 ProjectLounge::Application.routes.draw do
   #get "home/index"
   root :to => "home#index"
-  match "contact" => "home#contact"
-  match "about" => "home#about"
+
+  match "/contact", :to => "home#contact"
+  match "/about", :to => "home#about"
+  match "/help", :to => "home#help"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

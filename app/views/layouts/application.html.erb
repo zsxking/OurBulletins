@@ -3,14 +3,53 @@
 <head>
   <title><%= title %></title>
   <%= stylesheet_link_tag :all %>
-  <%= stylesheet_link_tag 'blueprint/screen', :media => 'screen' %>
-  <%= stylesheet_link_tag 'blueprint/print',  :media => 'print' %>
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
+
+  <%= stylesheet_link_tag 'blueprint/screen', :media => 'screen' %>
+  <%= stylesheet_link_tag 'blueprint/print',  :media => 'print' %>
+  <!--[if lt IE 8]>
+    <%= stylesheet_link_tag 'blueprint/ie' %>
+  <![endif]-->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <%= stylesheet_link_tag 'custom', :media => 'screen' %>
+
 </head>
 <body>
 
-<%= yield %>
+  <div class="container">
+    <div class="span-24 prepend-top last">
+      <header class="">
+        <%= logo = image_tag("logo.png", :alt => "Project Lounge", :class => "round") %>
+        <%= link_to logo, root_path %>
+        <nav class="round span-6 push-18 last">
+          <ul>
+            <li><%= link_to "Home", root_path %></li>
+            <li><%= link_to "Help", help_path %></li>
+            <li><%= link_to "Sign In", '#' %></li>
+            <li><%= link_to "Sign Up", '#' %></li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+    <div class="span-24 last">
+      <section class="round">
+        <div><%= yield %></div>
+      </section>
+    </div>
+    <div class="span-24 last prepend-top">
+      <footer>
+        <nav class="round">
+          <ul>
+            <li><%= link_to "About", about_path %></li>
+            <li><%= link_to "Contact", contact_path %></li>
+          </ul>
+        </nav>
+      </footer>
+    </div>
+  </div>
 
 </body>
 </html>

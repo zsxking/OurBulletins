@@ -1,0 +1,65 @@
+
+body {
+  background: #99C224;
+}
+
+header {
+
+}
+
+section {
+  background: #FFFFFF;
+  padding: 20px;
+  min-height: 400px;
+}
+
+footer {
+
+}
+
+/* Round corners */
+
+.round {
+  -moz-border-radius:    5px;
+  -webkit-border-radius: 5px;
+  border-radius:         5px;
+}
+
+/* Links */
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:visited {
+}
+
+
+/* Navigation */
+
+nav {
+  text-align: center;
+  background-color: white;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 0.2em 0;
+}
+
+nav ul li a {
+  padding: 0 5px;
+  font-weight: bold;
+}
