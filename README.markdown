@@ -1,3 +1,3 @@
-# Project Lounge
+# Project OurBulletins
 
-Project codename Lounge, by Shaoxuan Zhang.
+Project codename OurBulletins, by Shaoxuan Zhang.

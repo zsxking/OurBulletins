@@ -5,7 +5,7 @@ describe HomeController do
   render_views
 
   before (:each) do
-    @base_title = "Project Lounge";
+    @base_title = "Our Bulletins";
   end
   
   describe "GET 'index'" do

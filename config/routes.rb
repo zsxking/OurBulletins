@@ -1,4 +1,4 @@
-ProjectLounge::Application.routes.draw do
+OurBulletins::Application.routes.draw do
   #get "home/index"
   root :to => "home#index"
 
