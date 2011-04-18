@@ -21,7 +21,4 @@ class User < ActiveRecord::Base
                     :format     => { :with => email_regex },
                     :uniqueness => { :case_sensitive => false }
 
-  def formatted_email
-    "#{@name} <#{@email}>"
-  end
 end
