@@ -3,9 +3,10 @@ body {
   background: #99C224;
 }
 
-header {
-
+header div {
+  height: 32px;
 }
+
 
 section {
   background: #FFFFFF;
@@ -46,17 +47,19 @@ nav {
   background-color: white;
   white-space: nowrap;
   vertical-align: middle;
+  height: 100%
 }
 
 nav ul {
   margin: 0;
   padding: 0;
+
 }
 
 nav ul li {
   list-style-type: none;
   display: inline-block;
-  padding: 0.2em 0;
+  line-height: 32px;
 }
 
 nav ul li a {
