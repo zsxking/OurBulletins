@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   # Only these attributes have getter and setter for outside access.
   attr_accessible :name, :email
 
-  email_regex = /\A[\w_\-.]+[\w+\-.]+@hawaii\.edu\z/i
+  email_regex = /\A[\w]+[\w+\-.]*@[\w]+[.\-[\w]+]*\.edu\z/i
 
   validates :name,  :presence   => true
   validates :email, :presence   => true,
