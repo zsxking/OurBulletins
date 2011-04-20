@@ -18,14 +18,18 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation
 
   email_regex = /\A[\w]+[\w+\-.]*@[\w]+[.\-[\w]+]*\.edu\z/i
+  password_regex = /^(?=.*\d)(?=.*([a-z]|[A-Z]))([\x20-\x7E])+$/
 
   validates :name,  :presence   => true
   validates :email, :presence   => true,
-                    :format     => { :with => email_regex },
+                    :format     => { :with => email_regex,
+                                     :message => ' must end with .edu.' },
                     :uniqueness => { :case_sensitive => false }
   validates :password, :presence     => true,
                        :confirmation => true,
-                       :length       => { :within => 8..40 }
+                       :length       => { :minimum => 8 },
+                       :format       => { :with => password_regex,
+                                          :message => 'must contain both a number and a letter.'}
 
   # Return true if the user's password matches the submitted password.
   def has_password?(submitted_password)

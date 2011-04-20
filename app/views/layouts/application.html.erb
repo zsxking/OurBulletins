@@ -20,39 +20,34 @@
 <body>
 
   <div class="container">
-    <div class="span-24 prepend-top last">
-      <header class="">
-        <div class="span-4 first">
-          <% logo = image_tag("logo.png", :alt => app_name, :class => "round") %>
-          <%= link_to logo, root_path %>
-        </div>
-        <div class="span-6 push-14 last">
-          <nav class="round">
-            <ul>
-              <li><%= link_to "Home", root_path %></li>
-              <li><%= link_to "Help", help_path %></li>
-              <li><%= link_to "Sign In", '#' %></li>
-              <li><%= link_to "Sign Up", signup_path %></li>
-            </ul>
-          </nav>
-        </div>
-      </header>
-    </div>
-    <div class="span-24 last">
-      <section class="round">
-        <div><%= yield %></div>
-      </section>
-    </div>
-    <div class="span-24 last prepend-top">
-      <footer>
-        <nav class="round">
-          <ul>
-            <li><%= link_to "About", about_path %></li>
-            <li><%= link_to "Contact", contact_path %></li>
-          </ul>
-        </nav>
-      </footer>
-    </div>
+    <header class="span-24 prepend-top last">
+      <div class="span-4 first">
+        <% logo = image_tag("logo.png", :alt => app_name, :class => "round") %>
+        <%= link_to logo, root_path %>
+      </div>
+      <nav class="span-6 push-14 last">
+        <ul>
+          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "Sign In", '#' %></li>
+          <li><%= link_to "Sign Up", signup_path %></li>
+        </ul>
+      </nav>
+    </header>
+    <section class="span-22 prepend-1 append-1">
+      <% flash.each do |key, value| %>
+        <div class="flash <%= key %>"><%= value %></div>
+      <% end %>
+      <div><%= yield %></div>
+    </section>
+    <footer class="span-24 last prepend-top">
+      <nav class="">
+        <ul>
+          <li><%= link_to "About", about_path %></li>
+          <li><%= link_to "Contact", contact_path %></li>
+          <li><%= link_to "Help", help_path %></li>
+        </ul>
+      </nav>
+    </footer>
   </div>
 
   <%= debug(params) if Rails.env.development? %>

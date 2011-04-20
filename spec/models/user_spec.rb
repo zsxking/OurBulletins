@@ -8,8 +8,8 @@ describe User do
     @attr = {
             :name => "Example User",
             :email => "user@hawaii.edu",
-            :password => "Abcd1234",
-            :password_confirmation => "Abcd1234"
+            :password => 'Abcd1234 `~!@#$%^&*[]{};:"\'<>?,./|\\-=_+',
+            :password_confirmation => 'Abcd1234 `~!@#$%^&*[]{};:"\'<>?,./|\\-=_+'
     }
   end
 
@@ -75,34 +75,27 @@ describe User do
 
   describe "Password validations" do
     it "should require a password" do
-      User.new(@attr.merge(:password => '', :password_confirmation => ''))
+      User.new(@attr.merge(:password => '', :password_confirmation => '')).
         should_not be_valid
     end
 
     it "should require a matching password confirmation" do
-      User.new(@attr.merge(:password_confirmation => '1234bcAD'))
+      User.new(@attr.merge(:password_confirmation => '1234bcAD')).
         should_not be_valid
     end
 
     it "should reject short passwords" do
-      User.new(@attr.merge(:password_confirmation => '123bAD'))
+      User.new(@attr.merge(:password => '123bAD',
+                           :password_confirmation => '123bAD')).
         should_not be_valid
     end
 
     it "should reject passwords with no digit" do
-      User.new(@attr.merge(:password_confirmation => 'Nodigt'))
+      User.new(@attr.merge(:password => 'Nodigtpassword',
+                           :password_confirmation => 'Nodigtpassword')).
         should_not be_valid
     end
 
-    it "should reject passwords with no lowercase letters" do
-      User.new(@attr.merge(:password_confirmation => 'NOLOWERCASE123'))
-        should_not be_valid
-    end
-
-    it "should reject passwords with no Uppercase letters" do
-      User.new(@attr.merge(:password_confirmation => 'noupper123'))
-        should_not be_valid
-    end
   end
 
 
