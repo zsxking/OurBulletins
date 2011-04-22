@@ -39,7 +39,7 @@ describe User do
     it "should accept all edu emails" do
       good_user_names = %w[THE_USER first.last First_LAST]
       CSV.foreach("spec/models/edu_emails_list_trim.csv",
-                  :col_sep => ";", skip_blanks: true) do |row|
+                  :col_sep => ";", :skip_blanks => true) do |row|
         # use row here...
         next if (row[1] == nil)
         email = good_user_names[rand(3)] + '@' + (row[1].strip)

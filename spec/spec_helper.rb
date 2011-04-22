@@ -104,6 +104,8 @@ RSpec.configure do |config|
     visit signin_path
     fill_in :email,    :with => email
     fill_in :password, :with => password
+    # Search by label, not name.
+    check "Remember me"
     click_button
   end
 

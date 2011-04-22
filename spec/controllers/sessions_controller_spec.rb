@@ -42,7 +42,8 @@ describe SessionsController do
 
       before(:each) do
         @user = Factory(:user)
-        @attr = { :email => @user.email, :password => @user.password }
+        @attr = { :email => @user.email, :password => @user.password,
+                  :remember_me => true}
       end
 
       it "should sign the user in" do
@@ -51,9 +52,34 @@ describe SessionsController do
         controller.should be_signed_in
       end
 
+      it "should remember the user" do
+        post :create, :session => @attr
+        response.cookies["remember_token"].should_not be_nil
+      end
+
       it "should redirect to the user show page" do
         post :create, :session => @attr
         response.should redirect_to(user_path(@user))
+      end
+    end
+
+    describe "non-persistent login" do
+
+      before(:each) do
+        @user = Factory(:user)
+        @attr = { :email => @user.email, :password => @user.password,
+                  :remember_me => false}
+      end
+
+      it "should sign the user in" do
+        post :create, :session => @attr
+        controller.current_user.should == @user
+        controller.should be_signed_in
+      end
+
+      it "should not remember me" do
+        post :create, :session => @attr
+        response.cookies["remember_token"].should be_nil
       end
     end
 
