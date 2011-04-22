@@ -32,6 +32,9 @@ gem 'gravatar_image_tag', '1.0.0'
 #   gem 'webrat'
 # end
 
+# metric reports generator
+gem 'metric_fu', '2.1.1'
+
 group :development do
   gem 'rspec-rails', '2.5.0'
   gem 'annotate-models', '1.0.4'
@@ -42,5 +45,4 @@ group :test do
   gem 'webrat', '0.7.1'
   gem 'spork', '0.9.0.rc4'
   gem 'factory_girl_rails', '1.0.1'
-  gem 'metric_fu', '2.1.1' # metric reports generator
 end
