@@ -93,4 +93,18 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
+
+  # SessionHelper is included in ApplicationController, so all controllers
+  # have access to SessionHelper's method, i.e. sign_in
+  def test_sign_in(user)
+    controller.sign_in(user)
+  end
+
+  def integration_sign_in(email, password)
+    visit signin_path
+    fill_in :email,    :with => email
+    fill_in :password, :with => password
+    click_button
+  end
+
 end

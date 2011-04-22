@@ -43,6 +43,11 @@ class User < ActiveRecord::Base
     #automatically returns nil at the end of the method.
   end
 
+  def self.authenticate_with_salt(id, cookie_salt)
+    user = find_by_id(id)
+    (user && user.salt == cookie_salt) ? user : nil
+  end
+
   #use a before_save callback to create encrypted_password just before the user is saved.
   #we register a callback called encrypt_password by passing a symbol of that
   #name to the before_save method, and then define an encrypt_password method

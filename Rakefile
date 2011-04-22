@@ -5,3 +5,10 @@ require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
 OurBulletins::Application.load_tasks
+
+require 'metric_fu'
+
+MetricFu::Configuration.run do |config|
+  config.rcov[:test_files] = ['spec/**/*_spec.rb']
+  config.rcov[:rcov_opts] << "-Ispec --comments" # Needed to find spec_helper
+end

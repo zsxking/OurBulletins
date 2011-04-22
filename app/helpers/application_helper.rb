@@ -11,6 +11,12 @@ module ApplicationHelper
   end
 
   def app_name
-    app_name = "Our Bulletins"
+    "Our Bulletins"
   end
+
+
+  def logo
+    image_tag("logo.png", :alt => app_name, :class => "round")
+  end
+
 end

@@ -3,7 +3,8 @@
 <div class="span-12">
 <%= form_for(@user) do |f| %>
   <div class="span-12">
-    <%= render 'shared/error_messages'%>
+    <% # == render :partial => 'shared/error_messages', :locals => {:user => @user} %>
+    <%= render 'shared/error_messages', :user => @user %>
   </div>
   <div class="field">
     <%= f.label :name %><br />

@@ -7,6 +7,8 @@ gem 'rails', '3.0.6'
 
 gem 'mysql2'
 
+gem 'gravatar_image_tag', '1.0.0'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -33,7 +35,6 @@ gem 'mysql2'
 group :development do
   gem 'rspec-rails', '2.5.0'
   gem 'annotate-models', '1.0.4'
-  gem 'gravatar_image_tag', '1.0.0'
 end
 
 group :test do
@@ -41,5 +42,5 @@ group :test do
   gem 'webrat', '0.7.1'
   gem 'spork', '0.9.0.rc4'
   gem 'factory_girl_rails', '1.0.1'
-  gem 'gravatar_image_tag', '1.0.0'
+  gem 'metric_fu', '2.1.1' # metric reports generator
 end
