@@ -22,6 +22,11 @@ module SessionsHelper
     @current_user ||= user_from_remember_token
   end
 
+  # Check if the given user is the same as current login user.
+  def current_user?(user)
+    user == current_user
+  end
+
   def signed_in?
     !current_user.nil?
   end
@@ -30,6 +35,12 @@ module SessionsHelper
     cookies.delete(:remember_token)
     session.delete(:remember_token)
     self.current_user = nil
+  end
+
+  def deny_access
+    # shortcut for setting flash[:notice]
+    # by passing an options hash to the redirect_to function
+    redirect_to signin_path, :notice => "Please sign in to access this page."
   end
 
   private

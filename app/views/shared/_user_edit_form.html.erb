@@ -1,0 +1,26 @@
+<%= form_for(user) do |f| %>
+  <% new_record = f.object.new_record? %>
+  <div class="span-12">
+    <% # == render :partial => 'shared/error_messages', :locals => {:user => @user} %>
+    <%= render 'shared/error_messages', :object => f.object %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation, "Confirmation" %><br />
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div class="actions">
+    <%= f.submit new_record ? "Sign up" : "Update" %>
+  </div>
+<% end %>

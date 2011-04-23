@@ -3,3 +3,7 @@
   <%= link_to @user.name, @user %>
 </h1> <br/>
 <%= mail_to @user.email %>
+
+<br />
+
+<%= current_user?(@user) ? link_to("Edit", edit_user_path(@user)): '' %>
