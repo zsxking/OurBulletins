@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
     else
       # Sign the user in and redirect to the user's show page.
       sign_in user, params[:session][:remember_me]
-      redirect_to user
+      redirect_back_or user
     end
 
   end
