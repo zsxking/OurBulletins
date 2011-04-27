@@ -3,7 +3,12 @@ OurBulletins::Application.routes.draw do
   #get "home/index"
   root :to => 'home#index'
 
-  resources :users
+  resources :users do
+    member do
+      put 'deactivate'
+      put 'ban'
+    end
+  end
   resources :sessions, :only => [:new, :create, :destroy]
 
   match '/contact', :to => 'home#contact'

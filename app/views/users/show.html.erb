@@ -6,4 +6,11 @@
 
 <br />
 
-<%= current_user?(@user) ? link_to("Edit", edit_user_path(@user)): '' %>
+<% if current_user?(@user) %>
+  <%= link_to("Edit", edit_user_path(@user))%>
+  <%= link_to("Deactivate", deactivate_user_path(@user), :method => :put)%>
+<% end %>
+
+<% if !@user.admin? && current_user.admin? %>
+  <%= link_to("Ban", ban_user_path(@user), :method => :put)%>
+<% end %>

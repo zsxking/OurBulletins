@@ -139,4 +139,51 @@ describe User do
       end
     end
   end
+
+  describe "admin attribute" do
+
+    before(:each) do
+      @user = User.create!(@attr)
+    end
+
+    it "should respond to admin" do
+      @user.should respond_to(:admin)
+    end
+
+    it "should not be an admin by default" do
+      @user.should_not be_admin
+    end
+
+    it "should be convertible to an admin" do
+      @user.toggle!(:admin)
+      @user.should be_admin
+    end
+  end
+
+  describe "status attribute" do
+
+    before :each do
+      @user = User.create!(@attr)
+    end
+
+    it "should have an status attribute" do
+      @user.should respond_to(:status)
+    end
+
+    it "should be active by default" do
+      @user.status.should == UserStatus::ACTIVE
+    end
+
+    it "should not be assigned in creation and remain active by default" do
+      new_user = User.create!(@attr.merge(:email => 'new@test.edu',
+                                          :status => UserStatus::BANNED))
+      new_user.status.should == UserStatus::ACTIVE
+    end
+
+    it "should reject invalid input" do
+      @user.status= -1
+      @user.should_not be_valid
+    end
+
+  end
 end

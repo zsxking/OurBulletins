@@ -10,15 +10,21 @@ class SessionsController < ApplicationController
                              params[:session][:password])
     if user.nil?
       # Create an error message and re-render the signin form.
-      flash.now[:error] = "Invalid email/password combination."
-      @title = "Sign In"
-
-      render 'new'
-    else
+      login_error "Invalid email/password combination."
+    elsif [UserStatus::ACTIVE, UserStatus::DEACTIVATED].include?(user.status)
+      if user.status == UserStatus::DEACTIVATED
+        user.update_attribute(:status, UserStatus::ACTIVE)
+        flash[:success] = "Welcome back, #{user.name}.
+                           Your #{app_name} account has now been reactivated."
+      end
       # Sign the user in and redirect to the user's show page.
       sign_in user, params[:session][:remember_me]
       redirect_back_or user
+    else
+      # status == Banned
+      login_error "Your account has been banned."
     end
+
 
   end
 
@@ -27,5 +33,13 @@ class SessionsController < ApplicationController
     sign_out
     redirect_to root_path
   end
+
+  private
+
+    def login_error(message)
+      flash.now[:error] = message
+      @title = "Sign In"
+      render 'new'
+    end
 
 end

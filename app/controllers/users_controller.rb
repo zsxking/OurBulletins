@@ -1,6 +1,13 @@
 class UsersController < ApplicationController
-  before_filter :authenticate, :only => [:edit, :update]
-  before_filter :correct_user, :only => [:edit, :update]
+  before_filter :authenticate, :except => [:show, :new, :create]
+  before_filter :correct_user, :only => [:edit, :update, :deactivate]
+  before_filter :admin_user, :only => [:ban]
+  before_filter :not_on_admin_user, :only => [:ban]
+
+  def index
+    @title = "Users"
+    @users = User.paginate(:page => params[:page])
+  end
 
   def show
     @user = User.find(params[:id])
@@ -43,6 +50,29 @@ class UsersController < ApplicationController
     end
   end
 
+  def deactivate
+    if @user.update_attribute(:status, UserStatus::DEACTIVATED)
+      sign_out
+      flash[:success] = "Your #{app_name} account has been deactivated.
+                         You can reactivate at any time by logging into #{app_name}
+                         using your old login email and password."
+      redirect_to root_path
+    else
+      flash[:error] = 'Deactivation failed. Please try again later.'
+      redirect_to @user
+    end
+
+  end
+
+  def ban
+    if @user.update_attribute(:status, UserStatus::BANNED)
+      flash[:success] = "#{@user.name} has been banned."
+    else
+      flash[:error] = 'Ban action failed. Please try again later.'
+    end
+    redirect_to users_path
+  end
+
   private
 
     def authenticate
@@ -52,7 +82,25 @@ class UsersController < ApplicationController
     def correct_user
       @user = User.find(params[:id])
       if !current_user?(@user)
-        flash[:notice] = "You are not able to edit this."
+        flash[:error] = "Invalid user."
+        redirect_to root_path
+      end
+    end
+
+    def admin_user
+      if !current_user.admin?
+        flash[:error] = 'Invalid action.'
+        redirect_to root_path
+      end
+    end
+
+    def not_on_admin_user
+      @user = User.find(params[:id])
+      if  @user.nil?
+        flash.now[:error] = 'User Not Found.'
+        redirect_to users_path
+      elsif @user.admin?
+        flash.now[:error] = 'Invalid action.'
         redirect_to @user
       end
     end

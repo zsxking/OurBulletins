@@ -5,7 +5,7 @@ describe HomeController do
   render_views
 
   before (:each) do
-    @base_title = "Our Bulletins";
+    @base_title = "OurBulletins";
   end
   
   describe "GET 'index'" do

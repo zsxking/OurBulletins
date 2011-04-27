@@ -4,6 +4,60 @@ require 'factories'
 describe UsersController do
   render_views
 
+  describe "GET 'index'" do
+
+    describe "for non-signed-in users" do
+      it "should deny access" do
+        get :index
+        response.should redirect_to(signin_path)
+        flash[:notice].should =~ /sign in/i
+      end
+    end
+
+    describe "for signed-in users" do
+
+      before(:each) do
+        @user = test_sign_in(Factory(:user))
+        second = Factory(:user, :name => "Bob", :email => "second@example.edu")
+        third  = Factory(:user, :name => "Ben", :email => "third@example.edu")
+
+        @users = [@user, second, third]
+        30.times do
+          #  Array push notation <<
+          @users << Factory(:user, :email => Factory.next(:email))
+        end
+      end
+
+      it "should be successful" do
+        get :index
+        response.should be_success
+      end
+
+      it "should have the right title" do
+        get :index
+        response.should have_selector("title", :content => "Users")
+      end
+
+      it "should have an element for each user" do
+        get :index
+        @users[0..2].each do |user|
+          response.should have_selector("li", :content => user.name)
+        end
+      end
+
+      it "should paginate users" do
+        get :index
+        response.should have_selector("div.pagination")
+        response.should have_selector("span.disabled", :content => "Previous")
+        response.should have_selector("a", :href => "/users?page=2",
+                                           :content => "2")
+        response.should have_selector("a", :href => "/users?page=2",
+                                           :content => "Next")
+      end
+
+    end
+  end
+
   describe "GET 'show'" do
 
     before(:each) do
@@ -219,7 +273,7 @@ describe UsersController do
     end
   end
 
-  describe "authentication of edit/update pages" do
+  describe "authentication of edit/update/deactivate/ban pages" do
 
     before(:each) do
       @user = Factory(:user)
@@ -237,6 +291,16 @@ describe UsersController do
         response.should redirect_to(signin_path)
       end
 
+      it "should deny access to 'deactivate'" do
+        put :deactivate, :id => @user
+        response.should redirect_to(signin_path)
+      end
+
+      it "should deny access to 'ban'" do
+        put :ban, :id => @user
+        response.should redirect_to(signin_path)
+      end
+
     end
 
     describe "for signed-in users" do
@@ -248,15 +312,105 @@ describe UsersController do
 
       it "should require matching users for 'edit'" do
         get :edit, :id => @user
-        response.should redirect_to(@user)
+        flash[:error].should =~ /invalid/i
+        response.should redirect_to(root_path)
       end
 
       it "should require matching users for 'update'" do
         put :update, :id => @user, :user => {}
-        response.should redirect_to(@user)
+        flash[:error].should =~ /invalid/i
+        response.should redirect_to(root_path)
+      end
+
+      it "should require matching users for 'deactivate'" do
+        put :deactivate, :id => @user
+        flash[:error].should =~ /invalid/i
+        response.should redirect_to(root_path)
       end
 
     end
+  end
+
+  describe "PUT 'deactivate'" do
+    before(:each) do
+      @user = Factory(:user)
+      test_sign_in(@user)
+    end
+
+    it "should reduce user count on default scope" do
+      lambda do
+        put :deactivate, :id => @user
+      end.should change(User, :count).by(-1)
+    end
+
+    it "should deactivate the user" do
+      put :deactivate, :id => @user
+      @user.reload
+      @user.status.should == UserStatus::DEACTIVATED
+    end
+
+    it "should redirect to home page" do
+      put :deactivate, :id => @user
+      response.should redirect_to(root_path)
+    end
+
+    it "should sign user out" do
+      put :deactivate, :id => @user
+      controller.should_not be_signed_in
+    end
+  end
+
+
+  describe "PUT 'ban'" do
+    before(:each) do
+      @user = Factory(:user)
+      @admin_user = Factory(:admin)
+      test_sign_in(@admin_user)
+    end
+
+    it "should require admin" do
+      test_sign_in(@user)
+      put :ban, :id => @user
+      flash[:error].should =~ /invalid/i
+      response.should redirect_to(root_path)
+    end
+
+    describe "on normal user" do
+      it "should reduce user count on default scope" do
+        lambda do
+          put :ban, :id => @user
+        end.should change(User, :count).by(-1)
+      end
+
+      it "should ban the user" do
+          put :ban, :id => @user
+        @user.reload.status.should == UserStatus::BANNED
+      end
+
+      it "should redirect to user list" do
+        put :ban, :id => @user
+        response.should redirect_to users_path
+      end
+    end
+
+    describe "on admin user" do
+      it "should not affect user count" do
+        lambda do
+          put :ban, :id => @admin_user
+        end.should_not change(User, :count)
+      end
+      it "should not affect the user" do
+        put :ban, :id => @admin_user
+        @admin_user.status.should == UserStatus::ACTIVE
+      end
+
+      it "should have fail message" do
+        put :ban, :id => @admin_user
+        flash[:error].should =~ /invalid action/i
+      end
+
+    end
+
   end
 
 end
