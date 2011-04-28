@@ -59,4 +59,22 @@ describe "Users" do
     end
   end
 
+  describe "deactivate and reactivate" do
+    describe "success" do
+      it "should deactivate and reactivate the user" do
+        user = Factory(:user)
+        integration_sign_in user.email, user.password
+        controller.should be_signed_in
+        click_link "Profile"
+        click_button "Deactivate"
+        controller.should_not be_signed_in
+        response.should have_selector("div.flash", :content => 'deactivated')
+        integration_sign_in user.email, user.password
+        controller.should be_signed_in
+        response.should have_selector("div.flash", :content => 'reactivated')
+
+      end
+    end
+  end
+
 end
