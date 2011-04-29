@@ -41,7 +41,7 @@ describe SessionsController do
     describe "with valid email and password" do
 
       before(:each) do
-        @user = Factory(:user)
+        @user = Factory(:user, :email => 'test@TEST.edu')
         @attr = { :email => @user.email, :password => @user.password,
                   :remember_me => true}
       end
@@ -60,6 +60,12 @@ describe SessionsController do
       it "should redirect to the user show page" do
         post :create, :session => @attr
         response.should redirect_to(user_path(@user))
+      end
+
+      it "should accept email with only case difference" do
+        post :create, :session => @attr.merge({:email => 'TEST@test.edu'})
+        controller.current_user.should == @user
+        controller.should be_signed_in
       end
 
       describe "of deactivated user" do
