@@ -161,6 +161,7 @@ DEPENDENCIES
   factory_girl_rails (= 1.0.1)
   faker (= 0.9.5)
   gravatar_image_tag (= 1.0.0)
+  haml
   metric_fu
   mysql2
   rails (= 3.0.7)

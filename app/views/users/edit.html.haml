@@ -1,0 +1,7 @@
+%h1 Edit user
+
+= render 'shared/user_edit_form', :user => @user
+
+.avatar
+  = avatar_for @user
+  != '<a href="http://gravatar.com/emails">change</a>'
