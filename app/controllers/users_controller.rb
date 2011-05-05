@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      sign_in(@user)
+      login(@user)
       flash[:success] = "Welcome to Our Bulletins!"
       redirect_to @user
     else
@@ -52,7 +52,7 @@ class UsersController < ApplicationController
 
   def deactivate
     if @user.update_attribute(:status, UserStatus::DEACTIVATED)
-      sign_out
+      logout
       flash[:success] = "Your #{app_name} account has been deactivated.
                          You can reactivate at any time by logging into #{app_name}
                          using your old login email and password."
@@ -76,7 +76,7 @@ class UsersController < ApplicationController
   private
 
     def authenticate
-      deny_access unless signed_in?
+      deny_access unless logged_in?
     end
 
     def correct_user

@@ -6,18 +6,18 @@ describe UsersController do
 
   describe "GET 'index'" do
 
-    describe "for non-signed-in users" do
+    describe "for non-logged-in users" do
       it "should deny access" do
         get :index
-        response.should redirect_to(signin_path)
-        flash[:notice].should =~ /sign in/i
+        response.should redirect_to(login_path)
+        flash[:notice].should =~ /login/i
       end
     end
 
-    describe "for signed-in users" do
+    describe "for logged_in users" do
 
       before(:each) do
-        @user = test_sign_in(Factory(:user))
+        @user = test_login(Factory(:user))
         second = Factory(:user, :name => "Bob", :email => "second@example.edu")
         third  = Factory(:user, :name => "Ben", :email => "third@example.edu")
 
@@ -62,8 +62,8 @@ describe UsersController do
 
     before(:each) do
       @user = Factory(:user)
-      @sign_in_user = Factory(:user, :email => 'new@user.edu')
-      test_sign_in(@sign_in_user)
+      @login_user = Factory(:user, :email => 'new@user.edu')
+      test_login(@login_user)
       # stubbing with the stub! method.
       # User.stub!(:find, @user.id).and_return(@user)
     end
@@ -95,8 +95,8 @@ describe UsersController do
       response.should have_selector("h1>img", :class => "gravatar")
     end
 
-    it "should show edit link on signined user's profile page." do
-      get :show, :id => @sign_in_user
+    it "should show edit link on login user's profile page." do
+      get :show, :id => @login_user
       response.should have_selector('a', :content => 'Edit')
     end
 
@@ -184,9 +184,9 @@ describe UsersController do
         flash[:success].should =~ /welcome/i # =~ to compare string to regex.
       end
 
-      it "should sign the user in" do
+      it "should log the user in" do
         post :create, :user => @attr
-        controller.should be_signed_in
+        controller.should be_logged_in
       end
     end
 
@@ -196,7 +196,7 @@ describe UsersController do
 
     before(:each) do
       @user = Factory(:user)
-      test_sign_in(@user)
+      test_login(@user)
     end
 
     it "should be successful" do
@@ -226,7 +226,7 @@ describe UsersController do
 
     before(:each) do
       @user = Factory(:user)
-      test_sign_in(@user)
+      test_login(@user)
     end
 
     describe "failure" do
@@ -279,35 +279,35 @@ describe UsersController do
       @user = Factory(:user)
     end
 
-    describe "for non-signed-in users" do
+    describe "for non-logged_in users" do
 
       it "should deny access to 'edit'" do
         get :edit, :id => @user
-        response.should redirect_to(signin_path)
+        response.should redirect_to(login_path)
       end
 
       it "should deny access to 'update'" do
         put :update, :id => @user, :user => {}
-        response.should redirect_to(signin_path)
+        response.should redirect_to(login_path)
       end
 
       it "should deny access to 'deactivate'" do
         put :deactivate, :id => @user
-        response.should redirect_to(signin_path)
+        response.should redirect_to(login_path)
       end
 
       it "should deny access to 'ban'" do
         put :ban, :id => @user
-        response.should redirect_to(signin_path)
+        response.should redirect_to(login_path)
       end
 
     end
 
-    describe "for signed-in users" do
+    describe "for logged_in users" do
 
       before(:each) do
-        @sign_in_user = Factory(:user, :email => "user@wrong.edu")
-        test_sign_in(@sign_in_user)
+        @login_user = Factory(:user, :email => "user@wrong.edu")
+        test_login(@login_user)
       end
 
       it "should require matching users for 'edit'" do
@@ -334,7 +334,7 @@ describe UsersController do
   describe "PUT 'deactivate'" do
     before(:each) do
       @user = Factory(:user)
-      test_sign_in(@user)
+      test_login(@user)
     end
 
     it "should reduce user count on default scope" do
@@ -354,9 +354,9 @@ describe UsersController do
       response.should redirect_to(root_path)
     end
 
-    it "should sign user out" do
+    it "should log user out" do
       put :deactivate, :id => @user
-      controller.should_not be_signed_in
+      controller.should_not be_logged_in
     end
   end
 
@@ -365,11 +365,11 @@ describe UsersController do
     before(:each) do
       @user = Factory(:user)
       @admin_user = Factory(:admin)
-      test_sign_in(@admin_user)
+      test_login(@admin_user)
     end
 
     it "should require admin" do
-      test_sign_in(@user)
+      test_login(@user)
       put :ban, :id => @user
       flash[:error].should =~ /invalid/i
       response.should redirect_to(root_path)

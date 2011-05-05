@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
-    @title = "Sign In"
+    @title = "Login"
   end
 
   def create
@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     user = User.authenticate(params[:session][:email],
                              params[:session][:password])
     if user.nil?
-      # Create an error message and re-render the signin form.
+      # Create an error message and re-render the login form.
       login_error "Invalid email/password combination."
     elsif [UserStatus::ACTIVE, UserStatus::DEACTIVATED].include?(user.status)
       if user.status == UserStatus::DEACTIVATED
@@ -17,8 +17,8 @@ class SessionsController < ApplicationController
         flash[:success] = "Welcome back, #{user.name}.
                            Your #{app_name} account has now been reactivated."
       end
-      # Sign the user in and redirect to the user's show page.
-      sign_in user, params[:session][:remember_me]
+      # Log the user in and redirect to the user's show page.
+      login user, params[:session][:remember_me]
       redirect_back_or user
     else
       # status == Banned
@@ -30,7 +30,7 @@ class SessionsController < ApplicationController
 
   def destroy
 
-    sign_out
+    logout
     redirect_to root_path
   end
 
@@ -38,7 +38,7 @@ class SessionsController < ApplicationController
 
     def login_error(message)
       flash.now[:error] = message
-      @title = "Sign In"
+      @title = "Login"
       render 'new'
     end
 

@@ -16,8 +16,8 @@ OurBulletins::Application.routes.draw do
   match '/help', :to => 'home#help'
 
   match '/signup',  :to => 'users#new'
-  match '/signin',  :to => 'sessions#new'
-  match '/signout', :to => 'sessions#destroy'
+  match '/login',  :to => 'sessions#new'
+  match '/logout', :to => 'sessions#destroy'
 
 
 

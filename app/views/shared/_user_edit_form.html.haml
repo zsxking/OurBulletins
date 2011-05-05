@@ -1,0 +1,28 @@
+= form_for(user) do |f| 
+  - new_record = f.object.new_record?
+  .span-12
+    = render 'shared/error_messages', :object => f.object 
+  
+  .field
+    = f.label :name
+    %br
+    = f.text_field :name
+  
+  .field
+    = f.label :email
+    %br
+    = f.text_field :email 
+  
+  .field
+    = f.label :password
+    %br
+    = f.password_field :password 
+  
+  .field
+    = f.label :password_confirmation, "Confirmation"
+    %br
+    = f.password_field :password_confirmation 
+  
+  .actions
+    = f.submit new_record ? "Sign up" : "Update" 
+  

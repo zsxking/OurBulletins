@@ -95,13 +95,13 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 
   # SessionHelper is included in ApplicationController, so all controllers
-  # have access to SessionHelper's method, i.e. sign_in
-  def test_sign_in(user)
-    controller.sign_in(user)
+  # have access to SessionHelper's method, i.e. login
+  def test_login(user)
+    controller.login(user)
   end
 
-  def integration_sign_in(email, password)
-    visit signin_path
+  def integration_login(email, password)
+    visit login_path
     fill_in :email,    :with => email
     fill_in :password, :with => password
     # Search by label, not name.

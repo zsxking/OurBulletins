@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe "FriendlyForwardings" do
-  it "should forward to the requested page after signin" do
+  it "should forward to the requested page after login" do
     user = Factory(:user)
     visit edit_user_path(user)
-    # The test automatically follows the redirect to the signin page.
+    # The test automatically follows the redirect to the login page.
     # so the response.should redirect_to some URL won’t work.
     response.should render_template('sessions/new')
     fill_in :email,    :with => user.email

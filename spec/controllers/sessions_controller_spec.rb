@@ -11,7 +11,7 @@ describe SessionsController do
 
     it "should have the right title" do
       get :new
-      response.should have_selector("title", :content => "Sign In")
+      response.should have_selector("title", :content => "Login")
     end
   end
 
@@ -29,7 +29,7 @@ describe SessionsController do
 
       it "should have the right title" do
         post :create, :session => @attr
-        response.should have_selector("title", :content => "Sign In")
+        response.should have_selector("title", :content => "Login")
       end
 
       it "should have a flash.now message" do
@@ -46,10 +46,10 @@ describe SessionsController do
                   :remember_me => true}
       end
 
-      it "should sign the user in" do
+      it "should log the user in" do
         post :create, :session => @attr
         controller.current_user.should == @user
-        controller.should be_signed_in
+        controller.should be_logged_in
       end
 
       it "should remember the user" do
@@ -65,17 +65,17 @@ describe SessionsController do
       it "should accept email with only case difference" do
         post :create, :session => @attr.merge({:email => 'TEST@test.edu'})
         controller.current_user.should == @user
-        controller.should be_signed_in
+        controller.should be_logged_in
       end
 
       describe "of deactivated user" do
         before(:each) do
           @user.update_attribute(:status, UserStatus::DEACTIVATED)
         end
-        it "should sign the user in" do
+        it "should log the user in" do
           post :create, :session => @attr
           controller.current_user.should == @user
-          controller.should be_signed_in
+          controller.should be_logged_in
         end
 
         it "should reactivate the user" do
@@ -101,7 +101,7 @@ describe SessionsController do
 
         it "should have the right title" do
           post :create, :session => @attr
-          response.should have_selector("title", :content => "Sign In")
+          response.should have_selector("title", :content => "Login")
         end
 
         it "should have a flash.now message" do
@@ -120,10 +120,10 @@ describe SessionsController do
                   :remember_me => false}
       end
 
-      it "should sign the user in" do
+      it "should log the user in" do
         post :create, :session => @attr
         controller.current_user.should == @user
-        controller.should be_signed_in
+        controller.should be_logged_in
       end
 
       it "should not remember me" do
@@ -136,10 +136,10 @@ describe SessionsController do
 
    describe "DELETE 'destroy'" do
 
-    it "should sign a user out" do
-      test_sign_in(Factory(:user))
+    it "should log a user out" do
+      test_login(Factory(:user))
       delete :destroy
-      controller.should_not be_signed_in
+      controller.should_not be_logged_in
       response.should redirect_to(root_path)
     end
    end

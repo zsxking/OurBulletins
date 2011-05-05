@@ -1,6 +1,6 @@
 module SessionsHelper
 
-  def sign_in(user, remember_me = true)
+  def login(user, remember_me = true)
     # cookies utility supplied by Rails.
     if remember_me
       cookies.permanent.signed[:remember_token] = [user.id, user.salt]
@@ -27,11 +27,11 @@ module SessionsHelper
     user == current_user
   end
 
-  def signed_in?
+  def logged_in?
     !current_user.nil?
   end
 
-  def sign_out
+  def logout
     cookies.delete(:remember_token)
     session.delete(:remember_token)
     self.current_user = nil
@@ -41,7 +41,7 @@ module SessionsHelper
     store_location
     # shortcut for setting flash[:notice]
     # by passing an options hash to the redirect_to function
-    redirect_to signin_path, :notice => "Please sign in to access this page."
+    redirect_to login_path, :notice => "Please login to access this page."
   end
 
   def redirect_back_or(default)

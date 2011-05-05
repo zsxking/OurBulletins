@@ -39,22 +39,22 @@ describe "Users" do
 
   end
 
-  describe "sign in/out" do
+  describe "login/logout" do
 
     describe "failure" do
-      it "should not sign a user in" do
-        integration_sign_in '', ''
+      it "should not login a user" do
+        integration_login '', ''
         response.should have_selector("div.flash.error", :content => "Invalid")
       end
     end
 
     describe "success" do
-      it "should sign a user in and out" do
+      it "should log a user in and out" do
         user = Factory(:user)
-        integration_sign_in user.email, user.password
-        controller.should be_signed_in
-        click_link "Sign out"
-        controller.should_not be_signed_in
+        integration_login user.email, user.password
+        controller.should be_logged_in
+        click_link "Logout"
+        controller.should_not be_logged_in
       end
     end
   end
@@ -63,14 +63,14 @@ describe "Users" do
     describe "success" do
       it "should deactivate and reactivate the user" do
         user = Factory(:user)
-        integration_sign_in user.email, user.password
-        controller.should be_signed_in
+        integration_login user.email, user.password
+        controller.should be_logged_in
         click_link "Profile"
         click_button "Deactivate"
-        controller.should_not be_signed_in
+        controller.should_not be_logged_in
         response.should have_selector("div.flash", :content => 'deactivated')
-        integration_sign_in user.email, user.password
-        controller.should be_signed_in
+        integration_login user.email, user.password
+        controller.should be_logged_in
         response.should have_selector("div.flash", :content => 'reactivated')
 
       end
