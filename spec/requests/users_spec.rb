@@ -37,6 +37,14 @@ describe "Users" do
       end
     end
 
+    it "should accessible from login page" do
+      visit root_path
+      click_link "Login"
+      click_link "Sign Up"
+      response.should have_selector("title",
+                                    :content => "Sign Up")
+    end
+
   end
 
   describe "login/logout" do
