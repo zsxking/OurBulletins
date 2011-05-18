@@ -1,22 +1,110 @@
 
+.headAppName {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
 body {
-  background: #99C224;
+  background: #EEDF90;
 }
 
-header div {
-  height: 32px;
+/* Header */
+
+header {
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  line-height: 30px;
 }
 
+#headerBar {
+  background: #968954;
+  width: 100%;
+  position: absolute;
+  height: 30px;
+  z-index: -1;
+}
+
+.search_bar .search_container {
+  position: relative;
+  height: 20px;
+  display: inline-block;
+}
+
+.search_bar .search_field {
+  border: 1px solid white;
+  -moz-border-radius:    5px;
+  -webkit-border-radius: 5px;
+  border-radius:         5px;
+  width: 270px;
+  padding: 2px 25px 4px 6px;
+}
+
+.search_bar .search_button {
+  position: absolute;
+  right: 0;
+  top: 4px;
+  cursor: pointer;
+  display: block;
+  background-image: url('../images/search.png');
+  background-repeat: no-repeat;
+  background-color: transparent;
+  width: 24px;
+  border: 0;
+}
+
+header a {
+  color: white;
+  font-weight: bold;
+}
+
+/* Main Content */
+
+.page_container {
+  padding-top: 30px;
+}
 
 section {
-  background: #FFFFFF;
+  background: white;
   min-height: 400px;
-  padding-top: 1em;
-  padding-bottom: 1em;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 footer {
 
+}
+
+/* Navigation */
+
+nav {
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+
+}
+
+nav ul li {
+  list-style-type: none;
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+
+/* Text Position */
+.right {
+  text-align: right;
+}
+.left {
+  text-align: left;
 }
 
 /* Round corners */
@@ -38,34 +126,6 @@ a:hover {
 }
 
 a:visited {
-}
-
-
-/* Navigation */
-
-nav {
-  text-align: center;
-  background-color: white;
-  white-space: nowrap;
-  vertical-align: middle;
-  height: 100%
-}
-
-nav ul {
-  margin: 0;
-  padding: 0;
-
-}
-
-nav ul li {
-  list-style-type: none;
-  display: inline-block;
-  line-height: 32px;
-}
-
-nav ul li a {
-  padding: 0 5px;
-  font-weight: bold;
 }
 
 /* Forms */
@@ -112,13 +172,4 @@ div.field, div.actions {
 #error_explanation ul li {
   font-size: 12px;
   list-style: square;
-}
-
-/* User List */
-ul.users {
-  margin-top: 1em;
-}
-
-.users li {
-  list-style: none;
 }
