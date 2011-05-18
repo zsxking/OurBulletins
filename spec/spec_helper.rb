@@ -106,7 +106,7 @@ RSpec.configure do |config|
     fill_in :password, :with => password
     # Search by label, not name.
     check "Remember me"
-    click_button
+    click_button 'Login'
   end
 
 end
