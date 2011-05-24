@@ -25,6 +25,17 @@ header {
   z-index: -1;
 }
 
+header div {
+
+  white-space: nowrap;
+}
+header a {
+  color: white;
+  font-weight: bold;
+}
+
+/* Search Bar */
+
 .search_bar .search_container {
   position: relative;
   height: 20px;
@@ -46,17 +57,11 @@ header {
   top: 4px;
   cursor: pointer;
   display: block;
-  background-image: url('../images/search.png');
-  background-repeat: no-repeat;
-  background-color: transparent;
+  background: transparent url('../images/search.png') no-repeat;
   width: 24px;
   border: 0;
 }
 
-header a {
-  color: white;
-  font-weight: bold;
-}
 
 /* Main Content */
 
@@ -66,11 +71,11 @@ header a {
 
 section {
   background: white;
-  min-height: 400px;
   margin-top: 10px;
   margin-bottom: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
+  min-height: 400px;
 }
 
 footer {

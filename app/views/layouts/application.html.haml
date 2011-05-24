@@ -11,6 +11,8 @@
     = stylesheet_link_tag '960/reset.css', :media => 'screen'
     = stylesheet_link_tag '960/text.css', :media => 'screen'
     = stylesheet_link_tag '960/960.css', :media => 'screen'
+    = stylesheet_link_tag 'blueprint/forms', :media => 'screen'
+    = stylesheet_link_tag 'blueprint/typography', :media => 'screen'
     = stylesheet_link_tag 'custom', :media => 'screen'
 
   %body
@@ -24,9 +26,13 @@
         %nav.grid_4.left
           %ul
             %li= link_to "Home", root_path
+            %li= link_to "Posts", posts_path
             - if logged_in?
               %li= link_to "Profile", current_user
-        %nav.grid_2.right
+        .grid_1.right
+          - if logged_in?
+            = link_to "New Post", new_post_path
+        .grid_1.right
           - if logged_in?
             = link_to "Logout", logout_path
           - else
@@ -37,8 +43,8 @@
         - flash.each do |key, value|
           = content_tag(:div, value, :class => "flash #{key}")
 
-        .content.grid_12= yield
-      .clear
+        .grid_12.content= yield
+        .clear
 
     %footer.container_12
       %nav.grid_12
@@ -46,7 +52,7 @@
           %li= link_to "About", about_path
           %li= link_to "Contact", contact_path
           %li= link_to "Help", help_path
-    .clear
+      .clear
     %br=debug(params) if Rails.env.development?
 
 

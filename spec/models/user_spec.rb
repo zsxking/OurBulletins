@@ -186,4 +186,22 @@ describe User do
     end
 
   end
+
+  describe "post associations" do
+
+    before(:each) do
+      @user = User.create(@attr)
+      @post1 = Factory(:post, :user => @user, :created_at => 1.day.ago)
+      @post2 = Factory(:post, :user => @user, :created_at => 1.hour.ago)
+    end
+
+    it "should have a posts attribute" do
+      @user.should respond_to(:posts)
+    end
+
+    it "should have the right posts in the right order" do
+      @user.posts.should == [@post2, @post1]
+    end
+  end
+
 end

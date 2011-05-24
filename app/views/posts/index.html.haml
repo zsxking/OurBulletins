@@ -1,0 +1,12 @@
+%h1 Posts
+
+.grid_11.push_1= will_paginate
+.posts.grid_12.omega.alpha
+  - @posts.each do |post|
+    .grid_1.alpha.category= post.category
+    .grid_2.poster= link_to post.user.name, post.user
+    .grid_6.title= link_to post.title, post
+    .grid_3.omega.right.posted_at= post.created_at
+    .clear
+
+.grid_11.push_1= will_paginate

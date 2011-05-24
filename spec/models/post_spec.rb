@@ -28,17 +28,17 @@ describe Post do
 
   describe "Validation" do
     it "should require a title" do
-      post = @user.posts.new(@attr.merge(:title => ""))
+      post = @user.posts.new(@attr.merge(:title => " "))
       post.should_not be_valid
     end
 
     it "should require a category" do
-      post = @user.posts.new(@attr.merge(:category => ""))
+      post = @user.posts.new(@attr.merge(:category => " "))
       post.should_not be_valid
     end
 
     it "should require a description" do
-      post = @user.posts.new(@attr.merge(:description => ""))
+      post = @user.posts.new(@attr.merge(:description => " "))
       post.should_not be_valid
     end
   end

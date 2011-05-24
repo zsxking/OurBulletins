@@ -19,5 +19,14 @@ namespace :db do
                    :password_confirmation => password)
       user.status= UserStatus::ACTIVE
     end
+
+    categories = ['Textbook', 'Rental', 'Others']
+    User.all(:limit => 6).each do |user|
+      (5 + rand(10)).times do
+        user.posts.create!(:title=>Faker::Lorem.sentence(1 + rand(10)),
+                           :category => categories[rand(categories.size)],
+                           :description => Faker::Lorem.paragraph(1 + rand(5)))
+      end
+    end
   end
 end

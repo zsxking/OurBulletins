@@ -1,0 +1,22 @@
+=form_for(post) do |f|
+  - new_record = f.object.new_record?
+
+  = render 'shared/error_messages', :object => f.object
+
+  .field
+    = f.label :title
+    %br
+    = f.text_field :title
+
+  .field
+    = f.label :category
+    %br
+    = f.text_field :category
+
+  .field
+    = f.label :description
+    %br
+    = f.text_area :description
+
+  .actions
+    = f.submit new_record ? "Post" : "Update"

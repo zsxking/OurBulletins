@@ -1,0 +1,13 @@
+%h2= @post.title
+
+.category= @post.category
+
+.post_by
+  by
+  =link_to @post.user.name, @post.user
+  at
+  =@post.created_at
+%br
+%p= @post.description
+
+%p= link_to 'Edit', edit_post_path(@post) if current_user?(@post.user)

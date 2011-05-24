@@ -22,6 +22,8 @@ OurBulletins::Application.routes.draw do
 
   match '/search', :to => 'searches#index'
 
+  resources :posts
+
 
 
   # The priority is based upon order of creation:

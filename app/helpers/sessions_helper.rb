@@ -44,6 +44,10 @@ module SessionsHelper
     redirect_to login_path, :notice => "Please login to access this page."
   end
 
+  def authenticate
+    deny_access unless logged_in?
+  end
+
   def redirect_back_or(default)
     redirect_to(session[:return_to] || default)
     clear_return_to

@@ -17,3 +17,10 @@ end
 Factory.sequence :email do |n|
   "person-#{n}@example.edu"
 end
+
+Factory.define :post do |post|
+  post.title "Factory Post"
+  post.category "Products"
+  post.description "Post Descriptions"
+  post.association :user
+end
