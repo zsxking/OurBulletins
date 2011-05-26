@@ -11,8 +11,7 @@
     = stylesheet_link_tag '960/reset.css', :media => 'screen'
     = stylesheet_link_tag '960/text.css', :media => 'screen'
     = stylesheet_link_tag '960/960.css', :media => 'screen'
-    = stylesheet_link_tag 'blueprint/forms', :media => 'screen'
-    = stylesheet_link_tag 'blueprint/typography', :media => 'screen'
+    = stylesheet_link_tag 'forms', :media => 'screen'
     = stylesheet_link_tag 'custom', :media => 'screen'
 
   %body
@@ -32,6 +31,8 @@
         .grid_1.right
           - if logged_in?
             = link_to "New Post", new_post_path
+          - else
+            = link_to "Sign Up", signup_path
         .grid_1.right
           - if logged_in?
             = link_to "Logout", logout_path
