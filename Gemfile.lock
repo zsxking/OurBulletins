@@ -29,6 +29,9 @@ GEM
       activemodel (= 3.0.7)
       activesupport (= 3.0.7)
     activesupport (3.0.7)
+    amazon-ecs (2.0.0)
+      nokogiri (>= 1.4.0)
+      ruby-hmac (>= 0.3.2)
     annotate-models (1.0.4)
     arel (2.0.9)
     arrayfields (4.7.4)
@@ -134,6 +137,7 @@ GEM
       activesupport (~> 3.0)
       railties (~> 3.0)
       rspec (~> 2.5.0)
+    ruby-hmac (0.4.0)
     ruby-progressbar (0.0.10)
     ruby2ruby (1.2.5)
       ruby_parser (~> 2.0)
@@ -157,6 +161,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  amazon-ecs
   annotate-models (= 1.0.4)
   factory_girl_rails (= 1.0.1)
   faker (= 0.9.5)

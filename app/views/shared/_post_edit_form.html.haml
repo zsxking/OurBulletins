@@ -3,15 +3,22 @@
 
   = render 'shared/error_messages', :object => f.object
 
+
   .field
     = f.label :title
     %br
-    = f.text_field :title
+    = new_record ? f.text_field(:title) : post.title
 
   .field
     = f.label :category
     %br
-    = f.text_field :category
+    - if new_record
+      = f.radio_button :category, 'Textbook'
+      Book / Textbook
+      = f.radio_button :category, 'Others'
+      Others
+    - else
+      = post.category
 
   .field
     = f.label :description

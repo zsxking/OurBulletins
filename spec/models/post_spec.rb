@@ -8,12 +8,12 @@ describe Post do
   end
 
   it "should create a new instance given valid attributes" do
-    @user.posts.create!(@attr)
+    @user.posts.create(@attr)
   end
 
   describe "user associations" do
     before(:each) do
-      @post = @user.posts.create!(@attr)
+      @post = @user.posts.create(@attr)
     end
 
     it "should have a user attribute" do

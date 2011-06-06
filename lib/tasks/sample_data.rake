@@ -20,7 +20,14 @@ namespace :db do
       user.status= UserStatus::ACTIVE
     end
 
-    categories = ['Textbook', 'Rental', 'Others']
+    books_isbn = [9781933988658, 9780061353246, 9780262033848, 9780596007737,
+                  9781111399115, 9780716771593, 9780321694508, 9780521697675,
+                  9780132136839, 9780393931129]
+    books_isbn.each do |isbn|
+      Book::get_from_amazon_by_isbn(isbn)[0].save
+    end
+
+    categories = ['Textbook', 'Others']
     User.all(:limit => 6).each do |user|
       (5 + rand(10)).times do
         user.posts.create!(:title=>Faker::Lorem.sentence(1 + rand(10)),
@@ -28,5 +35,6 @@ namespace :db do
                            :description => Faker::Lorem.paragraph(1 + rand(5)))
       end
     end
+
   end
 end

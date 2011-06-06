@@ -10,7 +10,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110505235250) do
+ActiveRecord::Schema.define(:version => 20110601075752) do
+
+  create_table "books", :force => true do |t|
+    t.string   "ean"
+    t.string   "isbn"
+    t.string   "title"
+    t.string   "author"
+    t.string   "publisher"
+    t.string   "edition"
+    t.string   "publish_date"
+    t.decimal  "list_price",        :precision => 8, :scale => 2
+    t.text     "description"
+    t.string   "image_link"
+    t.string   "amazon_detail_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "books", ["ean"], :name => "index_books_on_ean", :unique => true
+  add_index "books", ["isbn"], :name => "index_books_on_isbn", :unique => true
 
   create_table "posts", :force => true do |t|
     t.string   "title"

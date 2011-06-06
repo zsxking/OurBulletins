@@ -232,10 +232,9 @@ describe PostsController do
                 :description => 'New Descriptions'}
       end
 
-      it "should change the post's attributes" do
+      it "should change the post's description" do
         put :update, :id => @post, :post => @attr
         @post.reload
-        @post.category.should  == @attr[:category]
         @post.description.should == @attr[:description]
       end
 

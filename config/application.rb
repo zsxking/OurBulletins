@@ -38,5 +38,8 @@ module OurBulletins
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+
+    config.action_view.javascript_expansions[:defaults] =
+            %w(jquery.js jquery-ui.js rails.js)
   end
 end
