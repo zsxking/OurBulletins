@@ -5,6 +5,7 @@
 }
 
 body {
+  font-size: 13px;
   background: #EEDF90;
   color: #222;
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
@@ -77,8 +78,7 @@ section {
   background: white;
   margin-top: 10px;
   margin-bottom: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 15px 10px;
   min-height: 400px;
 }
 

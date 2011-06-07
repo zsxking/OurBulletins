@@ -40,6 +40,6 @@ module OurBulletins
     config.filter_parameters += [:password]
 
     config.action_view.javascript_expansions[:defaults] =
-            %w(jquery.js jquery-ui.js rails.js)
+            %w(jquery.js jquery-ui.js jquery.formalize.js rails.js)
   end
 end
