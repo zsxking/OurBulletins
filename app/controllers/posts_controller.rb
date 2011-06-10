@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @title = "Posts"
-    @posts = Post.paginate(:page => params[:page])
+    @posts = Post.all.paginate(:page => params[:page])
   end
 
   def show

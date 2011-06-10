@@ -44,11 +44,11 @@ ActiveRecord::Schema.define(:version => 20110601075752) do
     t.string   "name"
     t.string   "email"
     t.string   "encrypted_password"
-    t.string   "salt"
-    t.integer  "status",             :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "admin"
+    t.string   "salt"
+    t.boolean  "admin",              :default => false
+    t.integer  "status",             :default => 0,     :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

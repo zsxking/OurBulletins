@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
 
 
   def self.authenticate(email, submitted_password)
-    user = User.unscoped.find_by_email(email)
+    user = User.unscoped.find_by_email(email.downcase)
     return nil  if user.nil?
     return user if user.has_password?(submitted_password)
     #automatically returns nil at the end of the method.
@@ -69,9 +69,14 @@ class User < ActiveRecord::Base
   end
 
   before_save :encrypt_password
+  before_save :lowercase_email
 
   # all methods defined after private are private methods
   private
+
+    def lowercase_email
+      self.email = self.email.downcase
+    end
 
     def encrypt_password
       self.salt = make_salt if self.new_record?
