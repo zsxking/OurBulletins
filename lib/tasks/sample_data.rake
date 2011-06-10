@@ -30,7 +30,7 @@ namespace :db do
     categories = ['Textbook', 'Others']
     User.all(:limit => 6).each do |user|
       (5 + rand(10)).times do
-        user.posts.create!(:title=>Faker::Lorem.sentence(1 + rand(10)),
+        user.listings.create!(:title=>Faker::Lorem.sentence(1 + rand(10)),
                            :category => categories[rand(categories.size)],
                            :description => Faker::Lorem.paragraph(1 + rand(5)))
       end
