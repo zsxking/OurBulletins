@@ -3129,7 +3129,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 			this._cacheHelperProportions();
 
 
-		//Post 'activate' events to possible containers
+		//Listing 'activate' events to possible containers
 		if(!noActivation) {
 			 for (var i = this.containers.length - 1; i >= 0; i--) { this.containers[i]._trigger("activate", event, self._uiHash(this)); }
 		}
@@ -3226,7 +3226,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 			}
 		}
 
-		//Post events to containers
+		//Listing events to containers
 		this._contactContainers(event);
 
 		//Interconnect with droppables
@@ -3281,7 +3281,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 			else
 				this.currentItem.show();
 
-			//Post deactivating events to containers
+			//Listing deactivating events to containers
 			for (var i = this.containers.length - 1; i >= 0; i--){
 				this.containers[i]._trigger("deactivate", null, self._uiHash(this));
 				if(this.containers[i].containerCache.over) {
@@ -3922,7 +3922,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 			};
 		};
 
-		//Post events to containers
+		//Listing events to containers
 		for (var i = this.containers.length - 1; i >= 0; i--){
 			if(!noPropagation) delayedTriggers.push((function(c) { return function(event) { c._trigger("deactivate", event, this._uiHash(this)); };  }).call(this, this.containers[i]));
 			if(this.containers[i].containerCache.over) {

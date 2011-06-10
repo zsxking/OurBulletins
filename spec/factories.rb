@@ -18,9 +18,9 @@ Factory.sequence :email do |n|
   "person-#{n}@example.edu"
 end
 
-Factory.define :post do |post|
-  post.title "Factory Post"
-  post.category "Products"
-  post.description "Post Descriptions"
-  post.association :user
+Factory.define :listing do |listing|
+  listing.title "Factory Listing"
+  listing.category "Products"
+  listing.description "Listing Descriptions"
+  listing.association :user
 end

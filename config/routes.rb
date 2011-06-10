@@ -22,7 +22,7 @@ OurBulletins::Application.routes.draw do
 
   match '/search', :to => 'searches#index'
 
-  resources :posts
+  resources :listings
 
 
 

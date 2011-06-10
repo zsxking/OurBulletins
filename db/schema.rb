@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110601075752) do
+ActiveRecord::Schema.define(:version => 20110610072212) do
 
   create_table "books", :force => true do |t|
     t.string   "ean"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(:version => 20110601075752) do
   add_index "books", ["ean"], :name => "index_books_on_ean", :unique => true
   add_index "books", ["isbn"], :name => "index_books_on_isbn", :unique => true
 
-  create_table "posts", :force => true do |t|
+  create_table "listings", :force => true do |t|
     t.string   "title"
     t.string   "category"
     t.text     "description"

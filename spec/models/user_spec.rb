@@ -187,20 +187,20 @@ describe User do
 
   end
 
-  describe "post associations" do
+  describe "listing associations" do
 
     before(:each) do
       @user = User.create(@attr)
-      @post1 = Factory(:post, :user => @user, :created_at => 1.day.ago)
-      @post2 = Factory(:post, :user => @user, :created_at => 1.hour.ago)
+      @listing1 = Factory(:listing, :user => @user, :created_at => 1.day.ago)
+      @listing2 = Factory(:listing, :user => @user, :created_at => 1.hour.ago)
     end
 
-    it "should have a posts attribute" do
-      @user.should respond_to(:posts)
+    it "should have a listings attribute" do
+      @user.should respond_to(:listings)
     end
 
-    it "should have the right posts in the right order" do
-      @user.posts.should == [@post2, @post1]
+    it "should have the right listings in the right order" do
+      @user.listings.should == [@listing2, @listing1]
     end
   end
 

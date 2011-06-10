@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe PostsController do
+describe ListingsController do
   render_views
 
   describe "Authentication" do
 
     before(:each) do
       @user = Factory(:user)
-      @post = Factory(:post, :user => @user)
+      @listing = Factory(:listing, :user => @user)
     end
 
     describe "for non-logged in user" do
@@ -23,12 +23,12 @@ describe PostsController do
       end
 
       it "should deny access to update" do
-        put :update, :id => @post
+        put :update, :id => @listing
         response.should redirect_to(login_path)
       end
 
       it "should deny access to edit" do
-        get :edit, :id => @post
+        get :edit, :id => @listing
         response.should redirect_to(login_path)
       end
     end
@@ -42,14 +42,14 @@ describe PostsController do
       response.should be_success
     end
 
-    it "should show posts" do
+    it "should show listings" do
       user1 = Factory(:user)
       user2 = Factory(:user, :email => Factory.next(:email))
-      post1 = Factory(:post, :user => user1)
-      post2 = Factory(:post, :user => user2)
+      listing1 = Factory(:listing, :user => user1)
+      listing2 = Factory(:listing, :user => user2)
       get :index
-      response.should have_selector("div.title", :content => post1.title)
-      response.should have_selector("div.title", :content => post2.title)
+      response.should have_selector("div.title", :content => listing1.title)
+      response.should have_selector("div.title", :content => listing2.title)
     end
 
   end
@@ -58,34 +58,34 @@ describe PostsController do
 
     before(:each) do
       @user = Factory(:user)
-      @post = Factory(:post, :user => @user)
+      @listing = Factory(:listing, :user => @user)
       @user2 = Factory(:user, :email => Factory.next(:email))
     end
 
     it "should be successful" do
-      get :show, :id => @post
+      get :show, :id => @listing
       response.should be_success
     end
 
-    it "should show post's title" do
-      get :show, :id => @post
-      response.should have_selector('div', :content => @post.title)
+    it "should show listing's title" do
+      get :show, :id => @listing
+      response.should have_selector('div', :content => @listing.title)
     end
 
     it "should show edit link when login as owner" do
       test_login(@user)
-      get :show, :id => @post
+      get :show, :id => @listing
       response.should have_selector('a', :content => 'Edit')
     end
 
     it "should not show edit link when not login" do
-      get :show, :id => @post
+      get :show, :id => @listing
       response.should_not have_selector('a', :content => 'Edit')
     end
 
     it "should not show edit link when login as others" do
       test_login(@user2)
-      get :show, :id => @post
+      get :show, :id => @listing
       response.should_not have_selector('a', :content => 'Edit')
     end
   end
@@ -103,12 +103,12 @@ describe PostsController do
 
     it "should have the right title" do
       get :new
-      response.should have_selector("title", :content => 'New Post')
+      response.should have_selector("title", :content => 'New Listing')
     end
 
     it "should have the Sign up button" do
       get :new
-      response.should have_selector("input[value='Post']")
+      response.should have_selector("input[value='Listing']")
     end
   end
 
@@ -126,12 +126,12 @@ describe PostsController do
 
       it "should not create a user" do
         lambda do
-          post :create, :post => @attr
-        end.should_not change(@user.posts, :count)
+          post :create, :listing => @attr
+        end.should_not change(@user.listings, :count)
       end
 
       it "should render the 'new' page" do
-        post :create, :post => @attr
+        post :create, :listing => @attr
         response.should render_template('new')
       end
     end
@@ -139,7 +139,7 @@ describe PostsController do
     describe "success" do
 
       before(:each) do
-        @attr = {:title => 'Post Title', :category => 'Cat',
+        @attr = {:title => 'Listing Title', :category => 'Books',
                 :description => 'Description content'}
       end
 
@@ -149,13 +149,13 @@ describe PostsController do
       # thus the failure
       it "should create a user" do
         lambda do
-          post :create, :post => @attr
-        end.should change(@user.posts, :count).by(1)
+          post :create, :listing => @attr
+        end.should change(@user.listings, :count).by(1)
       end
 
       it "should redirect to the user show page" do
-        post :create, :post => @attr
-        response.should redirect_to(post_path(assigns(:post)))
+        post :create, :listing => @attr
+        response.should redirect_to(listing_path(assigns(:listing)))
       end
 
     end
@@ -165,34 +165,34 @@ describe PostsController do
   describe "GET 'edit'" do
     before(:each) do
       @user = Factory(:user)
-      @post = Factory(:post, :user => @user)
+      @listing = Factory(:listing, :user => @user)
       test_login(@user)
     end
 
     it "should be successful" do
-      get :edit, :id => @post
+      get :edit, :id => @listing
       response.should be_success
     end
 
     it "should have the right title" do
-      get :edit, :id => @post
+      get :edit, :id => @listing
       response.should have_selector("title", :content => "Edit")
-      response.should have_selector("title", :content => @post.title)
+      response.should have_selector("title", :content => @listing.title)
     end
 
-    describe "on other's post" do
+    describe "on other's listing" do
       before (:each) do
         @another_user = Factory(:user, :email => Factory.next(:email))
-        @another_post = Factory(:post, :user => @another_user)
+        @another_listing = Factory(:listing, :user => @another_user)
       end
 
-      it "should redirect to post show page" do
-        get :edit, :id => @another_post
-        response.should redirect_to @another_post
+      it "should redirect to listing show page" do
+        get :edit, :id => @another_listing
+        response.should redirect_to @another_listing
       end
 
       it "should have a flash error message" do
-        put :update, :id => @another_post, :post => @attr
+        put :update, :id => @another_listing, :listing => @attr
         flash[:error].should =~ /invalid/i
       end
 
@@ -202,7 +202,7 @@ describe PostsController do
   describe "PUT 'update'" do
     before(:each) do
       @user = Factory(:user)
-      @post = Factory(:post, :user => @user)
+      @listing = Factory(:listing, :user => @user)
       test_login(@user)
     end
 
@@ -215,12 +215,12 @@ describe PostsController do
       end
 
       it "should render the 'edit' page" do
-        put :update, :id => @post, :post => @attr
+        put :update, :id => @listing, :listing => @attr
         response.should render_template('edit')
       end
 
       it "should have the right title" do
-        put :update, :id => @post, :post => @attr
+        put :update, :id => @listing, :listing => @attr
         response.should have_selector("title", :content => "Edit")
       end
     end
@@ -232,49 +232,49 @@ describe PostsController do
                 :description => 'New Descriptions'}
       end
 
-      it "should change the post's description" do
-        put :update, :id => @post, :post => @attr
-        @post.reload
-        @post.description.should == @attr[:description]
+      it "should change the listing's description" do
+        put :update, :id => @listing, :listing => @attr
+        @listing.reload
+        @listing.description.should == @attr[:description]
       end
 
-      it "should redirect to the post show page" do
-        put :update, :id => @post, :post => @attr
-        response.should redirect_to @post
+      it "should redirect to the listing show page" do
+        put :update, :id => @listing, :listing => @attr
+        response.should redirect_to @listing
       end
 
       it "should have a flash message" do
-        put :update, :id => @post, :post => @attr
+        put :update, :id => @listing, :listing => @attr
         flash[:success].should =~ /updated/i
       end
     end
 
-    describe "on other's post" do
+    describe "on other's listing" do
       before (:each) do
         @another_user = Factory(:user, :email => Factory.next(:email))
-        @another_post = Factory(:post, :user => @another_user)
+        @another_listing = Factory(:listing, :user => @another_user)
         @attr = {:title => 'New Title', :category => 'New Cat',
                 :description => 'New Descriptions'}
       end
 
-      it "should redirect to post show page" do
-        put :update, :id => @another_post, :post => @attr
-        response.should redirect_to @another_post
+      it "should redirect to listing show page" do
+        put :update, :id => @another_listing, :listing => @attr
+        response.should redirect_to @another_listing
       end
 
       it "should have a flash error message" do
-        put :update, :id => @another_post, :post => @attr
+        put :update, :id => @another_listing, :listing => @attr
         flash[:error].should =~ /invalid/i
       end
 
-      it "should not change the post" do
-        @before_post = @another_post
-        put :update, :id => @another_post, :post => @attr
-        @another_post.reload
-        @another_post.category.should_not == @attr[:category]
-        @another_post.description.should_not == @attr[:description]
-        @another_post.category.should == @before_post.category
-        @another_post.description.should == @before_post.description
+      it "should not change the listing" do
+        @before_listing = @another_listing
+        put :update, :id => @another_listing, :listing => @attr
+        @another_listing.reload
+        @another_listing.category.should_not == @attr[:category]
+        @another_listing.description.should_not == @attr[:description]
+        @another_listing.category.should == @before_listing.category
+        @another_listing.description.should == @before_listing.description
       end
     end
   end

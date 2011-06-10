@@ -1,4 +1,4 @@
-class Post < ActiveRecord::Base
+class Listing < ActiveRecord::Base
   attr_accessible :title, :category, :description
 
   belongs_to :user
@@ -7,6 +7,6 @@ class Post < ActiveRecord::Base
   validates :category,    :presence => true
   validates :description, :presence => true
 
-  default_scope :order => 'posts.created_at DESC'
+  default_scope :order => 'listings.created_at DESC'
 
 end

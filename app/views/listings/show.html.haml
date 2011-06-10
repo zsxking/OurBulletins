@@ -1,0 +1,13 @@
+%h2= @listing.title
+
+.category= @listing.category
+
+.post_by
+  by
+  =link_to @listing.user.name, @listing.user
+  at
+  =@listing.created_at
+%br
+%p= @listing.description
+
+%p= link_to 'Edit', edit_listing_path(@listing) if current_user?(@listing.user)
