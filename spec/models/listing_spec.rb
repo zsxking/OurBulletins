@@ -3,12 +3,12 @@ require 'spec_helper'
 describe Listing do
   before (:each) do
     @user = Factory(:user)
-    @attr = {:title => "Test Listing", :category => "Textbook",
+    @attr = {:title => "Test Listing", :category => "Textbook", :price => 1234,
              :description => "content of the description"}
   end
 
   it "should create a new instance given valid attributes" do
-    @user.listings.create(@attr)
+    @user.listings.create!(@attr)
   end
 
   describe "user associations" do
@@ -34,6 +34,11 @@ describe Listing do
 
     it "should require a category" do
       listing = @user.listings.new(@attr.merge(:category => " "))
+      listing.should_not be_valid
+    end
+
+    it "should require a price" do
+      listing = @user.listings.new(@attr.merge(:price => nil))
       listing.should_not be_valid
     end
 

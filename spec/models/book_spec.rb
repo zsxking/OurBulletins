@@ -13,7 +13,7 @@ describe Book do
               :publish_date => '2009-06-04',
               :publisher => 'Manning Publications',
               :edition => '1',
-              :list_price => 44.99
+              :list_price => 4499
       }
       @books = Book::get_from_amazon_by_isbn(@isbn)
     end
@@ -48,7 +48,7 @@ describe Book do
               :publish_date => '2009-06-04',
               :publisher => 'Manning Publications',
               :edition => '1',
-              :list_price => 44.99
+              :list_price => 4499
       }
     end
 

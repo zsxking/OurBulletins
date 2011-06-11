@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110610072212) do
+ActiveRecord::Schema.define(:version => 20110611084017) do
 
   create_table "books", :force => true do |t|
     t.string   "ean"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(:version => 20110610072212) do
     t.string   "publisher"
     t.string   "edition"
     t.string   "publish_date"
-    t.decimal  "list_price",        :precision => 8, :scale => 2
+    t.integer  "list_price"
     t.text     "description"
     t.string   "image_link"
     t.string   "amazon_detail_url"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20110610072212) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "price"
   end
 
   create_table "users", :force => true do |t|

@@ -21,6 +21,7 @@ end
 Factory.define :listing do |listing|
   listing.title "Factory Listing"
   listing.category "Products"
+  listing.price 1234
   listing.description "Listing Descriptions"
   listing.association :user
 end

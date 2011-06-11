@@ -38,7 +38,7 @@ class Book < ActiveRecord::Base
               :description => review_content,
               :image_link => medium_image_uri,
               :amazon_detail_url => item.get('DetailPageURL'),
-              :list_price => price_string.to_f / 100
+              :list_price => price_string.to_f
       }
       new_book = self.new(book_attr)
 

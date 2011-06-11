@@ -32,6 +32,7 @@ namespace :db do
       (5 + rand(10)).times do
         user.listings.create!(:title=>Faker::Lorem.sentence(1 + rand(10)),
                            :category => categories[rand(categories.size)],
+                           :price => rand(5000),
                            :description => Faker::Lorem.paragraph(1 + rand(5)))
       end
     end

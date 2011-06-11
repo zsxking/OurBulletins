@@ -124,7 +124,7 @@ describe ListingsController do
                 :description => ''}
       end
 
-      it "should not create a user" do
+      it "should not create a listing" do
         lambda do
           post :create, :listing => @attr
         end.should_not change(@user.listings, :count)
@@ -140,14 +140,14 @@ describe ListingsController do
 
       before(:each) do
         @attr = {:title => 'Listing Title', :category => 'Books',
-                :description => 'Description content'}
+                :price => 123, :description => 'Description content'}
       end
 
       # Cannot use response.should be_success,
       # because it returns true if the response code is in the range 200-299.
       # But the create action redirects, so the response code gets set to 302,
       # thus the failure
-      it "should create a user" do
+      it "should create a listing" do
         lambda do
           post :create, :listing => @attr
         end.should change(@user.listings, :count).by(1)
