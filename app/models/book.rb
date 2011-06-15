@@ -27,7 +27,8 @@ class Book < ActiveRecord::Base
       review_content = item.get_element('EditorialReviews')
                            .get_element('EditorialReview').get('Content')
 
-      price_string = item.get_element('ListPrice').get('Amount')
+      price_ele = item.get_element('ListPrice')
+      price_string = price_ele ? price_ele.get('Amount') : ''
 
       book_attr = {
               :title => item_attributes.get('Title'),
