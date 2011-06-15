@@ -48,4 +48,13 @@ describe Listing do
     end
   end
 
+  describe "polymorphic association" do
+
+    it "should response to saleable" do
+      listing = Listing.create!(@attr)
+      listing.should respond_to :saleable
+    end
+
+  end
+
 end

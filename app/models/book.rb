@@ -10,6 +10,8 @@ class Book < ActiveRecord::Base
                   :edition, :publisher, :publish_date, :image_link,
                   :list_price, :amazon_detail_url
 
+  has_many :listings, :as => :saleable
+
   def self.get_from_amazon_by_isbn(isbn)
     res = Amazon::Ecs.item_search(isbn, {:response_group => 'Medium'})
     if (res.total_results <= 0)

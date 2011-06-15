@@ -1,20 +1,22 @@
 require 'spec_helper'
 
 describe Book do
+  before(:each) do
+    @isbn = 9781933988658
+    @book_attr = {
+            :title => 'The Well-Grounded Rubyist',
+            :author => 'David A. Black',
+            :isbn => '9781933988658',
+            :ean => '9781933988658',
+            :publish_date => '2009-06-04',
+            :publisher => 'Manning Publications',
+            :edition => '1',
+            :list_price => 4499
+    }
+  end
 
   describe "get book from amazon api" do
     before(:each) do
-      @isbn = 9781933988658
-      @book_attr = {
-              :title => 'The Well-Grounded Rubyist',
-              :author => 'David A. Black',
-              :isbn => '9781933988658',
-              :ean => '9781933988658',
-              :publish_date => '2009-06-04',
-              :publisher => 'Manning Publications',
-              :edition => '1',
-              :list_price => 4499
-      }
       @books = Book::get_from_amazon_by_isbn(@isbn)
     end
 
@@ -39,18 +41,6 @@ describe Book do
   end
 
   describe "save book" do
-    before(:each) do
-      @book_attr = {
-              :title => 'The Well-Grounded Rubyist',
-              :author => 'David A. Black',
-              :isbn => '9781933988658',
-              :ean => '9781933988658',
-              :publish_date => '2009-06-04',
-              :publisher => 'Manning Publications',
-              :edition => '1',
-              :list_price => 4499
-      }
-    end
 
     it "should save the book correctly" do
       book = Book.create!(@book_attr)
@@ -64,6 +54,17 @@ describe Book do
       book.edition.should == @book_attr[:edition]
       book.list_price.should == @book_attr[:list_price]
     end
+  end
+
+  describe "polymorphic association" do
+    before(:each) do
+      @book = Book.create!(@book_attr)
+    end
+
+    it "should response to listings" do
+      @book.should respond_to :listings
+    end
+
   end
 
 end
