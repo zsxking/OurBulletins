@@ -32,12 +32,10 @@ namespace :db do
 
     sale_words = ['', 'Sale', 'Sell', 'WTS', 'Selling']
 
-    categories = ['Textbook', 'Others']
     User.all(:limit => 6).each do |user|
       (5 + rand(10)).times do
         new_listing = user.listings.build(
                 :title=>Faker::Lorem.sentence(1 + rand(10)),
-                :category => categories[rand(categories.size)],
                 :price => rand(5000),
                 :description => Faker::Lorem.paragraph(1 + rand(5)))
         if (rand(5) >= 1)

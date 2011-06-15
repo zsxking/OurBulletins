@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110615095934) do
+ActiveRecord::Schema.define(:version => 20110615114224) do
 
   create_table "books", :force => true do |t|
     t.string   "ean"
@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(:version => 20110615095934) do
 
   create_table "listings", :force => true do |t|
     t.string   "title"
-    t.string   "category"
     t.text     "description"
     t.integer  "user_id"
     t.datetime "created_at"

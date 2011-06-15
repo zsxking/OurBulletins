@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Listing do
   before (:each) do
     @user = Factory(:user)
-    @attr = {:title => "Test Listing", :category => "Textbook", :price => 1234,
+    @attr = {:title => "Test Listing", :price => 1234,
              :description => "content of the description"}
   end
 
@@ -29,11 +29,6 @@ describe Listing do
   describe "Validation" do
     it "should require a title" do
       listing = @user.listings.new(@attr.merge(:title => " "))
-      listing.should_not be_valid
-    end
-
-    it "should require a category" do
-      listing = @user.listings.new(@attr.merge(:category => " "))
       listing.should_not be_valid
     end
 

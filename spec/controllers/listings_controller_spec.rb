@@ -120,8 +120,7 @@ describe ListingsController do
   describe "failure" do
 
       before(:each) do
-        @attr = {:title => '', :category => '',
-                :description => ''}
+        @attr = {:title => '', :description => ''}
       end
 
       it "should not create a listing" do
@@ -139,7 +138,7 @@ describe ListingsController do
     describe "success" do
 
       before(:each) do
-        @attr = {:title => 'Listing Title', :category => 'Books',
+        @attr = {:title => 'Listing Title',
                 :price => 123, :description => 'Description content'}
       end
 
@@ -210,8 +209,7 @@ describe ListingsController do
     describe "failure" do
 
       before(:each) do
-        @attr = {:title => '', :category => '',
-                :description => ''}
+        @attr = {:title => '', :price => nil, :description => ''}
       end
 
       it "should render the 'edit' page" do
@@ -228,7 +226,7 @@ describe ListingsController do
     describe "success" do
 
       before(:each) do
-        @attr = {:title => 'New Title', :category => 'New Cat',
+        @attr = {:title => 'New Title', :price => 123,
                 :description => 'New Descriptions'}
       end
 
@@ -253,7 +251,7 @@ describe ListingsController do
       before (:each) do
         @another_user = Factory(:user, :email => Factory.next(:email))
         @another_listing = Factory(:listing, :user => @another_user)
-        @attr = {:title => 'New Title', :category => 'New Cat',
+        @attr = {:title => 'New Title',
                 :description => 'New Descriptions'}
       end
 
@@ -271,9 +269,7 @@ describe ListingsController do
         @before_listing = @another_listing
         put :update, :id => @another_listing, :listing => @attr
         @another_listing.reload
-        @another_listing.category.should_not == @attr[:category]
         @another_listing.description.should_not == @attr[:description]
-        @another_listing.category.should == @before_listing.category
         @another_listing.description.should == @before_listing.description
       end
     end

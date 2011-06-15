@@ -20,8 +20,18 @@ end
 
 Factory.define :listing do |listing|
   listing.title "Factory Listing"
-  listing.category "Products"
   listing.price 1234
   listing.description "Listing Descriptions"
   listing.association :user
+end
+
+Factory.define :book do |book|
+  book.title 'Factory BOok'
+  book.author 'An. Author'
+  book.isbn '1234567890'
+  book.ean '1234567890123'
+  book.publish_date '2011-01-11'
+  book.publisher 'Factory Publications'
+  book.edition '1'
+  book.list_price 9999
 end
