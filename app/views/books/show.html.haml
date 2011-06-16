@@ -1,0 +1,48 @@
+%h3= @book.title
+
+.grid_2.alpha= image_tag @book.image_link
+
+.grid_8
+  .author= @book.author
+
+  %ul
+    %li
+      =@book.publisher
+      ,
+      =@book.publish_date
+    %li
+      Edition
+      =@book.edition
+    %li
+      ISBN-10
+      =@book.isbn
+    %li
+      ISBN-13
+      =@book.ean
+
+.clear
+%br
+- if @book.listings.size > 0
+  .listings
+    %h4 Current Listings:
+    .list-header
+      .grid_1.alpha Price
+      .grid_2 Seller
+      .grid_2 Listed Time
+      .grid_5 Description
+      .grid_2.omega Action
+    .clear
+    -@book.listings.each do |listing|
+      .list-item
+        .grid_1.alpha= '$' + ("%.2f" % (listing.price.to_f / 100.0))
+        .grid_2= listing.user.name
+        .grid_2= listing.created_at.strftime("%m/%d/%Y %I:%M%p")
+        .grid_5.decr= listing.description
+        .grid_2.omega
+        .clear
+
+.grid_12.vendor-decr
+  .prefix
+    Description from
+    = link_to 'Amazon', @book.amazon_detail_url, :target => '_blank'
+  .grid_10.push_1!= CGI.unescapeHTML(@book.description)

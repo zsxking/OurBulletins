@@ -49,4 +49,8 @@ class Book < ActiveRecord::Base
     end
     return books
   end
+
+  def lowest_price
+    p = self.listings.minimum :price
+  end
 end

@@ -10,17 +10,6 @@
     = new_record ? f.text_field(:title) : listing.title
 
   .field
-    = f.label :category
-    %br
-    - if new_record
-      = f.radio_button :category, 'Textbook'
-      Book / Textbook
-      = f.radio_button :category, 'Others'
-      Others
-    - else
-      = listing.category
-
-  .field
     = f.label :description
     %br
     = f.text_area :description
