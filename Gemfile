@@ -40,10 +40,11 @@ gem 'gravatar_image_tag'
 # metric reports generator
 gem 'metric_fu'
 
+gem 'faker'
+
 group :development do
   gem 'rspec-rails'
   gem 'annotate-models'
-  gem 'faker'
 end
 
 group :test do
