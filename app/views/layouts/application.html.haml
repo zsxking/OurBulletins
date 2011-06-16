@@ -19,18 +19,18 @@
       #headerBar
       .container_12
         .grid_2= link_to logo, root_path
-        .grid_4.search_bar= render 'shared/search_form'
+        .grid_3.search_bar= render 'shared/search_form'
         %nav.grid_4.left
           %ul
             %li= link_to "Home", root_path
             - if logged_in?
               %li= link_to "Profile", current_user
-        .grid_1.right
+        .func-links.grid_2.right
           - if logged_in?
             = link_to "New Listing", new_listing_path
           - else
             = link_to "Sign Up", signup_path
-        .grid_1.right
+        .func-links.grid_1.right
           - if logged_in?
             = link_to "Logout", logout_path
           - else
