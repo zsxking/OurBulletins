@@ -24,8 +24,7 @@ class Book < ActiveRecord::Base
       medium_image_uri = item.get_element('MediumImage').get('URL')
       #medium_image_uri.read
 
-      review_content = item.get_element('EditorialReviews')
-                           .get_element('EditorialReview').get('Content')
+      review_content = item.get_element('EditorialReviews').get_element('EditorialReview').get('Content')
 
       price_ele = item.get_element('ListPrice')
       price_string = price_ele ? price_ele.get('Amount') : ''
