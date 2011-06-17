@@ -42,6 +42,8 @@ gem 'metric_fu'
 
 gem 'faker'
 
+gem 'dalli'
+
 group :development do
   gem 'rspec-rails'
   gem 'annotate-models'
