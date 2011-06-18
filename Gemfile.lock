@@ -45,6 +45,7 @@ GEM
       ruby_parser (~> 2.0.4)
       sexp_processor (~> 3.0.3)
     colored (1.2)
+    dalli (1.0.5)
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -163,6 +164,7 @@ PLATFORMS
 DEPENDENCIES
   amazon-ecs
   annotate-models
+  dalli
   factory_girl_rails
   faker
   gravatar_image_tag
