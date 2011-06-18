@@ -4,7 +4,7 @@ class ListingsController < ApplicationController
 
   def index
     @title = "Posts"
-    @listings = Listing.all.paginate(:page => params[:page])
+    @listings = Listing.other.paginate(:page => params[:page])
   end
 
   def show
@@ -14,10 +14,12 @@ class ListingsController < ApplicationController
   def new
     @title = 'New Listing'
     @listing = current_user.listings.build
+    @listing.saleable = find_saleable
   end
 
   def create
     @listing = current_user.listings.build(params[:listing])
+    @listing.saleable = find_saleable
     if @listing.save
       flash[:success] = "New Listing Posted."
       redirect_to @listing
@@ -50,5 +52,14 @@ class ListingsController < ApplicationController
         redirect_to @listing
       end
     end
+
+    def find_saleable
+    params.each do |name, value|
+      if name =~ /(.+)_id$/
+        return $1.classify.constantize.find(value)
+      end
+    end
+    nil
+end
 
 end

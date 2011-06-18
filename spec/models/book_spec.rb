@@ -11,7 +11,7 @@ describe Book do
             :publish_date => '2009-06-04',
             :publisher => 'Manning Publications',
             :edition => '1',
-            :list_price => 4499
+            :list_price => 44.99
     }
   end
 

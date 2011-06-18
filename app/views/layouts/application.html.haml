@@ -23,6 +23,7 @@
         %nav.grid_4.left
           %ul
             %li= link_to "Books", books_path
+            %li= link_to "Others", listings_path
             - if logged_in?
               %li= link_to "Profile", current_user
         .func-links.grid_2.right

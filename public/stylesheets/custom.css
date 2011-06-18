@@ -148,9 +148,6 @@ a {
   text-decoration: none;
 }
 
-a:hover {
-}
-
 a:visited {
 }
 
@@ -195,14 +192,28 @@ div.field, div.actions {
   text-align: center;
 }
 
+.listings .list-action {
+  text-align: center;
+}
+
+.list-item:hover {
+  background-color: #F3EBC3;
+}
+
+.listings .list-item .title{
+  font-weight: bold;
+}
+
 .listings .list-item .decr{
   text-align: left;
 }
 
+.vendor-decr {
+  font-style: italic;
+}
 .vendor-decr .prefix {
   font-weight: bold;
   font-size: 110%;
-  font-style: italic;
   margin-bottom: 10px;
 }
 

@@ -8,7 +8,7 @@ class Book < ActiveRecord::Base
 
   attr_readonly :title, :author, :description, :ean, :isbn,
                   :edition, :publisher, :publish_date, :image_link,
-                  :list_price, :amazon_detail_url
+                  :icon_link, :list_price, :amazon_detail_url
 
   has_many :listings, :as => :saleable
 
@@ -24,10 +24,12 @@ class Book < ActiveRecord::Base
       medium_image_uri = item.get_element('MediumImage').get('URL')
       #medium_image_uri.read
 
+      small_image_uri = item.get_element('SmallImage').get('URL')
+
       review_content = item.get_element('EditorialReviews').get_element('EditorialReview').get('Content')
 
       price_ele = item.get_element('ListPrice')
-      price_string = price_ele ? price_ele.get('Amount') : ''
+      price = price_ele ? price_ele.get('Amount').to_f / 100.0 : nil
 
       book_attr = {
               :title => item_attributes.get('Title'),
@@ -39,8 +41,9 @@ class Book < ActiveRecord::Base
               :publish_date => item_attributes.get('PublicationDate'),
               :description => review_content,
               :image_link => medium_image_uri,
+              :icon_link => small_image_uri,
               :amazon_detail_url => item.get('DetailPageURL'),
-              :list_price => price_string.to_f
+              :list_price => price
       }
       new_book = self.new(book_attr)
 
@@ -50,6 +53,6 @@ class Book < ActiveRecord::Base
   end
 
   def lowest_price
-    p = self.listings.minimum :price
+    self.listings.minimum :price
   end
 end

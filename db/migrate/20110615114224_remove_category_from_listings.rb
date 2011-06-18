@@ -4,5 +4,6 @@ class RemoveCategoryFromListings < ActiveRecord::Migration
   end
 
   def self.down
+    add_column :listings, :category, :string
   end
 end

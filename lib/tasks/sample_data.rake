@@ -2,7 +2,7 @@
 namespace :db do
   desc "Fill database with sample data"
   task :populate => :environment do
-    #Rake::Task['db:reset'].invoke
+    Rake::Task['db:reset'].invoke
     admin = User.create!(:name => "Admin User",
                  :email => "admin@university.edu",
                  :password => "foobar123",
@@ -30,19 +30,18 @@ namespace :db do
       books.push new_book
     end
 
-    sale_words = ['', 'Sale', 'Sell', 'WTS', 'Selling']
-
     User.all(:limit => 6).each do |user|
       (5 + rand(10)).times do
         new_listing = user.listings.build(
                 :title=>Faker::Lorem.sentence(1 + rand(10)),
-                :price => rand(5000),
+                :price => rand(5000)/100.0,
                 :description => Faker::Lorem.paragraph(1 + rand(5)))
         if (rand(5) >= 1)
           book = books.sample
           new_listing.saleable = book
-          new_listing.title = sale_words.sample + ' ' + book.title
-          new_listing.price = book.list_price * rand(70) / 100
+          new_listing.title = nil
+          base_price = book.list_price ? book.list_price : 10.0
+          new_listing.price = base_price * (rand(60) + 20) / 100.0 + 1
         end
         new_listing.save
       end

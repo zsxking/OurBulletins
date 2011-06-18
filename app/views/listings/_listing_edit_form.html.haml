@@ -1,0 +1,28 @@
+=form_for [saleable, listing] do |f|
+  - new_record = f.object.new_record?
+
+  = render 'shared/error_messages', :object => f.object
+
+  - if saleable.nil?
+    .field
+      = f.label :title
+      %br
+      = new_record ? f.text_field(:title) : listing.title
+  - else
+    .item
+      ="Listing for #{saleable.class}:"
+      = render saleable
+    .clear
+
+  .field
+    = f.label :price
+    %br
+    = f.text_field(:price)
+
+  .field
+    = f.label :description
+    %br
+    = f.text_area :description
+
+  .actions
+    = f.submit new_record ? "Listing" : "Update"

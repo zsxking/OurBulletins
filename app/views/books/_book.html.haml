@@ -1,0 +1,15 @@
+.grid_6.alpha.book-item
+  .grid_2.alpha= image_tag book.image_link
+  .grid_4.omega
+    %p
+      %span.title=link_to book.title, book
+      by
+      %span.author= book.author
+    %p.isbn= "ISBN-13: #{book.ean}"
+    %p.price
+      List Price:
+      = (book.list_price ? '$' + book.list_price.to_s : 'N/A')
+    %p.list-count= "Current Offers: #{book.listings.size}"
+    %p.price
+      Lowest Price:
+      = book.lowest_price ? '$' + book.lowest_price.to_s : 'N/A'

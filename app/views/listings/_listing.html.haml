@@ -1,0 +1,15 @@
+
+= link_to listing do
+  .list-item.grid_10.alpha
+    .grid_1.alpha= '$' + ("%.2f" % listing.price.to_f)
+    .grid_2= listing.user.name
+    .grid_2
+      = render 'shared/time', :time => listing.created_at
+    .grid_5.omega.decr
+      - if listing.saleable.nil?
+        .title= listing.title
+      - else
+        = listing.description
+
+.list-action.grid_2.omega
+  Buy

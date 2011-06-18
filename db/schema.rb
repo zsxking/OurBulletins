@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110615114224) do
+ActiveRecord::Schema.define(:version => 20110618094809) do
 
   create_table "books", :force => true do |t|
     t.string   "ean"
@@ -20,12 +20,13 @@ ActiveRecord::Schema.define(:version => 20110615114224) do
     t.string   "publisher"
     t.string   "edition"
     t.string   "publish_date"
-    t.integer  "list_price"
+    t.decimal  "list_price",        :precision => 8, :scale => 2
     t.text     "description"
     t.string   "image_link"
     t.string   "amazon_detail_url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "icon_link"
   end
 
   add_index "books", ["ean"], :name => "index_books_on_ean", :unique => true
@@ -37,7 +38,7 @@ ActiveRecord::Schema.define(:version => 20110615114224) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "price"
+    t.decimal  "price",         :precision => 8, :scale => 2
     t.integer  "saleable_id"
     t.string   "saleable_type"
   end
