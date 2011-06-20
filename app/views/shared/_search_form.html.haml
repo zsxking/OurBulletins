@@ -1,4 +1,6 @@
 .search_container
   = form_tag(search_path, :method => :get) do
-    = submit_tag " ", {:name => nil, :class => :search_button, :title=>:search}
-    = text_field_tag :q, @keywords, {:class => :search_field, :placeholder => 'Search'}
+    = submit_tag " ", {:name => nil, :class => :search_button}
+    = text_field_tag :q, @keywords,
+        {:class => :search_field,
+         :placeholder => 'Search: ISBN, Title, Author, etc.'}

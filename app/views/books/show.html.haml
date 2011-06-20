@@ -1,7 +1,7 @@
 %h3= @book.title
 
 -if logged_in?
-  %h4=link_to 'Sell this book', new_book_listing_path(@book)
+  %h4=link_to 'List this book', new_book_listing_path(@book)
 
 .grid_2.alpha= image_tag @book.image_link
 

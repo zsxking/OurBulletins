@@ -1,28 +1,38 @@
-=form_for [saleable, listing] do |f|
-  - new_record = f.object.new_record?
 
-  = render 'shared/error_messages', :object => f.object
+.grid_6.alpha
+  =form_for [saleable, listing] do |f|
+    - new_record = f.object.new_record?
 
-  - if saleable.nil?
+    = render 'shared/error_messages', :object => f.object
+
+    - if saleable.nil?
+      .field
+        = f.label :title
+        %br
+        = new_record ? f.text_field(:title) : listing.title
+        = link_to 'Add a Book', find_books_path,
+              {:id => 'add-book-link', :remote => true}
+    - else
+      .item
+        = render saleable
+      .clear
+
     .field
-      = f.label :title
+      = f.label :price
       %br
-      = new_record ? f.text_field(:title) : listing.title
-  - else
-    .item
-      ="Listing for #{saleable.class}:"
-      = render saleable
-    .clear
+      = f.text_field(:price)
 
-  .field
-    = f.label :price
-    %br
-    = f.text_field(:price)
+    .field
+      = f.label :description
+      %br
+      = f.text_area :description
 
-  .field
-    = f.label :description
-    %br
-    = f.text_area :description
+    .actions
+      = f.submit new_record ? "Listing" : "Update"
 
-  .actions
-    = f.submit new_record ? "Listing" : "Update"
+.grid_6.omega#add-book-block
+
+:javascript
+  $('#add-book-link').bind('ajax:complete', function(et, e) {
+    $('#add-book-block').html(e.responseText);
+  });
