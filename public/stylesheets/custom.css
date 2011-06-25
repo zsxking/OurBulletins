@@ -121,7 +121,7 @@ nav ul li {
 }
 
 
-/* Text Position */
+/* Misc */
 .right {
   text-align: right;
 }
@@ -129,7 +129,9 @@ nav ul li {
   text-align: left;
 }
 
-/* Round corners */
+.hide {
+  display: none;
+}
 
 .round {
   -moz-border-radius:    5px;
@@ -158,18 +160,38 @@ div.field, div.actions {
 }
 
 
-/* Books */
+/* Book Item */
 .book-item {
   margin-bottom: 10px;
+  height: 162px;
 }
 
 .book-item:hover {
   background-color: #F3EBC3;
 }
 
+.book-item .image {
+  width: 140px;
+  margin-left: 0;
+  margin-right: 10px;
+  display: inline;
+  float: left;
+}
+
+.book-item .image img{
+  border: 1px solid #968954
+}
+
+.book-item .detail {
+  width: 280px;
+  margin-right: 0;
+  margin-left: 10px;
+  display: inline;
+  float: left;
+}
+
 .book-item p {
-  padding-top: 5px;
-  margin-bottom: 0;
+  margin-bottom: 5px;
 }
 
 .book-item .title {
@@ -179,6 +201,8 @@ div.field, div.actions {
   font-style: italic;
   padding-top: 0;
 }
+
+
 
 /* Listing List */
 .listings .list-header {
@@ -216,6 +240,17 @@ div.field, div.actions {
   font-size: 110%;
   margin-bottom: 10px;
 }
+
+/* Find Book Div */
+#find-book-form{
+  text-align: center;
+  padding-bottom: 10px;
+}
+#find-books-field {
+  width: 400px;
+  margin-right: 10px;
+}
+
 
 /* Errors */
 

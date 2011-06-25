@@ -35,12 +35,12 @@ class UsersController < ApplicationController
 
   def edit
     # Not necessary because correct_user method has set it already.
-    #@user = User.find(params[:id])
+    #@user = User.new(params[:id])
     @title = "Edit user"
   end
 
   def update
-    #@user = User.find(params[:id])
+    #@user = User.new(params[:id])
     if @user.update_attributes(params[:user])
       flash[:success] = "Profile updated."
       redirect_to @user

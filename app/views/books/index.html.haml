@@ -1,7 +1,41 @@
-%h1 Books
+%h1.grid_6 Books
+
+.grid_6.right#new-book-div
+  %h4=link_to 'Find a new book', '#find-book-div', :id => 'new-book-link'
 
 .grid_11.push_1= will_paginate
 
 = render @books
 
 .grid_11.push_1= will_paginate
+
+-#
+  Find book dialog template
+
+.hide
+  #find-book-div
+    =form_tag(find_books_path, :method => :get, :remote => true,
+              :id => 'find-book-form') do
+      =text_field_tag :keywords, @isbn, {:id => 'find-books-field',
+          :placeholder => 'ISBN, Title, Author, etc.'}
+      = submit_tag 'Find'
+    #find-book-list
+
+:javascript
+  $('#new-book-link').fancybox({
+    //'autoDimensions' : false,
+    'width' : 500,
+    'onClosed' : function () {
+      $('#find-book-list').html('');
+      $('#find-books-field').val('');
+    }
+  });
+  var form = $('#find-book-form');
+  form.live('ajax:complete', function (event, e) {
+    $.fancybox.hideActivity();
+    $('#find-book-list').html(e.responseText);
+    $.fancybox.resize();
+  });
+  form.live('ajax:beforeSend', function (event, e) {
+    $.fancybox.showActivity();
+  });

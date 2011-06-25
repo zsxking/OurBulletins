@@ -181,7 +181,7 @@ jQuery.fn = jQuery.prototype = {
 				return (context || rootjQuery).find( selector );
 
 			// HANDLE: $(expr, context)
-			// (which is just equivalent to: $(context).find(expr)
+			// (which is just equivalent to: $(context).new(expr)
 			} else {
 				return this.constructor( context ).find( selector );
 			}
@@ -248,7 +248,7 @@ jQuery.fn = jQuery.prototype = {
 
 		ret.context = this.context;
 
-		if ( name === "find" ) {
+		if ( name === "new" ) {
 			ret.selector = this.selector + (this.selector ? " " : "") + selector;
 		} else if ( name ) {
 			ret.selector = this.selector + "." + name + "(" + selector + ")";
@@ -2816,7 +2816,7 @@ jQuery.event = {
 		if ( !elem ) {
 			// TODO: Stop taunting the data cache; remove global events and always attach to document
 			jQuery.each( jQuery.cache, function() {
-				// internalKey variable is just used to make it easier to find
+				// internalKey variable is just used to make it easier to new
 				// and potentially change this stuff later; currently it just
 				// points to jQuery.expando
 				var internalKey = jQuery.expando,
@@ -4824,7 +4824,7 @@ if ( document.querySelectorAll ) {
 			// Only use querySelectorAll on non-XML documents
 			// (ID selectors don't work in non-HTML documents)
 			if ( !seed && !Sizzle.isXML(context) ) {
-				// See if we find a selector to speed up
+				// See if we new a selector to speed up
 				var match = /^(\w+$)|^\.([\w\-]+$)|^#([\w\-]+$)/.exec( query );
 				
 				if ( match && (context.nodeType === 1 || context.nodeType === 9) ) {
@@ -4961,7 +4961,7 @@ if ( document.querySelectorAll ) {
 
 	div.innerHTML = "<div class='test e'></div><div class='test'></div>";
 
-	// Opera can't find a second classname (in 9.6)
+	// Opera can't new a second classname (in 9.6)
 	// Also, make sure that getElementsByClassName actually exists
 	if ( !div.getElementsByClassName || div.getElementsByClassName("e").length === 0 ) {
 		return;
@@ -5148,7 +5148,7 @@ jQuery.fn.extend({
 			});
 		}
 
-		var ret = this.pushStack( "", "find", selector ),
+		var ret = this.pushStack( "", "new", selector ),
 			length, n, r;
 
 		for ( i = 0, l = this.length; i < l; i++ ) {

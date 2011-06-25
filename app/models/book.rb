@@ -13,43 +13,55 @@ class Book < ActiveRecord::Base
   has_many :listings, :as => :saleable
 
   def self.get_from_amazon_by_isbn(isbn)
-    res = Amazon::Ecs.item_search(isbn, {:response_group => 'Medium'})
+    #@res = Amazon::Ecs.item_search(params[:amazon][:keywords], :type => 'Keywords', :search_index => 'Books')
+    # Amazon-ecs gem has these default:
+    #   search index : Books
+    #   search type : keywords
+    res = Amazon::Ecs.item_lookup(isbn,
+            {:idType => 'ISBN', :SearchIndex => 'Books', :response_group => 'Medium'})
+    if (res.items.size <= 0)
+      return nil
+    end
+    item = res.items[0]
+    return self.make_from_amazon(item)
+  end
+
+  def self.grab_books_amazon(keywords)
+    res = Amazon::Ecs.item_search(keywords, {:response_group => 'Medium'})
     if (res.total_results <= 0)
       return nil
     end
     books = Array.new
     res.items.each do |item|
-      item_attributes = item.get_element('ItemAttributes')
-
-      medium_image_uri = item.get_element('MediumImage').get('URL')
-      #medium_image_uri.read
-
-      small_image_uri = item.get_element('SmallImage').get('URL')
-
-      review_content = item.get_element('EditorialReviews').get_element('EditorialReview').get('Content')
-
-      price_ele = item.get_element('ListPrice')
-      price = price_ele ? price_ele.get('Amount').to_f / 100.0 : nil
-
-      book_attr = {
-              :title => item_attributes.get('Title'),
-              :author => item_attributes.get('Author'),
-              :ean => item_attributes.get('EAN'),
-              :isbn => item_attributes.get('ISBN'),
-              :edition => item_attributes.get('Edition'),
-              :publisher => item_attributes.get('Publisher'),
-              :publish_date => item_attributes.get('PublicationDate'),
-              :description => review_content,
-              :image_link => medium_image_uri,
-              :icon_link => small_image_uri,
-              :amazon_detail_url => item.get('DetailPageURL'),
-              :list_price => price
-      }
-      new_book = self.new(book_attr)
-
+      new_book = self.make_from_amazon(item)
       books.push(new_book)
     end
     return books
+  end
+
+  def self.make_from_amazon(item)
+    item_attributes = item.get_element('ItemAttributes')
+
+    review_content = item.get('EditorialReviews/EditorialReview/Content') || ''
+
+    price_ele = item.get_element('ListPrice')
+    price = price_ele ? price_ele.get('Amount').to_f / 100.0 : nil
+
+    book_attr = {
+            :title => item_attributes.get('Title'),
+            :author => item_attributes.get('Author'),
+            :ean => item_attributes.get('EAN'),
+            :isbn => item_attributes.get('ISBN'),
+            :edition => item_attributes.get('Edition'),
+            :publisher => item_attributes.get('Publisher'),
+            :publish_date => item_attributes.get('PublicationDate'),
+            :description => review_content,
+            :image_link => item.get('MediumImage/URL') || '',
+            :icon_link => item.get('SmallImage/URL') || '',
+            :amazon_detail_url => item.get('DetailPageURL'),
+            :list_price => price
+    }
+    return self.new(book_attr)
   end
 
   def lowest_price

@@ -19,4 +19,16 @@ module ApplicationHelper
     content_tag :div, app_name, :class => 'headAppName'
   end
 
+  def default_locals(defaults)
+    @default_locals = defaults
+  end
+
+  def method_missing(sym, *args, &block)
+    if @default_locals && @default_locals.has_key?(sym)
+      @default_locals[sym]
+    else
+      super
+    end
+  end
+
 end

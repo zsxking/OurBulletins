@@ -65,7 +65,7 @@ describe UsersController do
       @login_user = Factory(:user, :email => 'new@user.edu')
       test_login(@login_user)
       # stubbing with the stub! method.
-      # User.stub!(:find, @user.id).and_return(@user)
+      # User.stub!(:new, @user.id).and_return(@user)
     end
 
     it "should be successful" do
@@ -73,7 +73,7 @@ describe UsersController do
       response.should be_success
     end
 
-    it "should find the right user" do
+    it "should new the right user" do
       get :show, :id => @user.id
       #　The assigns method takes in a symbol argument and returns the value
       #　of the corresponding instance variable in the controller action.
