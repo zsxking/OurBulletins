@@ -10,11 +10,9 @@
         = f.label :title
         %br
         = new_record ? f.text_field(:title) : listing.title
-        = link_to 'Add a Book', find_books_path,
-              {:id => 'add-book-link', :remote => true}
     - else
       .item
-        = render saleable
+        = render saleable, :show_button => false
       .clear
 
     .field
@@ -29,10 +27,3 @@
 
     .actions
       = f.submit new_record ? "Listing" : "Update"
-
-.grid_6.omega#add-book-block
-
-:javascript
-  $('#add-book-link').bind('ajax:complete', function(et, e) {
-    $('#add-book-block').html(e.responseText);
-  });

@@ -230,7 +230,7 @@
       return false;
     },
 
-    // find all the submit events directly bound to the form and
+    // new all the submit events directly bound to the form and
     // manually invoke them. If anyone returns false then stop the loop
     callFormSubmitBindings: function(form) {
       var events = form.data('events'), continuePropagation = true;

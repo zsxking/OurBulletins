@@ -4,12 +4,16 @@
     %title= title
     = stylesheet_link_tag :all
     = javascript_include_tag :defaults
+    = javascript_include_tag 'jquery.fancybox-1.3.4.js'
     = csrf_meta_tag
 
     = stylesheet_link_tag '960/reset.css', :media => 'screen'
     = stylesheet_link_tag '960/text.css', :media => 'screen'
     = stylesheet_link_tag '960/960.css', :media => 'screen'
     = stylesheet_link_tag 'formalize', :media => 'screen'
+
+    = stylesheet_link_tag 'fancybox/jquery.fancybox-1.3.4.css', :media => 'screen'
+
     = stylesheet_link_tag 'custom', :media => 'screen'
 
   %body
@@ -26,15 +30,12 @@
             %li= link_to "Others", listings_path
             - if logged_in?
               %li= link_to "Profile", current_user
-        .func-links.grid_2.right
-          - if logged_in?
-            = link_to "New Listing", new_listing_path
-          - else
-            = link_to "Sign Up", signup_path
-        .func-links.grid_1.right
+        .func-links.grid_3.right
           - if logged_in?
             = link_to "Logout", logout_path
           - else
+            = link_to "Sign Up", signup_path
+            or
             = link_to "Login", login_path
         .clear
     .page_container
@@ -42,7 +43,7 @@
         - flash.each do |key, value|
           = content_tag(:div, value, :class => "flash #{key}")
 
-        .grid_12.content= yield
+        .content= yield
         .clear
 
     %footer.container_12

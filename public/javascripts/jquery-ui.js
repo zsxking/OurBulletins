@@ -3616,7 +3616,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 			this.containers[innermostIndex].containerCache.over = 1;
 		} else if(this.currentContainer != this.containers[innermostIndex]) { 
 
-			//When entering a new container, we will find the item with the least distance and append our item near it 
+			//When entering a new container, we will new the item with the least distance and append our item near it
 			var dist = 10000; var itemWithLeastDistance = null; var base = this.positionAbs[this.containers[innermostIndex].floating ? 'left' : 'top']; 
 			for (var j = this.items.length - 1; j >= 0; j--) { 
 				if(!$.ui.contains(this.containers[innermostIndex].element[0], this.items[j].item[0])) continue; 
@@ -4042,7 +4042,7 @@ function getColor(elem, attr) {
 		do {
 				color = $.curCSS(elem, attr);
 
-				// Keep going until we find an element that has color, or we hit the body
+				// Keep going until we new an element that has color, or we hit the body
 				if ( color != '' && color != 'transparent' || $.nodeName(elem, "body") )
 						break;
 
@@ -5891,7 +5891,7 @@ $.widget( "ui.accordion", {
 			return;
 		}
 
-		// find elements to show and hide
+		// new elements to show and hide
 		var active = this.active,
 			toShow = clicked.next(),
 			toHide = this.active.next(),
@@ -7749,7 +7749,7 @@ $.extend(Datepicker.prototype, {
 	                  event - if triggered by focus */
 	_showDatepicker: function(input) {
 		input = input.target || input;
-		if (input.nodeName.toLowerCase() != 'input') // find from button/image trigger
+		if (input.nodeName.toLowerCase() != 'input') // new from button/image trigger
 			input = $('input', input.parentNode)[0];
 		if ($.datepicker._isDisabledDatepicker(input) || $.datepicker._lastInput == input) // already here
 			return;
@@ -11340,7 +11340,7 @@ $.widget( "ui.tabs", {
 
 		$li.addClass( "ui-state-default ui-corner-top" ).data( "destroy.tabs", true );
 
-		// try to find an existing element before creating a new one
+		// try to new an existing element before creating a new one
 		var $panel = self.element.find( "#" + id );
 		if ( !$panel.length ) {
 			$panel = $( o.panelTemplate )
