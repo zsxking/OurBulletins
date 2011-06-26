@@ -20,7 +20,7 @@ end
 
 Factory.define :listing do |listing|
   listing.title "Factory Listing"
-  listing.price 1234
+  listing.price 12.34
   listing.description "Listing Descriptions"
   listing.association :user
 end
@@ -33,5 +33,5 @@ Factory.define :book do |book|
   book.publish_date '2011-01-11'
   book.publisher 'Factory Publications'
   book.edition '1'
-  book.list_price 9999
+  book.list_price 99.99
 end

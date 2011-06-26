@@ -36,20 +36,41 @@ describe ListingsController do
   end
 
   describe "GET 'index'" do
+    before(:each) do
+      @user1 = Factory(:user)
+      @user2 = Factory(:user, :email => Factory.next(:email))
+      @listing1 = Factory(:listing, :user => @user1)
+      @listing2 = Factory(:listing, :user => @user2, :title => 'New Title')
+      @listing3 = Factory(:listing, :user => @user1, :title => 'Book Listing')
+      @listing3.saleable = Factory(:book)
+      @listing3.save
+    end
 
     it "should be successful" do
       get :index
       response.should be_success
     end
 
-    it "should show listings" do
-      user1 = Factory(:user)
-      user2 = Factory(:user, :email => Factory.next(:email))
-      listing1 = Factory(:listing, :user => user1)
-      listing2 = Factory(:listing, :user => user2)
+    it "should have the right title" do
       get :index
-      response.should have_selector("div.title", :content => listing1.title)
-      response.should have_selector("div.title", :content => listing2.title)
+        response.should have_selector("title", :content => "Others")
+    end
+
+    it "should show listings" do
+      get :index
+      response.should have_selector("div.title", :content => @listing1.title)
+      response.should have_selector("div.title", :content => @listing2.title)
+    end
+
+    it "should have link to listings" do
+      get :index
+      response.should have_selector("a", :href => "/listings/#{@listing1.id}")
+      response.should have_selector("a", :href => "/listings/#{@listing2.id}")
+    end
+
+    it "should not show book listings" do
+      get :index
+      response.should_not have_selector("div.title", :content => @listing3.title)
     end
 
   end

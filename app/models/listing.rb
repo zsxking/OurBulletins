@@ -2,6 +2,8 @@ class Listing < ActiveRecord::Base
   attr_accessible :title, :price, :description
 
   belongs_to :user
+  delegate :name, :to => :user, :prefix => true
+
   belongs_to :saleable, :polymorphic => true
 
   validates :title,       :presence => true, :unless => :saleable?
@@ -10,7 +12,7 @@ class Listing < ActiveRecord::Base
   validates :description, :presence => true
 
   default_scope :order => 'listings.created_at DESC'
-  named_scope :other, :conditions => {:saleable_id => nil}
+  scope :other, :conditions => {:saleable_id => nil}
 
   private
     def saleable?

@@ -17,8 +17,8 @@ class Book < ActiveRecord::Base
     # Amazon-ecs gem has these default:
     #   search index : Books
     #   search type : keywords
-    res = Amazon::Ecs.item_lookup(isbn,
-            {:idType => 'ISBN', :SearchIndex => 'Books', :response_group => 'Medium'})
+    res = Amazon::Ecs.item_lookup(isbn, :response_group => 'Medium',
+                                  :idType => 'ISBN', :SearchIndex => 'Books')
     if (res.items.size <= 0)
       return nil
     end
@@ -27,7 +27,8 @@ class Book < ActiveRecord::Base
   end
 
   def self.grab_books_amazon(keywords)
-    res = Amazon::Ecs.item_search(keywords, {:response_group => 'Medium'})
+    res = Amazon::Ecs.item_search(keywords, :response_group => 'Medium',
+                                  :search_index => 'Books')
     if (res.total_results <= 0)
       return nil
     end

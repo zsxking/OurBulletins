@@ -3,7 +3,7 @@ class ListingsController < ApplicationController
   before_filter :correct_user, :only => [:edit, :update]
 
   def index
-    @title = "Posts"
+    @title = "Others"
     @listings = Listing.other.paginate(:page => params[:page])
   end
 
