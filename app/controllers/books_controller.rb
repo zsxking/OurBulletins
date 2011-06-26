@@ -25,7 +25,8 @@ class BooksController < ApplicationController
   end
 
   def find
-    @books = Book::grab_books_amazon(params[:keywords])
+    @keywords = params[:keywords]
+    @books = Book::grab_books_amazon(@keywords)
     # Check and replace for saved books
     unless @books.nil? || @books.empty?
       @books = @books.map do |book|
