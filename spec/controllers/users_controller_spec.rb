@@ -140,16 +140,6 @@ describe UsersController do
         end.should_not change(User, :count)
       end
 
-      it "should clear password field" do
-        post :create, :user => @attr
-        response.should have_selector("input[name='user[password]']", :value => '')
-      end
-
-      it "should clear password_confirmation field" do
-        post :create, :user => @attr
-        response.should have_selector("input[name='user[password_confirmation]'][value='']")
-      end
-
       it "should have the right title" do
         post :create, :user => @attr
         response.should have_selector("title", :content => "Sign up")
