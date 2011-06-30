@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-OurBulletins::Application.config.secret_token = 'f065faafa4206e40796f68c3fe41afa8306092f573d9a9f80c34b3e60b156dd81cb469b5ab4166490711562bcc20b8285d4f1f24ecd3e346966f3891acfb426c'
+OurBulletins::Application.config.secret_token = 'f9c6b8998171d5f6306bee9f7c7dce5ad560fcf52143a21b241efae9f6980280185d3aa938cf4ded457ae343b1290faf6ebf0322f372974edc191156220056d4'

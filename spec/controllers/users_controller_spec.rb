@@ -142,7 +142,7 @@ describe UsersController do
 
       it "should clear password field" do
         post :create, :user => @attr
-        response.should have_selector("input[name='user[password]'][value='']")
+        response.should have_selector("input[name='user[password]']", :value => '')
       end
 
       it "should clear password_confirmation field" do
