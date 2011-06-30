@@ -26,7 +26,7 @@ Factory.define :listing do |listing|
 end
 
 Factory.define :book do |book|
-  book.title 'Factory BOok'
+  book.title 'Factory Book'
   book.author 'An. Author'
   book.isbn '1234567890'
   book.ean '1234567890123'
@@ -34,4 +34,6 @@ Factory.define :book do |book|
   book.publisher 'Factory Publications'
   book.edition '1'
   book.list_price 99.99
+  book.image_link '#'
+  book.icon_link '#'
 end

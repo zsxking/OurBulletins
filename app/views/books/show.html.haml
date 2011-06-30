@@ -20,8 +20,7 @@
     %li
       ISBN-13
       =@book.ean
-  -if logged_in?
-    = button_to 'List this book', new_book_listing_path(@book), :method => :get
+  = button_to 'List this book', new_book_listing_path(@book), :method => :get
 
 .clear
 %br
@@ -31,8 +30,9 @@
 
     =render @book.listings
 
-.grid_12.vendor-decr
-  .prefix
-    Description from
-    = link_to 'Amazon.com', @book.amazon_detail_url, :target => '_blank'
-  .grid_10.push_1!= CGI.unescapeHTML(@book.description)
+-if !@book.description.nil?
+  .grid_12.vendor-decr
+    .prefix
+      Description from
+      = link_to 'Amazon.com', @book.amazon_detail_url, :target => '_blank'
+    .grid_10.push_1!= CGI.unescapeHTML(@book.description)

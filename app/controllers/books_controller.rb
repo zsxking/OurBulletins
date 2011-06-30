@@ -11,16 +11,17 @@ class BooksController < ApplicationController
   end
 
   def create
-    book = Book.get_from_amazon_by_isbn(params[:isbn])
-    if book.nil?
+    @book = Book.get_from_amazon_by_isbn(params[:isbn])
+    if @book.nil?
       flash[:error] = "Book not found."
       redirect_to books_path
-    end
-    if book.save
-      redirect_to new_book_listing_path(book)
     else
-      flash[:error] = "Book creation failed."
-      redirect_to books_path
+      if @book.save
+        redirect_to new_book_listing_path(@book)
+      else
+        flash[:error] = "Book creation failed."
+        redirect_to books_path
+      end
     end
   end
 

@@ -138,7 +138,7 @@ describe ListingsController do
       @user = Factory(:user)
       test_login(@user)
     end
-  describe "failure" do
+    describe "failure" do
 
       before(:each) do
         @attr = {:title => '', :description => ''}

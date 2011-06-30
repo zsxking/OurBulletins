@@ -3,7 +3,7 @@
   .image= image_tag book.image_link
   .detail
     %p
-      %span.title=link_to book.title, book
+      %span.title= book.new_record? ? book.title : link_to(book.title, book)
       by
       %span.author= book.author
     %p.isbn= "ISBN-13: #{book.ean}"
@@ -18,7 +18,7 @@
       -if book.new_record?
         %p
           =form_tag books_path do
-            = hidden_field_tag :isbn, book.isbn
+            = hidden_field_tag :isbn, book.ean
             = submit_tag 'List this book'
       -else
         %p.offer
