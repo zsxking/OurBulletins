@@ -17,7 +17,7 @@ gem 'uglifier'
 gem 'jquery-rails'
 
 gem 'haml'
-gem 'will_paginate'
+gem 'will_paginate', :git => 'git://github.com/JackDanger/will_paginate.git'
 gem 'gravatar_image_tag'
 
 # metric reports generator
