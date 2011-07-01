@@ -30,7 +30,7 @@
 
     =render @book.listings
 
--if !@book.description?
+-if @book.description?
   .grid_12.vendor-decr
     .prefix
       Description from
