@@ -25,7 +25,7 @@ namespace :db do
                   9780132136839, 9780393931129]
     books = Array.new
     books_isbn.each do |isbn|
-      new_book = Book::get_from_amazon_by_isbn(isbn)[0]
+      new_book = Book::get_from_amazon_by_isbn(isbn)
       new_book.save
       books.push new_book
     end
