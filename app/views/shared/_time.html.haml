@@ -1,5 +1,4 @@
 .timestamp
   %time{:title => time.getlocal.strftime("%a %b %d  %H:%M:%S %Y %Z"),
         :datetime => time.strftime("%Y-%m-%dT%H:%M:%S.%L%z"),
-        :pubdate => true}
-    = distance_of_time_in_words(time, Time.now)
+        :pubdate => true}= time_ago_in_words(time)
