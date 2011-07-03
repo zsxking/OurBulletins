@@ -1,34 +1,23 @@
-%h3= @book.title
+%h3.grid_12= @book.title
 
 
-.grid_2.alpha= image_tag @book.image_link
+.grid_2= image_tag @book.image_link
 
 .grid_8
   .author= @book.author
 
   %ul
-    %li
-      =@book.publisher
-      ,
-      =@book.publish_date
-    %li
-      Edition
-      =@book.edition
-    %li
-      ISBN-10
-      =@book.isbn
-    %li
-      ISBN-13
-      =@book.ean
+    %li= "#{@book.publisher}, #{@book.publish_date}"
+    %li= "Edition #{@book.edition}"
+    %li= "ISBN-10 #{@book.isbn}"
+    %li= "ISBN-13 #{@book.ean}"
   = button_to 'List this book', new_book_listing_path(@book), :method => :get
 
 .clear
 %br
 - if @book.listings.size > 0
-  .listings
-    %h4 Current Listings:
-
-    =render @book.listings
+  %h4.grid_12 Current Listings:
+  =render @book.listings
 
 -if @book.description?
   .grid_12.vendor-decr

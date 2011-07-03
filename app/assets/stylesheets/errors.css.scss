@@ -1,0 +1,45 @@
+
+/* Errors */
+
+.field_with_errors {
+  padding: 2px;
+  background-color: #ff0000;
+  display: inline-block;
+
+  label {
+    color: #ffffff;
+  }
+}
+
+#error_explanation {
+  border: 2px solid #cc0000;
+  padding: 7px 7px 12px;
+  margin-bottom: 10px;
+  background-color: #f0f0f0;
+
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 110%;
+    margin: -7px -7px 0 -7px; /* Counteract the 7px padding in #error_explanation */
+    background-color: #cc0000;
+    color: #ffffff;
+  }
+
+  p {
+    color: #333333;
+    margin-bottom: 0;
+    padding: 5px;
+  }
+
+  ul {
+    margin-bottom: 0;
+
+    li {
+      font-size: 12px;
+      list-style: square;
+    }
+  }
+}
+

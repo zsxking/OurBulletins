@@ -1,15 +1,23 @@
 
-= link_to listing do
-  .list-item.grid_10.alpha
-    .grid_1.alpha= '$' + ("%.2f" % listing.price.to_f)
-    .grid_2= listing.user.name
-    .grid_2
-      = render 'shared/time', :time => listing.created_at
-    .grid_5.omega.decr
+
+.list-item
+  .grid_1
+    .price= '$' + ("%.2f" % listing.price.to_f)
+  .grid_1.cond
+    Condition Here
+  .grid_8.decr
+    = link_to listing do
       - if listing.saleable.nil?
         .title= listing.title
       - else
         = listing.description
+    .tagline
+      posted
+      = render 'shared/time', :time => listing.created_at
+      ago by
+      = link_to listing.user_name, listing.user
 
-.list-action.grid_2.omega
-  Buy
+  .list-action.grid_2
+    Buy
+
+  .clear
