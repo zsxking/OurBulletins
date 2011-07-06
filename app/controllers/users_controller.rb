@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :authenticate, :except => [:show, :new, :create]
   before_filter :correct_user, :only => [:edit, :update, :deactivate]
-  before_filter :admin_user, :only => [:ban]
+  before_filter :admin_user, :only => [:ban, :index]
   before_filter :not_on_admin_user, :only => [:ban]
 
   def index

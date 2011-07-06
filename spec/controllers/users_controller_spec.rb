@@ -6,18 +6,24 @@ describe UsersController do
 
   describe "GET 'index'" do
 
-    describe "for non-logged-in users" do
-      it "should deny access" do
+    describe "access control" do
+      it "should deny access for non-logged-in users" do
         get :index
         response.should redirect_to(login_path)
         flash[:notice].should =~ /login/i
+      end
+
+      it "should deny access for logged-in non-admin users" do
+        @user = test_login(Factory(:user))
+        get :index
+        response.should redirect_to(root_path)
       end
     end
 
     describe "for logged_in users" do
 
       before(:each) do
-        @user = test_login(Factory(:user))
+        @user = test_login(Factory(:user, :admin => true))
         second = Factory(:user, :name => "Bob", :email => "second@example.edu")
         third  = Factory(:user, :name => "Ben", :email => "third@example.edu")
 
