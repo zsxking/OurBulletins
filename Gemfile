@@ -37,7 +37,7 @@ gem 'unicorn'
 
 group :development do
   gem 'rspec-rails'
-  gem 'annotate-models'
+  gem 'annotate'
 end
 
 group :test do
