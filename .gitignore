@@ -9,4 +9,6 @@ tmp/
 .DS_Store
 .idea/
 .sass-cache/
+.yardoc/
 public/assets/
+coverage/
