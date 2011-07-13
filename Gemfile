@@ -13,6 +13,7 @@ gem 'amazon-ecs'
 gem 'sass-rails', "~> 3.1.0.rc"
 gem 'coffee-script'
 gem 'uglifier'
+gem 'devise'
 
 gem 'jquery-rails'
 

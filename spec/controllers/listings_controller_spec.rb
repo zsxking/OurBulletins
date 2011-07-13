@@ -14,22 +14,22 @@ describe ListingsController do
 
       it "should deny access to new" do
         get :new
-        response.should redirect_to(login_path)
+        response.should redirect_to(new_user_session_path)
       end
 
       it "should deny access to create" do
         post :create
-        response.should redirect_to(login_path)
+        response.should redirect_to(new_user_session_path)
       end
 
       it "should deny access to update" do
         put :update, :id => @listing
-        response.should redirect_to(login_path)
+        response.should redirect_to(new_user_session_path)
       end
 
       it "should deny access to edit" do
         get :edit, :id => @listing
-        response.should redirect_to(login_path)
+        response.should redirect_to(new_user_session_path)
       end
     end
 
@@ -37,7 +37,7 @@ describe ListingsController do
 
   describe "GET 'index'" do
     before(:each) do
-      @user1 = Factory(:user)
+      @user1 = Factory(:user, :email => Factory.next(:email))
       @user2 = Factory(:user, :email => Factory.next(:email))
       @listing1 = Factory(:listing, :user => @user1)
       @listing2 = Factory(:listing, :user => @user2, :title => 'New Title')
@@ -94,7 +94,7 @@ describe ListingsController do
     end
 
     it "should show edit link when login as owner" do
-      test_login(@user)
+      sign_in @user
       get :show, :id => @listing
       response.should have_selector('a', :content => 'Edit')
     end
@@ -105,17 +105,14 @@ describe ListingsController do
     end
 
     it "should not show edit link when login as others" do
-      test_login(@user2)
+      sign_in @user2
       get :show, :id => @listing
       response.should_not have_selector('a', :content => 'Edit')
     end
   end
 
   describe "GET 'new'" do
-    before(:each) do
-      @user = Factory(:user)
-      test_login(@user)
-    end
+    login_user
 
     it "should be successful" do
       get :new
@@ -134,10 +131,8 @@ describe ListingsController do
   end
 
   describe "POST 'create'" do
-    before(:each) do
-      @user = Factory(:user)
-      test_login(@user)
-    end
+    login_user
+
     describe "failure" do
 
       before(:each) do
@@ -183,10 +178,9 @@ describe ListingsController do
   end
 
   describe "GET 'edit'" do
+    login_user
     before(:each) do
-      @user = Factory(:user)
       @listing = Factory(:listing, :user => @user)
-      test_login(@user)
     end
 
     it "should be successful" do
@@ -220,10 +214,9 @@ describe ListingsController do
   end
 
   describe "PUT 'update'" do
+    login_user
     before(:each) do
-      @user = Factory(:user)
       @listing = Factory(:listing, :user => @user)
-      test_login(@user)
     end
 
 

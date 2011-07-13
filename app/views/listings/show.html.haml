@@ -4,10 +4,10 @@
 
   .post_by
     by
-    =link_to @listing.user_name, @listing.user
+    =@listing.user_name #link_to @listing.user_name, @listing.user
     at
     =@listing.created_at
   %br
   %p= @listing.description
 
-  %p= link_to 'Edit', edit_listing_path(@listing) if current_user?(@listing.user)
+  %p= link_to 'Edit', edit_listing_path(@listing) if current_user == @listing.user

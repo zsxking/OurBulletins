@@ -7,7 +7,7 @@ describe BooksController do
     describe "for non-logged in user" do
       it "should deny access to create" do
         post :create
-        response.should redirect_to(login_path)
+        response.should redirect_to(new_user_session_path)
       end
     end
   end
@@ -116,11 +116,9 @@ describe BooksController do
     end
   end
 
+
   describe "POST 'create'" do
-    before(:each) do
-      @user = Factory(:user)
-      test_login(@user)
-    end
+    login_user
 
     describe "failure" do
       it "should not create a book" do

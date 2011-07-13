@@ -17,7 +17,7 @@ namespace :db do
                    :email => email,
                    :password => password,
                    :password_confirmation => password)
-      user.status= UserStatus::ACTIVE
+      user.confirmed_at = Time.new
     end
 
     books_isbn = [9781933988658, 9780061353246, 9780262033848, 9780596007737,

@@ -15,7 +15,7 @@
       posted
       = render 'shared/time', :time => listing.created_at
       ago by
-      = link_to listing.user_name, listing.user
+      = listing.user_name #link_to listing.user_name, listing.user
 
   .list-action.grid_2
     Buy

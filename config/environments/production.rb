@@ -54,4 +54,7 @@ OurBulletins::Application.configure do
 
   # Memcache client
   config.cache_store = :dalli_store
+
+  # For Devise
+  config.action_mailer.default_url_options = { :host => 'www.ourbulletins.com' }
 end

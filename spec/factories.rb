@@ -6,13 +6,13 @@ Factory.define :user do |user|
   user.password_confirmation "ASdf1234"
 end
 
-Factory.define :admin, :class => User do |user|
-  user.name                  "Admin User"
-  user.email                 "admin@test.edu"
-  user.password              "admin1234"
-  user.password_confirmation "admin1234"
-  user.admin true
-end
+#Factory.define :admin, :class => User do |user|
+#  user.name                  "Admin User"
+#  user.email                 "admin@test.edu"
+#  user.password              "admin1234"
+#  user.password_confirmation "admin1234"
+#  user.admin true
+#end
 
 Factory.sequence :email do |n|
   "person-#{n}@example.edu"

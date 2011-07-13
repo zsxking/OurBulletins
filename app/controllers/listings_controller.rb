@@ -1,5 +1,5 @@
 class ListingsController < ApplicationController
-  before_filter :authenticate, :except => [:show, :index]
+  before_filter :authenticate_user!, :except => [:show, :index]
   before_filter :correct_user, :only => [:edit, :update]
 
   def index
@@ -47,7 +47,7 @@ class ListingsController < ApplicationController
 
     def correct_user
       @listing = Listing.find(params[:id])
-      if !current_user?(@listing.user)
+      if !(current_user == @listing.user)
         flash[:error] = "Invalid user."
         redirect_to @listing
       end

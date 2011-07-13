@@ -33,19 +33,20 @@ Spork.prefork do
     # instead of true.
     config.use_transactional_fixtures = true
 
+    config.include Devise::TestHelpers, :type => :controller
+
+    config.extend ControllerMacros, :type => :controller
+
     # SessionHelper is included in ApplicationController, so all controllers
     # have access to SessionHelper's method, i.e. login
-    def test_login(user)
-      controller.login(user)
-    end
 
     def integration_login(email, password)
-      visit login_path
+      visit new_user_session_path
       fill_in :email,    :with => email
       fill_in :password, :with => password
       # Search by label, not name.
       check "Remember me"
-      click_button 'Login'
+      click_button 'Sign in'
     end
 
   end

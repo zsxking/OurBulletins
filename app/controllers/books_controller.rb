@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_filter :authenticate, :only => :create
+  before_filter :authenticate_user!, :only => :create
 
   def index
     @title = 'Books'
