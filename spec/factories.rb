@@ -4,6 +4,9 @@ Factory.define :user do |user|
   user.email                 "testuser@test.edu"
   user.password              "ASdf1234"
   user.password_confirmation "ASdf1234"
+  user.after_create do |u|
+    u.confirm!
+  end
 end
 
 #Factory.define :admin, :class => User do |user|

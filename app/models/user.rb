@@ -17,4 +17,6 @@ class User < ActiveRecord::Base
                                   :message => 'must contain both numbers and letters.'}
 
   has_many :listings
+
+
 end

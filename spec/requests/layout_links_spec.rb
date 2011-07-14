@@ -51,7 +51,6 @@ describe "LayoutLinks" do
 
     before(:each) do
       @user = Factory(:user)
-      @user.confirm!
       integration_login @user.email, @user.password
     end
 

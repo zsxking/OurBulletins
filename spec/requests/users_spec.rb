@@ -12,7 +12,7 @@ describe "Users" do
           fill_in "Name",         :with => ""
           fill_in "Email",        :with => ""
           fill_in "Password",     :with => ""
-          fill_in "Confirmation", :with => ""
+          fill_in "Password confirmation", :with => ""
           click_button 'Sign up'
           response.should render_template('users/new')
           response.should have_selector("div#error_explanation")
@@ -28,7 +28,7 @@ describe "Users" do
           fill_in "Name",         :with => "Example User"
           fill_in "Email",        :with => "user@university.edu"
           fill_in "Password",     :with => "asdf1234"
-          fill_in "Confirmation", :with => "asdf1234"
+          fill_in "Password confirmation", :with => "asdf1234"
           click_button 'Sign up'
           response.should have_selector("div.flash.success",
                                         :content => "Welcome")
@@ -59,7 +59,6 @@ describe "Users" do
     describe "success" do
       it "should log a user in and out" do
         user = Factory(:user)
-        user.confirm!
         integration_login user.email, user.password
         controller.should be_user_signed_in
         click_link "Sign out"
@@ -72,7 +71,6 @@ describe "Users" do
   #  describe "success" do
   #    it "should deactivate and reactivate the user" do
   #      user = Factory(:user)
-  #      user.confirm!
   #      integration_login user.email, user.password
   #      controller.should be_user_signed_in
   #      click_link "Profile"
