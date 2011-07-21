@@ -3,11 +3,11 @@
 .grid_6.right#new-book-div
   %h4=link_to 'Find a new book', '#find-book-div', :id => 'new-book-link'
 
-.grid_11.push_1= will_paginate
+.grid_11.push_1= paginate @books
 
 = render @books
 
-.grid_11.push_1= will_paginate
+.grid_11.push_1= paginate @books
 
 -#
   Find book dialog template

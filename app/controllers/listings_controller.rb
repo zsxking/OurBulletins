@@ -4,7 +4,7 @@ class ListingsController < ApplicationController
 
   def index
     @title = "Others"
-    @listings = Listing.other.paginate(:page => params[:page])
+    @listings = Listing.other.page(params[:page])
   end
 
   def show

@@ -19,8 +19,9 @@ gem 'uglifier'
 gem 'devise'
 
 gem 'indextank'
+#gem 'tanker'
 
-gem 'will_paginate', :git => 'git://github.com/JackDanger/will_paginate.git'
+gem 'kaminari'
 gem 'gravatar_image_tag'
 
 # Deploy with Capistrano
