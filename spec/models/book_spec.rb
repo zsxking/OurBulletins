@@ -6,7 +6,7 @@ describe Book do
     @book_attr = {
             :title => 'The Well-Grounded Rubyist',
             :author => 'David A. Black',
-            :isbn => '9781933988658',
+            :isbn => '1933988657',
             :ean => '9781933988658',
             :publish_date => '2009-06-04',
             :publisher => 'Manning Publications',
