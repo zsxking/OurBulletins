@@ -12,6 +12,43 @@ class Book < ActiveRecord::Base
 
   has_many :listings, :as => :saleable
 
+
+  # just include the Tanker module
+  include Tanker
+
+  # define the callbacks to update or delete the index
+  # these methods can be called whenever or wherever
+  # this varies between ORMs
+  after_save :update_tank_indexes
+  after_destroy :delete_tank_indexes
+
+  # define the index by supplying the index name and the fields to index
+  # this is the index name you create in the Index Tank dashboard
+  # you can use the same index for various models Tanker can handle
+  # indexing searching on different models with a single Index Tank index
+  tankit OurBulletins::Application.config.tanker_index do
+    indexes :title
+    indexes :author
+    indexes :description
+    indexes :isbn
+    indexes :ean
+    indexes :publisher
+    #indexes :tag_list #NOTICE this is an array of Tags! Awesome!
+    #indexes :category, :category => true # make attributes also be categories (facets)
+
+    # you may also dynamically retrieve field data
+    indexes :listing_count do
+      listings.size
+    end
+
+    # you cal also dynamically set categories
+    #category :content_length do
+    #  content.length
+    #end
+
+  end
+
+
   def self.get_from_amazon_by_isbn(isbn)
     #@res = Amazon::Ecs.item_search(params[:amazon][:keywords], :type => 'Keywords', :search_index => 'Books')
     # Amazon-ecs gem has these default:

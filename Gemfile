@@ -19,7 +19,7 @@ gem 'uglifier'
 gem 'devise'
 
 gem 'indextank'
-#gem 'tanker'
+gem 'tanker'
 
 gem 'kaminari'
 gem 'gravatar_image_tag'
@@ -29,6 +29,8 @@ gem 'gravatar_image_tag'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+gem 'faker'
 
 group :development do
   gem 'rspec-rails'
@@ -42,7 +44,6 @@ group :test do
   gem 'webrat'
   gem 'spork'
   gem 'factory_girl_rails'
-  gem 'faker'
   # Pretty printed test output
   gem 'turn', :require => false
 end

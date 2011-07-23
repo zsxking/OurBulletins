@@ -27,4 +27,8 @@ OurBulletins::Application.configure do
 
   # Do not compress assets
   config.assets.compress = false
+
+  config.after_initialize do
+    OurBulletins::Application.config.tanker_index = 'ourbulletins_dev'
+  end
 end

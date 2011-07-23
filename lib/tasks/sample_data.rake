@@ -27,7 +27,7 @@ namespace :db do
 
     task :listings => :environment do
       User.all(:limit => 6).each do |user|
-        (5 + rand(10)).times do
+        (10 + rand(10)).times do
           new_listing = user.listings.build(
                   :title=>Faker::Lorem.sentence(1 + rand(10)),
                   :price => rand(5000)/100.0,
@@ -46,13 +46,12 @@ namespace :db do
     end
 
     task :users => :environment do
-      Rake::Task['db:reset'].invoke
-      admin = User.create!(:name => "Admin User",
-                   :email => "admin@university.edu",
-                   :password => "foobar123",
-                   :password_confirmation => "foobar123")
-      admin.toggle!(:admin)
-      admin.status= UserStatus::ACTIVE
+      #admin = User.create!(:name => "Admin User",
+      #             :email => "admin@university.edu",
+      #             :password => "foobar123",
+      #             :password_confirmation => "foobar123")
+      #admin.toggle!(:admin)
+      #admin.status= UserStatus::ACTIVE
       99.times do |n|
         name  = Faker::Name.name
         email = "example-#{n+1}@university.edu"
