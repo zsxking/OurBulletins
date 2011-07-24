@@ -21,6 +21,11 @@
       = f.text_field(:price)
 
     .field
+      = f.label :condition
+      %br
+      = f.select(:condition, Listing::CONDITION_LIST)
+
+    .field
       = f.label :description
       %br
       = f.text_area :description, :cols => 100, :rows => 8

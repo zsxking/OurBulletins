@@ -4,7 +4,7 @@ describe Listing do
   before (:each) do
     @user = Factory(:user)
     @attr = {:title => "Test Listing", :price => 1234,
-             :description => "content of the description"}
+             :description => "content of the description", :condition => 'Like New'}
   end
 
   it "should create a new instance given valid attributes" do
@@ -39,6 +39,16 @@ describe Listing do
 
     it "should require a description" do
       listing = @user.listings.new(@attr.merge(:description => " "))
+      listing.should_not be_valid
+    end
+
+    it "should require a condition" do
+      listing = @user.listings.new(@attr.merge(:condition => " "))
+      listing.should_not be_valid
+    end
+
+    it "should reject condition values that not in CONDITION_LIST" do
+      listing = @user.listings.new(@attr.merge(:condition => "Old"))
       listing.should_not be_valid
     end
   end

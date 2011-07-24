@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110712060550) do
+ActiveRecord::Schema.define(:version => 20110724004417) do
 
   create_table "books", :force => true do |t|
     t.string   "ean"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20110712060550) do
     t.decimal  "price",         :precision => 8, :scale => 2
     t.integer  "saleable_id"
     t.string   "saleable_type"
+    t.string   "condition"
   end
 
   add_index "listings", ["saleable_id", "saleable_type"], :name => "index_listings_on_saleable"

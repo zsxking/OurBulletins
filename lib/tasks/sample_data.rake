@@ -31,7 +31,8 @@ namespace :db do
           new_listing = user.listings.build(
                   :title=>Faker::Lorem.sentence(1 + rand(10)),
                   :price => rand(5000)/100.0,
-                  :description => Faker::Lorem.paragraph(1 + rand(5)))
+                  :description => Faker::Lorem.paragraph(1 + rand(5)),
+                  :condition => Listing::CONDITION_LIST.sample)
           book_count = Book.count()
           if (rand(5) >= 1)
             book = Book.first(:offset =>rand(book_count))

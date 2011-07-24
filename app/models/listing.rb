@@ -1,5 +1,7 @@
 class Listing < ActiveRecord::Base
-  attr_accessible :title, :price, :description
+  attr_accessible :title, :price, :description, :condition
+
+  CONDITION_LIST = ['Brand New', 'Like New', 'Very Good', 'Good', 'Acceptable']
 
   belongs_to :user
   delegate :name, :to => :user, :prefix => true
@@ -10,6 +12,8 @@ class Listing < ActiveRecord::Base
   validates :price,       :presence => true,
                           :numericality => true
   validates :description, :presence => true
+  validates :condition,   :presence => true,
+                          :inclusion => CONDITION_LIST
 
   default_scope :order => 'listings.created_at DESC'
   scope :other, :conditions => {:saleable_id => nil}
@@ -33,7 +37,9 @@ class Listing < ActiveRecord::Base
     # Feature not release yet, wait for later version of Tanker than 1.1.3
     #category :price
     #category :saleable
+    #category :condition
   end
+
 
   private
     def saleable?
