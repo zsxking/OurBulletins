@@ -12,7 +12,6 @@ class Book < ActiveRecord::Base
 
   has_many :listings, :as => :saleable
 
-
   # just include the Tanker module
   include Tanker
 

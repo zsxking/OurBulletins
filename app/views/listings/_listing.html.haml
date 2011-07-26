@@ -18,6 +18,6 @@
       = listing.user_name #link_to listing.user_name, listing.user
 
   .list-action.grid_2
-    =button_tag 'Contact Seller'
+    =button_to  'Contact Seller' if user_signed_in?
 
   .clear

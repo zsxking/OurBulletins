@@ -8,7 +8,7 @@ class Listing < ActiveRecord::Base
 
   belongs_to :saleable, :polymorphic => true
 
-  #has_many :replies
+  has_many :replies
 
   validates :title,       :presence => true, :unless => :saleable?
   validates :price,       :presence => true,

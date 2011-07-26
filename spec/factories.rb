@@ -1,7 +1,7 @@
 # By using the symbol ':user', we get Factory Girl to simulate the User model.
 Factory.define :user do |user|
-  user.name                  "Test User"
-  user.email                 "testuser@test.edu"
+  user.name                  {Factory.next(:name)}
+  user.email                 {Factory.next(:email)}
   user.password              "ASdf1234"
   user.password_confirmation "ASdf1234"
   user.after_create do |u|
@@ -19,6 +19,10 @@ end
 
 Factory.sequence :email do |n|
   "person-#{n}@example.edu"
+end
+
+Factory.sequence :name do |n|
+  "#{n}Test User#{n}"
 end
 
 Factory.define :listing do |listing|

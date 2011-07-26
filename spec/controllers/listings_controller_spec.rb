@@ -37,11 +37,9 @@ describe ListingsController do
 
   describe "GET 'index'" do
     before(:each) do
-      @user1 = Factory(:user, :email => Factory.next(:email))
-      @user2 = Factory(:user, :email => Factory.next(:email))
-      @listing1 = Factory(:listing, :user => @user1)
-      @listing2 = Factory(:listing, :user => @user2, :title => 'New Title')
-      @listing3 = Factory(:listing, :user => @user1, :title => 'Book Listing')
+      @listing1 = Factory(:listing)
+      @listing2 = Factory(:listing, :title => 'New Title')
+      @listing3 = Factory(:listing, :title => 'Book Listing')
       @listing3.saleable = Factory(:book)
       @listing3.save
     end
