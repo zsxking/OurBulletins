@@ -105,4 +105,14 @@ class Book < ActiveRecord::Base
   def lowest_price
     self.listings.minimum :price
   end
+
+  private
+
+    def update_tank_indexes
+      super.update_tank_indexes unless ENV["RAILS_ENV"] == 'test'
+    end
+
+    def delete_tank_indexes
+      super.delete_tank_indexes unless ENV["RAILS_ENV"] == 'test'
+    end
 end

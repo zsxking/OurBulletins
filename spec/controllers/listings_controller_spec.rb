@@ -154,7 +154,7 @@ describe ListingsController do
     describe "success" do
 
       before(:each) do
-        @attr = {:title => 'Listing Title',
+        @attr = {:title => 'Listing Title', :condition => 'Like New',
                 :price => 123, :description => 'Description content'}
       end
 
@@ -168,7 +168,7 @@ describe ListingsController do
         end.should change(@user.listings, :count).by(1)
       end
 
-      it "should redirect to the user show page" do
+      it "should redirect to the listing show page" do
         post :create, :listing => @attr
         response.should redirect_to(listing_path(assigns(:listing)))
       end
@@ -223,7 +223,7 @@ describe ListingsController do
     describe "failure" do
 
       before(:each) do
-        @attr = {:title => '', :price => nil, :description => ''}
+        @attr = {:title => '', :price => nil, :description => '', :condition => ''}
       end
 
       it "should render the 'edit' page" do

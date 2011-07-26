@@ -106,8 +106,13 @@ describe Book do
       @book.should respond_to :listings
     end
 
+    it 'should have 2 listings' do
+      @book.listings.count.should == 2
+    end
+
     it 'should have the right associated listings' do
-      @book.listings.should =~ [@listing, @listing2]
+      @book.listings.all.include?(@listing).should be_true
+      @book.listings.all.include?(@listing2).should be_true
     end
 
     it 'should return correct lowest price' do

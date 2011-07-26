@@ -30,10 +30,12 @@ class ListingsController < ApplicationController
   end
 
   def edit
+    #@listing = current_user.listings.find(params[:id])
     @title = "Edit | #{@listing.title}"
   end
 
   def update
+    #@listing = current_user.listings.find(params[:id])
     if @listing.update_attributes(params[:listing])
       flash[:success] = "Listing updated."
       redirect_to @listing

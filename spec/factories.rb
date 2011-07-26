@@ -25,6 +25,7 @@ Factory.define :listing do |listing|
   listing.title "Factory Listing"
   listing.price 12.34
   listing.description "Listing Descriptions"
+  listing.condition "Like New"
   listing.association :user
 end
 

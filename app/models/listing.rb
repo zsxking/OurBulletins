@@ -8,6 +8,8 @@ class Listing < ActiveRecord::Base
 
   belongs_to :saleable, :polymorphic => true
 
+  #has_many :replies
+
   validates :title,       :presence => true, :unless => :saleable?
   validates :price,       :presence => true,
                           :numericality => true
@@ -42,6 +44,15 @@ class Listing < ActiveRecord::Base
 
 
   private
+
+    def update_tank_indexes
+      super.update_tank_indexes unless ENV["RAILS_ENV"] == 'test'
+    end
+
+    def delete_tank_indexes
+      super.delete_tank_indexes unless ENV["RAILS_ENV"] == 'test'
+    end
+
     def saleable?
       !self.saleable_id.nil?
     end

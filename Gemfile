@@ -18,7 +18,6 @@ gem 'uglifier'
 
 gem 'devise'
 
-gem 'indextank'
 gem 'tanker'
 
 gem 'kaminari'
