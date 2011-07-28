@@ -5,7 +5,7 @@ require 'rubygems'
 require 'spork'
 
 require 'factory_girl'
-Factory.find_definitions
+#FactoryGirl.find_definitions
 
 Spork.prefork do
   # Loading more in this block will cause your tests to run faster. However,

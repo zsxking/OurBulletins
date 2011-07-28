@@ -7,4 +7,8 @@ class Reply < ActiveRecord::Base
   validates_associated :user, :listing
   validates_presence_of :user, :listing
 
+  def email
+    # Send email?
+  end
+
 end

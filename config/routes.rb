@@ -15,6 +15,7 @@ OurBulletins::Application.routes.draw do
 
   resources :books do
     get :find, :on => :collection
+    post :reply, :on => :member
     resources :listings
   end
 

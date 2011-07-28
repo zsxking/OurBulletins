@@ -22,8 +22,9 @@ OurBulletins::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
 
-  # For Devise
+  # Mailer
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  ActionMailer::Base.register_interceptor(DevelopmentMailInterceptor)
 
   # Do not compress assets
   config.assets.compress = false

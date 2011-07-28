@@ -1,0 +1,17 @@
+%p Aloha #{@receiver.name},
+
+%p
+  #{@sender.name} is interested in your listing
+  =link_to @reply.listing.title, @reply.listing
+
+-if @reply.message
+%p
+  #{@sender.name} wrote: "
+  %pre=@reply.message
+  "
+
+%p
+  Reply to this email, or send email to #{@sender.email} to contact this buyer.
+
+%p Mahalo,
+%p The Ourbulletins Team

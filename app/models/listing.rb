@@ -42,6 +42,9 @@ class Listing < ActiveRecord::Base
     #category :condition
   end
 
+  def title
+    self.title || self.saleable.title
+  end
 
   private
 

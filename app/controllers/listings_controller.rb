@@ -8,7 +8,7 @@ class ListingsController < ApplicationController
   end
 
   def show
-    @listing = Listing.find(params[:id]);
+    @listing = Listing.find(params[:id])
   end
 
   def new
@@ -42,6 +42,19 @@ class ListingsController < ApplicationController
     else
       @title = "Edit | #{@listing.title}"
       render 'edit'
+    end
+  end
+
+  def reply
+    @listing = Listing.find(params[:id])
+    @reply = @listing.replies.build(params[:reply])
+    @reply.user = current_user
+    # Sent email here.
+    ListingMailer.reply_listing(@reply).deliver
+    if (@reply.save)
+
+    else
+
     end
   end
 
