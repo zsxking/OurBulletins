@@ -26,10 +26,34 @@ describe Listing do
     end
   end
 
+  describe "getters" do
+    describe 'subject' do
+      it 'should return the title when it exists' do
+        listing = @user.listings.create(@attr)
+        listing.subject.should == listing.title
+      end
+
+      it "should return the title of the saleable when listing's title is null" do
+        listing = @user.listings.new(@attr.merge(:title => " "))
+        book = Factory(:book)
+        listing.saleable = book
+        listing.save
+        listing.subject.should == book.title
+      end
+    end
+  end
+
   describe "Validation" do
     it "should require a title" do
       listing = @user.listings.new(@attr.merge(:title => " "))
       listing.should_not be_valid
+    end
+
+    it "should not require a title when saleable is given" do
+      listing = @user.listings.new(@attr.merge(:title => " "))
+      book = Factory(:book)
+      listing.saleable = book
+      listing.should be_valid
     end
 
     it "should require a price" do

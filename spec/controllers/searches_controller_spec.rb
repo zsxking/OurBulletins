@@ -10,7 +10,7 @@ describe SearchesController do
     end
 
     it "should preserve user input" do
-      search_phrase = 'Search -Phrase'
+      search_phrase = 'Search Phrase'
       get :index, :q => search_phrase
       response.should have_selector("input[value='#{search_phrase}']")
     end

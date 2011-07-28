@@ -5,13 +5,12 @@
   =link_to @reply.listing.subject, @reply.listing
 
 -if @reply.message
-%p
-  #{@sender.name} wrote: "
-  %pre=@reply.message
-  "
+  %p
+    #{@sender.name} wrote: "
+    %pre=@reply.message
+    "
 
-%p
-  Reply to this email, or send email to #{@sender.email} to contact this buyer.
+%p Reply to this email, or send email to #{@sender.email} to contact this buyer.
 
 %p Mahalo,
 %p The Ourbulletins Team

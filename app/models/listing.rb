@@ -43,7 +43,11 @@ class Listing < ActiveRecord::Base
   end
 
   def subject
-    title || saleable.title
+    if (title.nil? || title.strip.empty?) && saleable && saleable.title
+      saleable.title
+    else
+      title
+    end
   end
 
   private

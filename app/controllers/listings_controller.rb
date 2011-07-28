@@ -51,11 +51,16 @@ class ListingsController < ApplicationController
     @reply.user = current_user
     # Sent email here.
     ListingMailer.reply_listing(@reply).deliver
-    if (@reply.save)
-
-    else
-
+    respond_to do |format|
+      if (@reply.save)
+        format.html { redirect_to(@listing, :notice => 'Reply was successfully sent.') }
+        format.js  { render @listing }
+      else
+        format.html { redirect_to(@listing, :error => 'Internal error, please try again later.') }
+        format.js  { render :xml => @reply.errors, :status => :unprocessable_entity  }
+      end
     end
+
   end
 
   private
