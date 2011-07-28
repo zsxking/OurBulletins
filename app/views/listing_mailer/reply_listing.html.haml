@@ -2,7 +2,7 @@
 
 %p
   #{@sender.name} is interested in your listing
-  =link_to @reply.listing.title, @reply.listing
+  =link_to @reply.listing.subject, @reply.listing
 
 -if @reply.message
 %p

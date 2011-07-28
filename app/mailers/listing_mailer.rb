@@ -5,7 +5,7 @@ class ListingMailer < ActionMailer::Base
     @reply = reply
     @sender = reply.user
     @receiver = reply.listing.user
-    subject = "RE: #{reply.listing.title}"
+    subject = "RE: #{reply.listing.subject}"
     mail(:to => "#{@receiver.name} <#{@receiver.email}>",
          :reply_to => "#{@sender.name} <#{@sender.email}>",
          :subject => subject)

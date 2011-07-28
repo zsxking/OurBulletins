@@ -42,8 +42,8 @@ class Listing < ActiveRecord::Base
     #category :condition
   end
 
-  def title
-    self.title || self.saleable.title
+  def subject
+    title || saleable.title
   end
 
   private
