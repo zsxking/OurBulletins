@@ -4,11 +4,6 @@ class Reply < ActiveRecord::Base
   belongs_to :user
   belongs_to :listing
 
-  validates_associated :user, :listing
   validates_presence_of :user, :listing
-
-  def email
-    # Send email?
-  end
 
 end

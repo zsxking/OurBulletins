@@ -12,7 +12,10 @@ OurBulletins::Application.routes.draw do
   devise_for :users
 
   resources :listings do
-    post :reply, :on => :member
+    member do
+      get :reply, :to => :new_reply
+      post :reply, :to => :create_reply
+    end
   end
 
   resources :books do

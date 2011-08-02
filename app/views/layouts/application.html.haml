@@ -30,8 +30,9 @@
         .clear
     .page_container
       %section.container_12.round
-        - flash.each do |key, value|
-          = content_tag(:div, value, :class => "flash #{key}")
+        #flash_container
+          - flash.each do |key, value|
+            = content_tag(:div, value, :class => "flash #{key}")
 
         .content= yield
         .clear

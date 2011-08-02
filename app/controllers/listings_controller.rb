@@ -45,20 +45,32 @@ class ListingsController < ApplicationController
     end
   end
 
-  def reply
+  def new_reply
+    @listing = Listing.find(params[:id])
+    @reply = @listing.replies.new
+    @reply.user = current_user
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def create_reply
     @listing = Listing.find(params[:id])
     @reply = @listing.replies.build(params[:reply])
     @reply.user = current_user
     # Sent email here.
     ListingMailer.reply_listing(@reply).deliver
+
+    if (@reply.save)
+      flash[:notice] = 'Reply was successfully sent.'
+    else
+      flash[:error] = 'Internal error, please try again later.'
+    end
+
     respond_to do |format|
-      if (@reply.save)
-        format.html { redirect_to(@listing, :notice => 'Reply was successfully sent.') }
-        format.js  { render @listing }
-      else
-        format.html { redirect_to(@listing, :error => 'Internal error, please try again later.') }
-        format.js  { render :xml => @reply.errors, :status => :unprocessable_entity  }
-      end
+      format.html { redirect_to @listing }
+      format.js
     end
 
   end

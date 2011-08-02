@@ -1,0 +1,12 @@
+=form_for(reply, :url => reply_listing_path(reply.listing), :remote => true) do |f|
+  .sender
+    From: #{reply.user.name}
+  .receiver
+    To: #{reply.listing.user.name}:
+
+  .field
+    Additional Message:
+    %br
+    =f.text_area :message
+  .action
+    =f.submit 'Send'

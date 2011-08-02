@@ -1,0 +1,5 @@
+$.fancybox({
+    'content': "<%= escape_javascript(
+        render :partial => 'listings/listing_reply_form',
+               :locals => {:reply => @reply}, :layout => false) %>"
+});

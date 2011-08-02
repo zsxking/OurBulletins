@@ -1,0 +1,5 @@
+<% flash().each do |key, value| %>
+  $('#flash_container').append("<%=
+    escape_javascript(content_tag(:div, value, :class => "flash #{key}")) %>");
+<% end %>
+<% flash().discard %>
