@@ -63,7 +63,7 @@ class ListingsController < ApplicationController
     ListingMailer.reply_listing(@reply).deliver
 
     if (@reply.save)
-      flash[:notice] = 'Reply was successfully sent.'
+      flash[:success] = 'Reply was successfully sent.'
     else
       flash[:error] = 'Internal error, please try again later.'
     end
