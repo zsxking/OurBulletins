@@ -1,5 +1,5 @@
 
-.grid_6.alpha
+.grid_6.alpha.listing-edit
   =form_for [saleable, listing] do |f|
     - new_record = f.object.new_record?
 
@@ -12,7 +12,7 @@
         = new_record ? f.text_field(:title) : listing.title
     - else
       .item
-        = render saleable, :show_button => false
+        = render saleable
       .clear
 
     .field

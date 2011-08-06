@@ -18,8 +18,8 @@ class Book < ActiveRecord::Base
   # define the callbacks to update or delete the index
   # these methods can be called whenever or wherever
   # this varies between ORMs
-  after_save :update_tank_indexes
-  after_destroy :delete_tank_indexes
+  after_save :update_indexes
+  after_destroy :delete_indexes
 
   # define the index by supplying the index name and the fields to index
   # this is the index name you create in the Index Tank dashboard
@@ -101,17 +101,21 @@ class Book < ActiveRecord::Base
     return self.new(book_attr)
   end
 
+  def has_listing?
+    self.listings.any?
+  end
+
   def lowest_price
     self.listings.minimum :price
   end
 
   private
 
-    def update_tank_indexes
+    def update_indexes
       super.update_tank_indexes unless ENV["RAILS_ENV"] == 'test'
     end
 
-    def delete_tank_indexes
+    def delete_indexes
       super.delete_tank_indexes unless ENV["RAILS_ENV"] == 'test'
     end
 end

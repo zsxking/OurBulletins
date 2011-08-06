@@ -1,13 +1,30 @@
-%h1.grid_6 Books
+%h1.grid_6.alpha Books
 
-.grid_6.right#new-book-div
+.grid_6.omega.right#new-book-div
   %h4=link_to 'Find a new book', '#find-book-div', :id => 'new-book-link'
 
-.grid_11.push_1= paginate @books
+.clear
 
-= render @books
+= paginate @books
 
-.grid_11.push_1= paginate @books
+- @books.each do |book|
+  .grid_2.booklet{:class => cycle("alpha", '', '', '', '', "omega")}
+    -if book.image_link.empty?
+      .image.no-cover
+        %span [ no cover ]
+    -else
+      .image= image_tag(book.image_link, {:alt => book.title})
+    .title= book.new_record? ? book.title : link_to(book.title, book, :title => book.title)
+    .author= book.author
+    -if book.has_listing?
+      -if book.list_price
+        .price.list-price= '$' + book.list_price.to_s
+      .price
+        = '$' + book.lowest_price.to_s
+
+  .book-tooltip
+    =render book
+
 
 -#
   Find book dialog template
@@ -22,6 +39,13 @@
     #find-book-list
 
 :javascript
+  $(".booklet").tooltip({
+    position: 'bottom center',
+    predelay: 300,
+    effect: 'slide',
+    offset: [-50, 0]
+  }).dynamic({ top: { direction: 'down', bounce: true, offset: [0, 0] } });;
+
   $('#new-book-link').fancybox({
     //'autoDimensions' : false,
     'width' : 500,

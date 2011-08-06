@@ -1,11 +1,9 @@
-%h1.grid_6 Listings
+%h1 Listings
 
-.grid_6.right
+.right
   %h4=link_to "New Listing", new_listing_path
 
-.grid_11.push_1= paginate @listings
+= paginate @listings
 
 .listings
   = render @listings
-
-.grid_11.push_1= paginate @listings

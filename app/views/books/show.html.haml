@@ -1,9 +1,9 @@
-%h3.grid_12= @book.title
+%h3= @book.title
 
 
-.grid_2= image_tag @book.image_link
+.grid_2.alpha= image_tag @book.image_link
 
-.grid_8
+.grid_6.omega
   .author= @book.author
 
   %ul
@@ -16,12 +16,12 @@
 .clear
 %br
 - if @book.listings.size > 0
-  %h4.grid_12 Current Listings:
+  %h4 Current Listings:
   =render @book.listings
 
 -if @book.description?
-  .grid_12.vendor-decr
+  .vendor-decr
     .prefix
       Description from
       = link_to 'Amazon.com', @book.amazon_detail_url, :target => '_blank'
-    .grid_10.push_1!= CGI.unescapeHTML(@book.description)
+    .push_1!= CGI.unescapeHTML(@book.description)

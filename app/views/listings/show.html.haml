@@ -1,13 +1,13 @@
-.grid_12
-  %h2= @listing.title
+
+%h2= @listing.title
 
 
-  .post_by
-    by
-    =@listing.user_name #link_to @listing.user_name, @listing.user
-    at
-    =@listing.created_at
-  %br
-  %p= @listing.description
+.post_by
+  by
+  =@listing.user_name #link_to @listing.user_name, @listing.user
+  at
+  =@listing.created_at
+%br
+%p= @listing.description
 
-  %p= link_to 'Edit', edit_listing_path(@listing) if current_user == @listing.user
+%p= link_to 'Edit', edit_listing_path(@listing) if current_user == @listing.user

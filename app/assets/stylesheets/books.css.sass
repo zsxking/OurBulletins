@@ -1,45 +1,109 @@
-/* Book Item */
+/* Small Book Item */
+.booklet
+  height: 220px
+  overflow: hidden
+  margin-top: 10px
+  margin-bottom: 10px
+
+  div
+    white-space: nowrap
+    width: 100%
+    overflow: hidden
+    text-overflow: ellipsis
+
+  .title
+    font-weight: bold
+  .author
+    font-style: italic
+
+  .price
+    display: inline
+
+  .list-price
+    text-decoration: line-through
+    color: gray
+    margin-right: 10px
+
+  .no-cover
+    width: 100px
+    height: 150px
+    line-height: 130px
+    text-align: center
+    font-weight: bold
+    font-size: 16px
+    white-space: normal
+    background: #C2CEDC
+    color: #FFFFFF
+    border: 5px solid #5f90bd
+
+
+
+/* Book Tooltip */
+.book-tooltip
+  display: none
+  width: 310px
+  height: 141px
+  background: url("tooltip/white_arrow_big_bottom.png")
+  padding: 50px 30px 25px
+
+  .book-item
+    height: 141
+    .image
+      display: none
+    .detail
+      margin-left: 0
+
+.book-tooltip.top
+  background: url("tooltip/white_arrow_big.png")
+  padding: 25px 30px 50px
+
+/* Big Book Item */
 .book-item
   margin-bottom: 10px
   height: 162px
+  white-space: nowrap
 
-.book-item:hover
-  background-color: #F3EBC3
+  :hover
+    background-color: #F3EBC3
 
-.book-item .image
-  width: 140px
-  margin-left: 0
-  margin-right: 10px
-  display: inline
-  float: left
+  .image
+    display: inline-block
+    margin-left: 0
+    margin-right: 10px
+    vertical-align: top
 
-.book-item .image img
-  border: 1px solid #968954
+    img
+      border: 1px solid #968954
 
-.book-item .detail 
-  width: 280px
-  margin-right: 0
-  margin-left: 10px
-  display: inline
-  float: left
+  .detail
+    white-space: normal
+    display: inline-block
+    margin-right: 0
+    vertical-align: top
 
-.book-item p 
-  margin-bottom: 5px
+  p
+    margin-bottom: 5px
 
-.book-item .title 
-  font-weight: bold
+  .name
+    height: 3em
+    overflow: hidden
+    text-overflow: ellipsis
 
-.book-item .author 
-  font-style: italic
-  padding-top: 0
+
+  .title
+    font-weight: bold
+
+  .author
+    font-style: italic
+    padding-top: 0
 
 .vendor-decr 
   font-style: italic
 
-.vendor-decr .prefix 
-  font-weight: bold
-  font-size: 110%
-  margin-bottom: 10px
+  .prefix
+    font-weight: bold
+    font-size: 110%
+    margin-bottom: 10px
 
 /* Find Book Div */
 #find-book-form

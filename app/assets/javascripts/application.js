@@ -8,11 +8,15 @@
  = require jquery
  = require jquery-ui
  = require jquery_ujs
- = require_tree .
- = require jquery.fancybox-1.3.4
+
  = require jquery.formalize
 
  = require indextank-jquery/jquery.indextank.ize
  = require indextank-jquery/jquery.indextank.autocomplete
  = require indextank-jquery/jquery.indextank.renderer
+
+ = require jquery.fancybox-1.3.4
+ = require jquery.tools.min.js
+
+ = require_tree .
  */

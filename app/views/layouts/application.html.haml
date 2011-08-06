@@ -22,20 +22,17 @@
               %li= link_to "Profile", edit_user_registration_path(current_user)
         .func-links.grid_3.right
           - if user_signed_in?
-            = current_user.name
-            |
             = link_to "Sign out", destroy_user_session_path, :method => :delete
           - else
             = link_to "Sign in", new_user_session_path
         .clear
-    .page_container
-      %section.container_12.round
-        #flash_container
-          - flash.each do |key, value|
-            = content_tag(:div, value, :class => "flash #{key}")
+    .page_container.container_12
+      #flash_container
+        - flash.each do |key, value|
+          = content_tag(:div, value, :class => "flash #{key}")
 
-        .content= yield
-        .clear
+      %section.grid_12.content= yield
+      .clear
 
     %footer.container_12
       %nav.grid_12

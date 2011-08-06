@@ -1,26 +1,25 @@
 - default_locals :show_button => true
-.grid_6.book-item
+.book-item
   .image= image_tag book.image_link
   .detail
-    %p
+    %p.name
       %span.title= book.new_record? ? book.title : link_to(book.title, book)
       by
       %span.author= book.author
     %p.isbn= "ISBN-13: #{book.ean}"
-    %p.price
+    %p.price.list-price
       List Price:
       = (book.list_price ? '$' + book.list_price.to_s : 'N/A')
     -unless book.new_record?
       %p
         = "#{book.listings.size} offers"
         = book.lowest_price ? 'from $' + book.lowest_price.to_s : ''
-    -if show_button
+    .control
       -if book.new_record?
         %p
           =form_tag books_path do
             = hidden_field_tag :isbn, book.ean
             = submit_tag 'List this book'
       -else
-        %p.offer
+        %p
           = button_to 'List this book', new_book_listing_path(book), :method => :get
-  .clear
