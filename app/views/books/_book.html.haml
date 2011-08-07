@@ -14,12 +14,13 @@
       %p
         = "#{book.listings.size} offers"
         = book.lowest_price ? 'from $' + book.lowest_price.to_s : ''
-    .control
-      -if book.new_record?
-        %p
-          =form_tag books_path do
-            = hidden_field_tag :isbn, book.ean
-            = submit_tag 'List this book'
-      -else
-        %p
-          = button_to 'List this book', new_book_listing_path(book), :method => :get
+    -if show_button
+      .control
+        -if book.new_record?
+          %p
+            =form_tag books_path do
+              = hidden_field_tag :isbn, book.ean
+              = submit_tag 'List this book'
+        -else
+          %p
+            = button_to 'List this book', new_book_listing_path(book), :method => :get

@@ -12,8 +12,7 @@
         = new_record ? f.text_field(:title) : listing.title
     - else
       .item
-        = render saleable
-      .clear
+        = render saleable, :show_button => false
 
     .field
       = f.label :price
