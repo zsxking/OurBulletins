@@ -112,10 +112,10 @@ class Book < ActiveRecord::Base
   private
 
     def update_indexes
-      super.update_tank_indexes unless ENV["RAILS_ENV"] == 'test'
+      update_tank_indexes unless ENV["RAILS_ENV"] == 'test'
     end
 
     def delete_indexes
-      super.delete_tank_indexes unless ENV["RAILS_ENV"] == 'test'
+      delete_tank_indexes unless ENV["RAILS_ENV"] == 'test'
     end
 end
