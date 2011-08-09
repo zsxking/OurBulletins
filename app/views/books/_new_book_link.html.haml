@@ -1,0 +1,30 @@
+#new-book-div=link_to 'Add a Book', '#find-book-div', :id => 'new-book-link'
+
+.hide
+  #find-book-div
+    =form_tag(find_books_path, :method => :get, :remote => true,
+              :id => 'find-book-form') do
+      =text_field_tag :keywords, @isbn, {:id => 'find-books-field',
+          :placeholder => 'ISBN, Title, Author, etc.'}
+      = submit_tag 'Find'
+    #find-book-list
+
+
+:javascript
+  $('#new-book-link').fancybox({
+    //'autoDimensions' : false,
+    'width' : 500,
+    'onClosed' : function () {
+      $('#find-book-list').html('');
+      $('#find-books-field').val('');
+    }
+  });
+  var form = $('#find-book-form');
+  form.live('ajax:complete', function (event, e) {
+    $.fancybox.hideActivity();
+    $('#find-book-list').html(e.responseText);
+    $.fancybox.resize();
+  });
+  form.live('ajax:beforeSend', function (event, e) {
+    $.fancybox.showActivity();
+  });

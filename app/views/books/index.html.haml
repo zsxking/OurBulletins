@@ -1,42 +1,40 @@
-%h1.grid_6.alpha Books
+=form_tag({}, :method => :get, :id => :search_option_form) do
+  .form_body
+    %h1.grid_6 Books
 
-.grid_6.omega.right#new-book-div
-  %h4=link_to 'Find a new book', '#find-book-div', :id => 'new-book-link'
+    .grid_4.right
+      = render 'shared/search_form'
 
-.clear
+    .grid_2.right
+      Have Offers Only?
+      = check_box_tag :offers_only, 1, @offers_only
 
-= paginate @books
+    .clear
 
-- @books.each do |book|
-  .grid_2.booklet{:class => cycle("alpha", '', '', '', '', "omega")}
-    -if book.image_link.empty?
-      .image.no-cover
-        %span [ no cover ]
-    -else
-      .image= image_tag(book.image_link, {:alt => book.title})
-    .title= book.new_record? ? book.title : link_to(book.title, book, :title => book.title)
-    .author= book.author
-    -if book.has_listing?
-      -if book.list_price
-        .price.list-price= '$' + book.list_price.to_s
-      .price
-        = '$' + book.lowest_price.to_s
+    .grid_12
+      = paginate @books
 
-  .book-tooltip
-    =render book
+      - @books.each do |book|
+        .grid_2.booklet{:class => cycle('alpha', '', '', '', '', 'omega')}
+          -if book.image_link.empty?
+            .image.no-cover
+              %span [ no cover ]
+          -else
+            .image= image_tag(book.image_link, {:alt => book.title})
+          .title= book.new_record? ? book.title : link_to(book.title, book, :title => book.title)
+          .author= book.author
+          -if book.has_listing?
+            -if book.list_price
+              .price.list-price= '$' + book.list_price.to_s
+            .price
+              = '$' + book.lowest_price.to_s
+
+        .book-tooltip
+          =render book
 
 
 -#
   Find book dialog template
-
-.hide
-  #find-book-div
-    =form_tag(find_books_path, :method => :get, :remote => true,
-              :id => 'find-book-form') do
-      =text_field_tag :keywords, @isbn, {:id => 'find-books-field',
-          :placeholder => 'ISBN, Title, Author, etc.'}
-      = submit_tag 'Find'
-    #find-book-list
 
 :javascript
   $(".booklet").tooltip({
@@ -45,21 +43,3 @@
     effect: 'slide',
     offset: [-50, 0]
   }).dynamic({ top: { direction: 'down', bounce: true, offset: [0, 0] } });;
-
-  $('#new-book-link').fancybox({
-    //'autoDimensions' : false,
-    'width' : 500,
-    'onClosed' : function () {
-      $('#find-book-list').html('');
-      $('#find-books-field').val('');
-    }
-  });
-  var form = $('#find-book-form');
-  form.live('ajax:complete', function (event, e) {
-    $.fancybox.hideActivity();
-    $('#find-book-list').html(e.responseText);
-    $.fancybox.resize();
-  });
-  form.live('ajax:beforeSend', function (event, e) {
-    $.fancybox.showActivity();
-  });

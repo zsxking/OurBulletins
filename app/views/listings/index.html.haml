@@ -1,7 +1,9 @@
-%h1 Listings
+%h1.grid_8 Listings
 
-.right
-  %h4=link_to "New Listing", new_listing_path
+.grid_4.omega.right
+  = render 'shared/search_form'
+
+.clear
 
 = paginate @listings
 

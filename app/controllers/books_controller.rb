@@ -3,7 +3,14 @@ class BooksController < ApplicationController
 
   def index
     @title = 'Books'
-    @books = Book.order('title').page(params[:page]).per(24)
+    @keywords = params[:q]
+    @offers_only = params[:offers_only]
+    join = @offers_only? :listings : nil
+    if @keywords && !@keywords.empty?
+      @books = Book.joins(join).search_tank(@keywords, :page => params[:page], :per_page => 20)
+    else
+      @books = Book.joins(join).order('title').page(params[:page]).per(20)
+    end
   end
 
   def show

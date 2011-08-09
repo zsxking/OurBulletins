@@ -12,6 +12,8 @@ class Book < ActiveRecord::Base
 
   has_many :listings, :as => :saleable
 
+  scope :have_offers, joins(:listings)
+
   # just include the Tanker module
   include Tanker
 
@@ -25,7 +27,7 @@ class Book < ActiveRecord::Base
   # this is the index name you create in the Index Tank dashboard
   # you can use the same index for various models Tanker can handle
   # indexing searching on different models with a single Index Tank index
-  tankit OurBulletins::Application.config.tanker_index do
+  tankit OurBulletins::Application.config.tanker_index + '_book' do
     indexes :title
     indexes :author
     indexes :description
@@ -38,6 +40,11 @@ class Book < ActiveRecord::Base
     # you may also dynamically retrieve field data
     indexes :listing_count do
       listings.size
+    end
+
+    variables do {
+      0 => listings.size
+    }
     end
 
     # you cal also dynamically set categories

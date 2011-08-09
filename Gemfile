@@ -18,7 +18,7 @@ gem 'uglifier'
 
 gem 'devise'
 
-gem 'tanker'
+gem 'tanker', :git => 'git://github.com/zsxking/tanker.git'
 
 gem 'kaminari'
 gem 'gravatar_image_tag'

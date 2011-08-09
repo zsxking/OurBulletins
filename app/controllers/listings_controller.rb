@@ -4,7 +4,14 @@ class ListingsController < ApplicationController
 
   def index
     @title = "Others"
-    @listings = Listing.other.page(params[:page])
+
+    @keywords = params[:q]
+    if @keywords && !@keywords.empty?
+      @listings = Book.search_tank(@keywords, :page => params[:page], :per_page => 25)
+    else
+      @listings = Listing.other.page(params[:page]).per(25)
+    end
+
   end
 
   def show

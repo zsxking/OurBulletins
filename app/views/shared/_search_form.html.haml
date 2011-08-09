@@ -1,6 +1,7 @@
 .search_container
-  = form_tag(search_path, :method => :get, :id => :search_form) do
+  = form_tag({}, :method => :get, :id => :search_form) do
     = submit_tag " ", {:name => nil, :class => :search_button}
     = text_field_tag :q, @keywords,
         {:class => :search_field, :id => :search_q,
          :placeholder => 'Search:'}
+    = yield

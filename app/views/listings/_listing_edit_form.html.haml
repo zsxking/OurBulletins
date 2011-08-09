@@ -1,5 +1,8 @@
 
-.grid_6.alpha.listing-edit
+.grid_6.listing-edit
+
+  .field=render 'books/new_book_link' if saleable.nil?
+
   =form_for [saleable, listing] do |f|
     - new_record = f.object.new_record?
 
@@ -10,6 +13,7 @@
         = f.label :title
         %br
         = new_record ? f.text_field(:title) : listing.title
+
     - else
       .item
         = render saleable, :show_button => false

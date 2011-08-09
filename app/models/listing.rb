@@ -33,7 +33,7 @@ class Listing < ActiveRecord::Base
   # this is the index name you create in the Index Tank dashboard
   # you can use the same index for various models Tanker can handle
   # indexing searching on different models with a single Index Tank index
-  tankit OurBulletins::Application.config.tanker_index do
+  tankit OurBulletins::Application.config.tanker_index + '_listing' do
     indexes :title
     indexes :description
     # Feature not release yet, wait for later version of Tanker than 1.1.3
