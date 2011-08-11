@@ -18,7 +18,6 @@
       = listing.user_name #link_to listing.user_name, listing.user
 
   .list-action.grid_2
-    =link_to 'Contact Seller', reply_listing_path(listing),
-             :method => :get, :class => 'reply-button', :remote => true
+    =super_button_link_to 'Contect Seller', reply_listing_path(listing), :remote => true, :class => 'green'
 
   .clear

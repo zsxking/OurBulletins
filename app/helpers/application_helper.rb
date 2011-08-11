@@ -31,4 +31,16 @@ module ApplicationHelper
     end
   end
 
+  # Link with class 'super button', with content inside span
+  def super_button_link_to *args
+    name         = args[0]
+    options      = args[1] || {}
+    html_options = args[2]
+    html_options[:class] ||= ''
+    html_options[:class] += ' super button'
+    link_to options, html_options do
+      "<span>#{name}</span>".html_safe
+    end
+  end
+
 end

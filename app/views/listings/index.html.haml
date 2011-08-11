@@ -8,4 +8,7 @@
 = paginate @listings
 
 .listings
-  = render @listings
+  -if @listings.empty?
+    %h4 No record found.
+  -else
+    = render @listings

@@ -1,0 +1,235 @@
+/*
+ * Design and code copied from
+ * http://www.zurb.com/article/266/super-awesome-buttons-with-css3-and-rgba
+ * Pulse animation copied from
+ * http://www.zurb.com/playground/radioactive-buttons
+ */
+
+
+
+
+button.button, input.button[type="reset"], input.button[type="submit"], input.button[type="button"],
+.button {
+
+    background: #91bd09 url(super-button-overlay.png) repeat-x 0 0;
+    display: inline-block;
+    padding: 5px 15px 6px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1;
+    text-decoration: none;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+    border-top: 1px solid rgba(255,255,255,.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    position: relative;
+    cursor: pointer;
+    overflow: visible;
+    width: auto;
+
+    &::-moz-focus-inner { border: 0; padding: 0; }
+
+    &:hover {
+        background-color: #749a02;
+        color: #fff;
+    }
+    &:active {
+        top: 1px;
+        -webkit-transform: translateY(1px);
+        -moz-transform: translateY(1px);
+    }
+
+    &.small {
+        font-size: 11px;
+    }
+
+    &.large{
+        font-size: 14px;
+        padding: 8px 19px 9px;
+    }
+
+    /* Secondary buttons (perfect for Cancels or other secondary actions */
+    &.secondary {
+        background: #fff url(36px-black.png) repeat-x 0 0;
+        color: #555 !important;
+        text-shadow: 0 1px 1px rgba(255,255,255,0.5);
+        border: 1px solid #bbb;
+        -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+
+        :hover {
+            background-color: #eee;
+            color: #444 !important;
+            border-color: #999;
+        }
+    }
+
+
+    &.white.button {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        color: #666 !important;
+        font-weight: normal;
+        text-shadow: 0 1px 1px rgba(255,255,255,1);
+        &:hover {background-color: #eee;}
+    }
+
+    /*Strike button*/
+    &.strike {
+        background-color: #4ADFC1;
+        &:hover {background-color: #39ceb0;}
+    }
+    &.black {
+        background-color: #222;
+        &:hover {background-color: #111;}
+    }
+    &.green {
+        background-color: #91bd09;
+        &:hover {background-color: #749a02;}
+    }
+    &.blue {
+        background-color: #2daebf;
+        &:hover {background-color: #007d9a;}
+    }
+    &.red {
+        background-color: #e33100;
+        &:hover {background-color: #872300;}
+    }
+    &.magenta {
+        background-color: #a9014b;
+        &:hover {background-color: #630030;}
+    }
+    &.orange {
+        background-color: #ff5c00;
+        &:hover {background-color: #d45500;}
+    }
+    &.orangellow.button {
+        background-color: #ffb515;
+        &:hover {background-color: #fc9200;}
+    }
+    &.yellow {
+        background-color: #ffb515;
+        &:hover {background-color: #fc9200;}
+    }
+}
+
+
+/* Make the buttons super awesomer */
+.button.super {
+    background-image: url(super-button-overlay.png);
+    font-size: 13px;
+    padding: 0;
+    border: 1px solid rgba(0,0,0,.25);
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+
+    span {
+        display: block;
+        padding: 4px 15px 6px;
+        -webkit-border-radius: 14px;
+        -moz-border-radius: 14px;
+        border-top: 1px solid rgba(255,255,255,.2);
+        line-height: 1;
+    }
+
+    &.small {
+        font-size: 11px;
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 12px;
+
+        span {
+            padding: 2px 12px 6px;
+            -webkit-border-radius: 11px;
+            -moz-border-radius: 11px;
+        }
+    }
+    &.small.white span { padding: 3px 12px 5px; }
+
+    &.large {
+        background-position: left bottom;
+        -webkit-border-radius: 18px;
+        -moz-border-radius: 18px;
+
+        span {
+            font-size: 14px;
+            padding: 7px 20px 9px;
+            -webkit-border-radius: 17px;
+            -moz-border-radius: 17px;
+        }
+    }
+}
+
+.pulse {
+  -webkit-animation-duration: 3s;
+  -webkit-animation-iteration-count: infinite;
+}
+
+.greenPulse {
+  @extend .pulse;
+  -webkit-animation-name: greenPulse;
+}
+
+.bluePulse {
+  @extend .pulse;
+  -webkit-animation-name: bluePulse;
+}
+
+.redPulse {
+  @extend .pulse;
+  -webkit-animation-name: redPulse;
+}
+
+.magentaPulse {
+  @extend .pulse;
+  -webkit-animation-name: magentaPulse;
+}
+
+.orangePulse {
+  @extend .pulse;
+  -webkit-animation-name: orangePulse;
+}
+
+.orangellowPulse {
+  @extend .pulse;
+  -webkit-animation-name: orangellowPulse;
+}
+
+@-webkit-keyframes greenPulse {
+  from { background-color: #749a02; -webkit-box-shadow: 0 0 9px; }
+  50% { background-color: #91bd09; -webkit-box-shadow: 0 0 18px #91bd09; }
+  to { background-color: #749a02; -webkit-box-shadow: 0 0 9px; }
+}
+
+@-webkit-keyframes bluePulse {
+  from { background-color: #007d9a; -webkit-box-shadow: 0 0 9px; }
+  50% { background-color: #2daebf; -webkit-box-shadow: 0 0 18px #2daebf; }
+  to { background-color: #007d9a; -webkit-box-shadow: 0 0 9px; }
+}
+
+@-webkit-keyframes redPulse {
+  from { background-color: #bc330d; -webkit-box-shadow: 0 0 9px; }
+  50% { background-color: #e33100; -webkit-box-shadow: 0 0 18px #e33100; }
+  to { background-color: #bc330d; -webkit-box-shadow: 0 0 9px; }
+}
+
+@-webkit-keyframes magentaPulse {
+  from { background-color: #630030; -webkit-box-shadow: 0 0 9px; }
+  50% { background-color: #a9014b; -webkit-box-shadow: 0 0 18px #a9014b; }
+  to { background-color: #630030; -webkit-box-shadow: 0 0 9px; }
+}
+
+@-webkit-keyframes orangePulse {
+  from { background-color: #d45500; -webkit-box-shadow: 0 0 9px; }
+  50% { background-color: #ff5c00; -webkit-box-shadow: 0 0 18px #ff5c00; }
+  to { background-color: #d45500; -webkit-box-shadow: 0 0 9px; }
+}
+
+@-webkit-keyframes orangellowPulse {
+  from { background-color: #fc9200; -webkit-box-shadow: 0 0 9px; }
+  50% { background-color: #ffb515; -webkit-box-shadow: 0 0 18px #ffb515; }
+  to { background-color: #fc9200; -webkit-box-shadow: 0 0 9px; }
+}

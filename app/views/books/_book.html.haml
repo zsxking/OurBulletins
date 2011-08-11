@@ -16,11 +16,11 @@
         = book.lowest_price ? 'from $' + book.lowest_price.to_s : ''
     -if show_button
       .control
-        -if book.new_record?
+        -if !book.new_record?
           %p
             =form_tag books_path do
               = hidden_field_tag :isbn, book.ean
-              = submit_tag 'List this book'
+              = submit_tag 'List this book', :class => 'orange button'
         -else
           %p
-            = button_to 'List this book', new_book_listing_path(book), :method => :get
+            = link_to 'List this book', new_book_listing_path(book), :class => 'orange button'

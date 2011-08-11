@@ -12,26 +12,28 @@
     .clear
 
     .grid_12
-      = paginate @books
+      -if @books.empty?
+        %h4 No record found.
+      -else
+        = paginate @books
 
-      - @books.each do |book|
-        .grid_2.booklet{:class => cycle('alpha', '', '', '', '', 'omega')}
-          -if book.image_link.empty?
-            .image.no-cover
-              %span [ no cover ]
-          -else
-            .image= image_tag(book.image_link, {:alt => book.title})
-          .title= book.new_record? ? book.title : link_to(book.title, book, :title => book.title)
-          .author= book.author
-          -if book.has_listing?
-            -if book.list_price
-              .price.list-price= '$' + book.list_price.to_s
-            .price
-              = '$' + book.lowest_price.to_s
+        - @books.each do |book|
+          .grid_2.booklet{:class => cycle('alpha', '', '', '', '', 'omega')}
+            -if book.image_link.empty?
+              .image.no-cover
+                %span [ no cover ]
+            -else
+              .image= image_tag(book.image_link, {:alt => book.title})
+            .title= book.new_record? ? book.title : link_to(book.title, book, :title => book.title)
+            .author= book.author
+            -if book.has_listing?
+              -if book.list_price
+                .price.list-price= '$' + book.list_price.to_s
+              .price
+                = '$' + book.lowest_price.to_s
 
-        .book-tooltip
-          =render book
-
+          .book-tooltip
+            =render book
 
 -#
   Find book dialog template
