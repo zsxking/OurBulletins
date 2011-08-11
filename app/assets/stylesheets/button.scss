@@ -119,7 +119,7 @@ button.button, input.button[type="reset"], input.button[type="submit"], input.bu
 
 
 /* Make the buttons super awesomer */
-.button.super {
+.button.super, button.super  {
     background-image: url(super-button-overlay.png);
     font-size: 13px;
     padding: 0;

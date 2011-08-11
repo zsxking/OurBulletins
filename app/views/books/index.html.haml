@@ -5,9 +5,13 @@
     .grid_4.right
       = render 'shared/search_form'
 
-    .grid_2.right
-      Have Offers Only?
-      = check_box_tag :offers_only, 1, @offers_only
+    .grid_2
+      .field.switch
+        %label.cb-enable
+          %span Offers Only
+        %label.cb-disable
+          %span All
+        = check_box_tag :offers_only, 1, @offers_only, :id => 'has_offer_checkbox'
 
     .clear
 
@@ -44,4 +48,43 @@
     predelay: 300,
     effect: 'slide',
     offset: [-50, 0]
-  }).dynamic({ top: { direction: 'down', bounce: true, offset: [0, 0] } });;
+  }).dynamic({ top: { direction: 'down', bounce: true, offset: [0, 0] } });
+
+    /*
+  $('#has_offer_checkbox').iphoneStyle({
+    background: '#F9F3E8',
+    checkedLabel: 'Yes ',
+    uncheckedLabel: ' No'
+  });
+  */
+
+
+  $(".cb-enable").click(function(){
+      var parent = $(this).parents('.switch');
+      //$('.cb-disable',parent).removeClass('selected');
+      //$(this).addClass('selected');
+      $('input[type="checkbox"]',parent).click();
+  });
+  $(".cb-disable").click(function(){
+      var parent = $(this).parents('.switch');
+      //$('.cb-enable',parent).removeClass('selected');
+      //$(this).addClass('selected');
+      $('input[type="checkbox"]',parent).click();
+  });
+
+  $('.switch label').click(function() {
+    $(this).parents('form').submit();
+  });
+
+  $('.switch input[type="checkbox"]').change(function() {
+    var parent = $(this).parents('.switch');
+    if ($(this).is(':checked')) {
+      $('.cb-enable',parent).addClass('selected');
+      $('.cb-disable',parent).removeClass('selected');
+    } else {
+      $('.cb-enable',parent).removeClass('selected');
+      $('.cb-disable',parent).addClass('selected');
+    }
+  });
+
+  $('.switch input[type="checkbox"]').change();

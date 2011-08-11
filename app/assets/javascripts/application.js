@@ -18,5 +18,7 @@
  = require jquery.fancybox-1.3.4
  = require jquery.tools.min.js
 
+ = require iphone-style-checkboxes
+
  = require_tree .
  */
