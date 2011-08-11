@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/zsxking/tanker.git
-  revision: 2cd7ab8dbc783114f9ca4d46f9cfac8497ef8126
+  revision: 2fb0f00333d2c6a3f42250296a4c00db81f037d1
   specs:
     tanker (1.1.3)
       json (>= 1.5.1)
