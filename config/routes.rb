@@ -15,6 +15,8 @@ OurBulletins::Application.routes.draw do
     member do
       get :reply, :to => :new_reply
       post :reply, :to => :create_reply
+      post :close
+      post :reopen
     end
   end
 

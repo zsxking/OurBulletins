@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :index]
-  before_filter :correct_user, :only => [:edit, :update]
+  #before_filter :correct_user, :only => [:edit, :update]
 
   def index
     @title = "Others"
@@ -15,7 +15,7 @@ class ListingsController < ApplicationController
   end
 
   def show
-    @listing = Listing.find(params[:id])
+    @listing = current_user.listings.unscoped.find(params[:id]) || Listing.find(params[:id])
   end
 
   def new
@@ -37,12 +37,12 @@ class ListingsController < ApplicationController
   end
 
   def edit
-    #@listing = current_user.listings.find(params[:id])
+    @listing = current_user.listings.unscoped.find(params[:id])
     @title = "Edit | #{@listing.title}"
   end
 
   def update
-    #@listing = current_user.listings.find(params[:id])
+    @listing = current_user.listings.unscoped.find(params[:id])
     if @listing.update_attributes(params[:listing])
       flash[:success] = "Listing updated."
       redirect_to @listing
@@ -50,6 +50,28 @@ class ListingsController < ApplicationController
       @title = "Edit | #{@listing.title}"
       render 'edit'
     end
+  end
+
+  def close
+    @listing = current_user.listings.find(params[:id])
+    @listing.closed_at = Time.new
+    if (@listing.save)
+      flash[:success] = 'The listing is closed.'
+    else
+      flash[:error] = 'Internal error, please try again later.'
+    end
+    redirect_to @listing
+  end
+
+  def reopen
+    @listing = current_user.listings.unscoped.find(params[:id])
+    @listing.closed_at = nil
+    if (@listing.save)
+      flash[:success] = 'The listing is now opened.'
+    else
+      flash[:error] = 'Internal error, please try again later.'
+    end
+    redirect_to @listing
   end
 
   def new_reply
@@ -84,13 +106,13 @@ class ListingsController < ApplicationController
 
   private
 
-    def correct_user
-      @listing = Listing.find(params[:id])
-      if !(current_user == @listing.user)
-        flash[:error] = "Invalid user."
-        redirect_to @listing
-      end
-    end
+    #def correct_user
+    #  @listing = Listing.find(params[:id])
+    #  if !(current_user == @listing.user)
+    #    flash[:error] = "Invalid user."
+    #    redirect_to @listing
+    #  end
+    #end
 
     def find_saleable
     params.each do |name, value|

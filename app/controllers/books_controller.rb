@@ -5,11 +5,16 @@ class BooksController < ApplicationController
     @title = 'Books'
     @keywords = params[:q]
     @offers_only = params[:offers_only]
-    join = @offers_only? :listings : nil
-    if @keywords && !@keywords.empty?
-      @books = Book.joins(join).search_tank(@keywords, :page => params[:page], :per_page => 24)
+    if @offers_only
+      scoped_book = Book.have_offers
     else
-      @books = Book.joins(join).order('title').page(params[:page]).per(24)
+      scoped_book = Book.order('title')
+    end
+
+    if @keywords && !@keywords.empty?
+      @books = scoped_book.search_tank(@keywords, :page => params[:page], :per_page => 24)
+    else
+      @books = scoped_book.order('title').page(params[:page]).per(24)
     end
   end
 

@@ -17,7 +17,7 @@ class Listing < ActiveRecord::Base
   validates :condition,   :presence => true,
                           :inclusion => CONDITION_LIST
 
-  default_scope :order => 'listings.created_at DESC'
+  default_scope :conditions => {:closed_at => nil}, :order => 'listings.created_at DESC'
   scope :other, :conditions => {:saleable_id => nil}
 
   # just include the Tanker module
@@ -48,6 +48,10 @@ class Listing < ActiveRecord::Base
     else
       title
     end
+  end
+
+  def closed?
+    !closed_at.nil?
   end
 
   private

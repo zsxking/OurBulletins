@@ -12,7 +12,7 @@ class Book < ActiveRecord::Base
 
   has_many :listings, :as => :saleable
 
-  scope :have_offers, joins(:listings)
+  scope :have_offers, joins(:listings).where('listings.closed_at is null')
 
   # just include the Tanker module
   include Tanker
