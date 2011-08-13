@@ -1,0 +1,7 @@
+.control
+  -if book.new_record?
+    =form_tag books_path do
+      = hidden_field_tag :isbn, book.ean
+      = submit_tag 'List this book', :class => 'orange button'
+  -else
+    = link_to 'List this book', new_book_listing_path(book), :class => 'orange button'

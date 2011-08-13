@@ -27,7 +27,9 @@
               .image.no-cover
                 %span [ no cover ]
             -else
-              .image= image_tag(book.image_link, {:alt => book.title})
+              .image
+                = link_to book do
+                  =image_tag(book.image_link, {:alt => book.title})
             .title= book.new_record? ? book.title : link_to(book.title, book, :title => book.title)
             .author= book.author
             -if book.has_listing?

@@ -11,7 +11,7 @@
     %li= "Edition #{@book.edition}"
     %li= "ISBN-10 #{@book.isbn}"
     %li= "ISBN-13 #{@book.ean}"
-  = link_to 'List this book', new_book_listing_path(@book), :class => 'orange button'
+  = render 'books/book_control', :book => @book
 
 .clear
 %br

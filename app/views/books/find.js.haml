@@ -1,4 +1,5 @@
 -if @books.nil?
   = "'#{@keywords}' does not match any books."
 -else
-  = render @books
+  -@books.each do |book|
+    = render book, :show_control => true

@@ -1,4 +1,5 @@
-#new-book-div=link_to 'Add a Book', '#find-book-div', :id => 'new-book-link'
+#new-book-div
+  =link_to 'Add a Book', '#find-book-div', :id => 'new-book-link', :class => 'orange button'
 
 .hide
   #find-book-div
@@ -6,7 +7,7 @@
               :id => 'find-book-form') do
       =text_field_tag :keywords, @isbn, {:id => 'find-books-field',
           :placeholder => 'ISBN, Title, Author, etc.'}
-      = submit_tag 'Find'
+      = submit_tag 'Find', :class => 'green button'
     #find-book-list
 
 
