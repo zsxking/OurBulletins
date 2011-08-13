@@ -1,0 +1,46 @@
+// Colors
+// #C99D2D  Brown
+// #C7BD8E  Gray-brown
+// #B34A2B  Red
+// #968954  Green-brown
+// #EEDF90  Cream-yellow
+
+
+body {
+  font-size: 13px;
+  color: #222222;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif; }
+
+/* Main Content */
+
+.page_container {
+  background: white; }
+
+section {
+  //background: white
+  margin-top: 10px;
+  margin-bottom: 10px;
+  //padding: 15px 10px
+}
+
+.content {
+  min-height: 600px; }
+
+.ad_sidebar {
+  padding: 10px; }
+
+/* Navigation */
+
+nav {
+  white-space: nowrap;
+  vertical-align: middle; }
+
+nav ul {
+  margin: 0;
+  padding: 0; }
+
+nav ul li {
+  list-style-type: none;
+  display: inline-block;
+  margin-left: 0;
+  margin-right: 0; }

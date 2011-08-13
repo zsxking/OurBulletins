@@ -1,0 +1,78 @@
+.right {
+  text-align: right }
+
+.left {
+  text-align: left }
+
+.hide {
+  display: none}
+
+.round {
+  -moz-border-radius:    5px;
+  -webkit-border-radius: 5px;
+  border-radius:         5px; }
+
+/* Links */
+
+a:focus,
+a:hover {
+  color: #fc9200 }
+
+a {
+  color: #FF6908;
+  text-decoration: none;
+  outline: 0;
+  line-height: inherit; }
+
+
+/* Forms */
+
+div.field, div.actions {
+  margin-bottom: 0.5em
+  }
+
+
+
+/*  --------------------------------------------------
+    Typography
+    -------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 { color: #333; font-weight: bold; }
+h1, h2, h3 { letter-spacing: -1px; }
+h1 { font-size: 45px; line-height: 1; margin: 0 0 9px; }
+h2 { font-size: 30px; line-height: 1.2; margin: 9px 0; }
+h3 { font-size: 24px; line-height: 1; margin: 3px 0 9px; }
+h4 { font-size: 18px; line-height: 1.2; margin: 0; }
+h5 { font-size: 14px; line-height: 18px; }
+h6 { font-size: 13px; line-height: 18px; }
+
+p { line-height: 18px; margin: 0 0 18px; }
+p img { margin: 0; }
+p.lead { font-size: 18px; line-height: 24px; margin: 0 0 18px; color: #777; }
+
+small { font-size: 90%; line-height: inherit; color: #777; font-weight: normal; }
+
+
+hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 17px 0 18px; height: 0; }
+body.ie6 hr { margin: 8px 0 9px; }
+
+code, pre { font: 12px/18px "Monaco", "Courier New", "Courier", monospace; color: #e33100; }
+
+address { color: #333; line-height: 18px; margin: 0 0 18px; }
+abbr, acronym { text-transform: uppercase; font-size: 90%; color: #222; border-bottom: 1px solid #ddd; cursor: help; }
+abbr { text-transform: none; }
+
+/*  --------------------------------------------------
+Lists
+-------------------------------------------------- */
+ul, ol { margin-bottom: 18px; }
+ul { list-style: none outside; }
+ol, ul.square, ul.circle, ul.disc { margin-left: 24px; }
+ol { list-style: decimal; margin-left: 30px; }
+ul.square { list-style: square outside; }
+ul.circle { list-style: circle outside; }
+ul.disc { list-style: disc outside; }
+ul ul, ol ol { margin-left: 30px; margin-top: 4px; margin-bottom: 5px; }
+li { line-height: 18px; }
+
+dt { line-height: 18px; font-weight: bold; color: #333; }
+dd { margin: 0 0 18px; line-height: 18px; }

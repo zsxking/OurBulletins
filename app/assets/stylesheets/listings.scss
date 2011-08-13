@@ -1,0 +1,31 @@
+/* Listing List */
+
+.list-header {
+  font-weight: bold;
+  text-align: center;
+  font-size: 120%; }
+
+.list-item {
+  margin-bottom: 10px;
+  .price {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #990000; }
+  .cond {
+    font-weight: bold; }
+  .title {
+    font-weight: bold; }
+  .tagline {
+    font-style: italic;
+    color: gray;
+    font-size: 0.9em; }
+  hover: {
+    background-color: #f3ebc3; }; }
+
+.list-action {
+  text-align: center; }
+
+/* Listing Edit */
+.listing-edit {
+  .control {
+    display: none; } }

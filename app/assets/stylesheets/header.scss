@@ -1,0 +1,178 @@
+/*  @group Structure
+    -------------------------------------------------- */
+
+/*  Header ---------------------------------------- */
+
+header {
+  position: relative;
+  height: 54px;
+  margin: 0 auto 36px;
+  img {
+    display: block;
+    float: left;
+    margin: 25px 0 0; }
+  h3 {
+    float: left;
+    font-size: 24px;
+    line-height: 1;
+    margin: 0;
+    position: absolute;
+    top: 21px;
+    left: 0;
+    letter-spacing: -1px;
+    a {
+      font-weight: bold; } } }
+
+/* logo image */
+
+@font-face {
+	font-family: cool_font;
+	src: url('maagkramp_by_ficod.ttf');
+}
+
+.headAppName {
+	font-family: cool_font;
+  font-size: 36px;
+}
+
+/* Text in the header on the top left */
+
+header h3 a:visited {
+  font-weight: bold; }
+
+header h3 a:hover {
+  color: #777; }
+
+/* @end */
+
+/*  @group Navigation
+    -------------------------------------------------- */
+.left {
+  ul.tabs {
+    float: left;
+  }
+}
+
+ul.tabs {
+  float: right;
+  margin: 0;
+  li {
+    display: block;
+    float: left;
+    line-height: 1;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    a {
+      display: block;
+      font-weight: bold;
+      width: 80px;
+      margin: 9px 0 0 -1px;
+      padding: 9px 5px 13px 15px;
+
+      border-left: 1px solid #eee;
+      text-decoration: none;
+      color: #333;
+      cursor: pointer;
+      &:hover {
+        background-color: #ff6908;
+        color: #fff;
+        border: 0;
+        margin: 0;
+        padding-top: 27px;
+        text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+        -webkit-border-bottom-left-radius: 3px;
+        -webkit-border-bottom-right-radius: 3px;
+        -moz-border-radius: 0 0 3px 3px;
+        position: relative;
+        z-index: 2; }
+    }
+    .books & a.books, .others & a.others, .signin & a.signin, .post & a.post, .profile & a.profile, {
+      background-color: #ff6908;
+      color: #fff;
+      border: 0;
+      margin: 0;
+      padding-top: 18px;
+      text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+      -webkit-border-bottom-left-radius: 3px;
+      -webkit-border-bottom-right-radius: 3px;
+      -moz-border-radius: 0 0 3px 3px;
+      position: relative;
+      z-index: 2;
+
+      &:hover {
+        padding-top: 27px;
+      }
+
+      &.signin {
+        background-color: #b8d30b; }
+      &.signout {
+        background-color: #fc9200; }
+      &.post {
+        background-color: #2daebf; }
+      &.profile {
+        background-color: #a9014b; }
+
+      }
+    span {
+      display: block;
+      font-size: 16px;
+      line-height: 1;
+      font-weight: bold; }
+    a {
+      &.signin:hover {
+        background-color: #b8d30b; }
+      &.signout:hover {
+        background-color: #fc9200; }
+      &.post:hover {
+        background-color: #2daebf; }
+      &.profile:hover {
+        background-color: #a9014b; } } }
+  &.tall li {
+    a {
+      padding: 18px 5px 11px 15px;
+      &:hover {
+        padding: 27px 5px 11px 15px; } }
+    span {
+      font-size: 14px; } } }
+
+.wrapper {
+  border-top: 5px solid #ff6908;
+  clear: left;
+
+  a.button {
+    color: #fff
+  }
+
+}
+
+.signin {
+  border-top-color: #b8d30b;
+  a:focus, a:hover {
+    color: #95A105 }
+  a {
+    color: #b8d30b; }
+}
+.signout {
+  border-top-color: #fc9200;
+  a:focus, a:hover {
+    color: #FF6908 }
+  a {
+    color: #fc9200; }
+}
+.post {
+  border-top-color: #2daebf;
+  a:focus, a:hover {
+    color: #007D9A }
+  a {
+    color: #2daebf; }
+}
+.profile {
+  border-top-color: #a9014b;
+  a:focus, a:hover {
+    color: #a9014b }
+  a {
+    color: #c9025c; }
+}
+/* Hover colors for each main ZURB section */
+
+/* Shortened tabs for within apps (dashboard) */

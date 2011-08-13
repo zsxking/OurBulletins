@@ -9,7 +9,7 @@
 
 
 button.button, input.button[type="reset"], input.button[type="submit"], input.button[type="button"],
-.button {
+.button, a.button {
 
     background: #91bd09 url(super-button-overlay.png) repeat-x 0 0;
     display: inline-block;

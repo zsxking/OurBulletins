@@ -1,7 +1,10 @@
 =form_tag({}, :method => :get, :id => :search_option_form) do
   .form_body
-    %h1.grid_6 Books
-
+    .grid_6
+      -if @books.empty?
+        &nbsp;
+      -else
+        =paginate @books
     .grid_4.right
       = render 'shared/search_form'
 
@@ -19,8 +22,6 @@
       -if @books.empty?
         %h4 No record found.
       -else
-        = paginate @books
-
         - @books.each do |book|
           .grid_2.booklet{:class => cycle('alpha', '', '', '', '', 'omega')}
             -if book.image_link.empty?

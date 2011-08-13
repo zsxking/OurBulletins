@@ -43,4 +43,18 @@ module ApplicationHelper
     end
   end
 
+  def highlight_class
+    case
+      when params[:controller] == 'books'
+        'books'
+      when  params[:controller] == 'listings' && params[:action] !=  'new'
+        'others'
+      when params[:controller] == 'listings' && params[:action] ==  'new'
+        'post'
+      when params[:controller] == 'devise/registrations'
+        'profile'
+      when params[:controller] == 'devise/sessions'
+        'signin'
+    end
+  end
 end

@@ -25,4 +25,4 @@
     .prefix
       Description from
       = link_to 'Amazon.com', @book.amazon_detail_url, :target => '_blank'
-    .push_1.grid_10!= CGI.unescapeHTML(@book.description)
+    %blockquote.push_1.grid_10!= CGI.unescapeHTML(@book.description)
