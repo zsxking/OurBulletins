@@ -8,10 +8,10 @@
     .grid_2
       .field.switch
         %label.cb-enable
-          %span Offers Only
+          %span Listed Only
         %label.cb-disable
           %span All
-        = check_box_tag :offers_only, 1, @offers_only, :id => 'has_offer_checkbox'
+        = check_box_tag :listed, 1, @listed, :id => 'has_offer_checkbox'
 
     .clear
 
@@ -43,6 +43,9 @@
   Find book dialog template
 
 :javascript
+  /* Hack to encounter Rails 3's forced utf8 field, which cause double variable here. */
+  $(".search_container input[name='utf8']").remove();
+
   $(".booklet").tooltip({
     position: 'bottom center',
     predelay: 300,

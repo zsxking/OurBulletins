@@ -9,25 +9,23 @@
   %body
 
 
-    %header
-      #headerBar
-      .container_12
-        .grid_2= link_to logo, root_path
-        .grid_3.search_bar= #render 'shared/search_form'
-        %nav.grid_7.left
-          %ul
-            %li= link_to "Books", books_path
-            %li= link_to "Others", listings_path
-            - if user_signed_in?
-              %li=link_to "Post New", new_listing_path
-        %nav.func-links.grid_3.right
-          %ul
-            - if user_signed_in?
-              %li= link_to "Profile", edit_user_registration_path(current_user)
-              %li= link_to "Sign out", destroy_user_session_path, :method => :delete
-            - else
-              %li= link_to "Sign in", new_user_session_path
-        .clear
+    %header.container_12
+      .grid_2= link_to logo, root_path
+      .grid_3.search_bar= #render 'shared/search_form'
+      %nav.grid_7.left
+        %ul
+          %li= link_to "Books", books_path
+          %li= link_to "Others", listings_path
+          - if user_signed_in?
+            %li=link_to "Post New", new_listing_path
+      %nav.func-links.grid_3.right
+        %ul
+          - if user_signed_in?
+            %li= link_to "Profile", edit_user_registration_path(current_user)
+            %li= link_to "Sign out", destroy_user_session_path, :method => :delete
+          - else
+            %li= link_to "Sign in", new_user_session_path
+      .clear
     .page_container.container_12
       #flash_container
         - flash.each do |key, value|

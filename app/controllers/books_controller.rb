@@ -4,8 +4,8 @@ class BooksController < ApplicationController
   def index
     @title = 'Books'
     @keywords = params[:q]
-    @offers_only = params[:offers_only]
-    if @offers_only
+    @listed = params[:listed]
+    if @listed
       scoped_book = Book.have_offers
     else
       scoped_book = Book.order('title')
