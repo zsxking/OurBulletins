@@ -5,3 +5,18 @@
         {:class => :search_field, :id => :search_q,
          :placeholder => 'Search:'}
     = yield
+
+:javascript
+
+  $(document).ready(function() {
+
+
+    // let the form be 'indextank-aware'
+    $("#search_q").parents('form').indextank_Ize(
+        "#{OurBulletins::Application.config.index_tank_url_public}",
+        "#{OurBulletins::Application.config.tanker_index}_#{subindex}")
+    // let the query box have autocomplete
+    $("#search_q").indextank_Autocomplete({fieldName: "title"})
+    return
+  });
+
