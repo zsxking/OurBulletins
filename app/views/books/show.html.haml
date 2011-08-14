@@ -16,9 +16,9 @@
 .clear
 %br
 - if @book.listings.size > 0
-  .grid_12
-    %h4 Current Listings:
-    =render @book.listings
+  %h4.grid_12
+    %p Current Listings:
+  =render @book.listings
 
 -if @book.description?
   .grid_12.vendor-decr

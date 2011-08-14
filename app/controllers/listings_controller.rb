@@ -7,7 +7,7 @@ class ListingsController < ApplicationController
 
     @keywords = params[:q]
     if @keywords && !@keywords.empty?
-      @listings = Book.search_tank(@keywords, :page => params[:page], :per_page => 25)
+      @listings = Listing.other.search_tank(@keywords, :page => params[:page], :per_page => 25)
     else
       @listings = Listing.other.page(params[:page]).per(25)
     end

@@ -3,9 +3,9 @@
 .list-item
   .grid_1
     .price= '$' + ("%.2f" % listing.price.to_f)
-  .grid_1.cond
+  .grid_2.cond
     =listing.condition || 'N/A'
-  .grid_8.decr
+  .grid_7.decr
     = link_to listing do
       - if listing.saleable.nil?
         .title= listing.title

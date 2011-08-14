@@ -1,7 +1,7 @@
 =form_tag({}, :method => :get, :id => :search_option_form) do
   .form_body
     .grid_6
-      -if @books.empty?
+      -if @books.empty? || @books.count <= 24
         &nbsp;
       -else
         =paginate @books
@@ -18,29 +18,7 @@
 
     .clear
 
-    .grid_12
-      -if @books.empty?
-        %h4 No record found.
-      -else
-        - @books.each do |book|
-          .grid_2.booklet{:class => cycle('alpha', '', '', '', '', 'omega')}
-            -if book.image_link.empty?
-              .image.no-cover
-                %span [ no cover ]
-            -else
-              .image
-                = link_to book do
-                  =image_tag(book.image_link, {:alt => book.title})
-            .title= book.new_record? ? book.title : link_to(book.title, book, :title => book.title)
-            .author= book.author
-            -if book.has_listing?
-              -if book.list_price
-                .price.list-price= '$' + book.list_price.to_s
-              .price
-                = '$' + book.lowest_price.to_s
-
-          .book-tooltip
-            =render book
+    #book_list=render 'books/book_list'
 
 -#
   Find book dialog template

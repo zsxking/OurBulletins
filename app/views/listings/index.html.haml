@@ -1,12 +1,17 @@
-.grid_4.omega.right
+.grid_8
+  -if @listings.empty? || @listings.count <= 25
+    &nbsp;
+  -else
+    =paginate @listings
+.grid_4
   = render 'shared/search_form', :subindex => 'listing'
 
 .clear
 
-= paginate @listings
 
 .listings
   -if @listings.empty?
-    %h4 No record found.
+    %h4.grid_4 No record found.
+    .clear
   -else
     = render @listings

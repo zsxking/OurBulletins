@@ -1,20 +1,23 @@
 
-%h2= @listing.title
+.grid_12
+  %h3= @listing.subject
 
 
-.post_by
-  by
-  =@listing.user_name #link_to @listing.user_name, @listing.user
-  at
-  =@listing.created_at
-%br
-%p= @listing.description
+  .post_by
+    by
+    =@listing.user_name #link_to @listing.user_name, @listing.user
+    at
+    =@listing.created_at
+  %br
+  %p Price: #{@listing.price}
+  %p Condition: #{@listing.condition}
+  %p Description: #{@listing.description}
 
--if current_user == @listing.user
-  %p= link_to 'Edit', edit_listing_path(@listing), :class => 'green button'
-  -if @listing.closed?
-    %p= button_to 'Reopen', reopen_listing_path(@listing),
-        :class => 'yellow button'
-  -else
-    %p= button_to 'Close', close_listing_path(@listing),
-        :class => 'yellow button'
+  -if current_user == @listing.user
+    %p= link_to 'Edit', edit_listing_path(@listing), :class => 'green button'
+    -if @listing.closed?
+      %p= button_to 'Reopen', reopen_listing_path(@listing),
+          :class => 'yellow button'
+    -else
+      %p= button_to 'Close', close_listing_path(@listing),
+          :class => 'yellow button'
