@@ -65,8 +65,8 @@ describe BooksController do
 
     it 'should show the list button even when not logged in.' do
       get :show, :id => @book
-      response.should have_selector('input[type="submit"]',
-                                    :value => 'List this book')
+      response.should have_selector('a',
+                                    :content => 'List this book')
     end
   end
 
@@ -90,15 +90,15 @@ describe BooksController do
       end
 
       it 'should contain proper button to create book' do
-        xhr :get, :find, :keywords => '9780979777745'
+        xhr :get, :find, :keywords => '9781933988658'
         response.should have_selector('form', :action => books_path, :method => 'post')
-        response.should have_selector('input[name="isbn"][type="hidden"]', :value => '9780979777745')
+        response.should have_selector('input[name="isbn"][type="hidden"]', :value => '9781933988658')
         response.should have_selector('input[type="submit"]', :value => "List this book")
       end
 
       describe 'on existed books' do
         before(:each) do
-          @book = Book.get_from_amazon_by_isbn(9780979777745)
+          @book = Book.get_from_amazon_by_isbn(9781934356081)
           @book.save!
         end
 
@@ -109,8 +109,7 @@ describe BooksController do
 
         it 'should contain proper button to create book' do
           xhr :get, :find, :keywords => @book.ean
-          response.should have_selector('form', :method => 'get',
-                                        :action => new_book_listing_path(@book))
+          response.should have_selector('a', :href => new_book_listing_path(@book))
         end
       end
     end
