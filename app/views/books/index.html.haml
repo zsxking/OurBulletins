@@ -1,10 +1,9 @@
 =form_tag({}, :method => :get, :id => :search_option_form) do
   .form_body
     .grid_6
-      -if @books.empty? || @books.count <= 24
-        &nbsp;
-      -else
-        =paginate @books
+      =paginate @books
+      &nbsp;
+
     .grid_4.right
       = render 'shared/search_form', :subindex => 'book'
 

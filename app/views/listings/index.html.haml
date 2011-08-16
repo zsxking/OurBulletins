@@ -1,8 +1,7 @@
 .grid_8
-  -if @listings.empty? || @listings.count <= 25
-    &nbsp;
-  -else
-    =paginate @listings
+  =paginate @listings
+  &nbsp;
+
 .grid_4
   = render 'shared/search_form', :subindex => 'listing'
 
