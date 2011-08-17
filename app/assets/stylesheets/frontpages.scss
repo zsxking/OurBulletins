@@ -1,0 +1,66 @@
+
+/* Front pages */
+.sign-up-front, .search-front{
+	font-family: cool_font;
+  padding-top: 50px;
+
+  h1 {
+    margin-bottom: 30px;
+  }
+}
+
+.sign-up-front h1 {
+  color: #c9025c;
+}
+
+.search-front {
+
+  input[type="text"], select, h1 {
+    color: #FF6908;
+	  font-family: cool_font;
+    font-size: 36px;
+    vertical-align: middle;
+  }
+
+  ::-webkit-input-placeholder {
+    color: #FF6908;
+  }
+
+  input:-moz-placeholder,
+  textarea:-moz-placeholder {
+    color: #FF6908;
+  }
+
+  input.placeholder_text,
+  textarea.placeholder_text {
+    color: #FF6908;
+  }
+
+  select, option {
+    border: 0;
+    text-align: center;
+  }
+
+  input[type="text"] {
+    border: 1px solid #aaaaaa;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    line-height: 28px;
+    padding: 0px 20px;
+    float: left;
+  }
+
+  input[type="submit"] {
+    -moz-border-radius: 30px;
+    -webkit-border-radius: 30px;
+    border-radius: 30px;
+	  font-family: cool_font;
+    font-size: 36px;
+    background-image: none;
+    height: 64px;
+  }
+}

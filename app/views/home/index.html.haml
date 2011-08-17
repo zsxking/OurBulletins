@@ -1,1 +1,28 @@
-%p Welcome to #{app_name}
+.grid_12.search-front
+
+  %h1
+    Looking for
+    =select_tag(:resource, options_for_select(['books', 'sth else']), :id => 'res-option')
+    ?
+  %p
+    = form_tag(books_path, :method => :get, :id => :search_form) do
+      .grid_10.alpha= text_field_tag :q, @keywords,
+          {:class => :search_field, :id => :search_q,
+           :placeholder => 'Search:'}
+
+      .grid_2.omega= submit_tag "GO", :class => 'super orange button'
+
+
+
+:javascript
+
+  $(document).ready(function() {
+    $('#res-option').change(function() {
+      var form = $('#search_form');
+      if ($(this).val() == 'books') {
+        form.attr("action", "#{books_path}");
+      } else {
+        form.attr("action", "#{listings_path}");
+      }
+    });
+  });
