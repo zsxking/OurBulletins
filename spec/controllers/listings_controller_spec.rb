@@ -198,16 +198,11 @@ describe ListingsController do
         @another_listing = Factory(:listing, :user => @another_user)
       end
 
-      it "should redirect to listing show page" do
-        get :edit, :id => @another_listing
-        response.should redirect_to @another_listing
+      it "should raise RecordNotFound error" do
+        lambda {
+          get :edit, :id => @another_listing
+        }.should raise_error(ActiveRecord::RecordNotFound)
       end
-
-      it "should have a flash error message" do
-        put :update, :id => @another_listing, :listing => @attr
-        flash[:error].should =~ /invalid/i
-      end
-
     end
   end
 
@@ -267,19 +262,11 @@ describe ListingsController do
                 :description => 'New Descriptions'}
       end
 
-      it "should redirect to listing show page" do
-        put :update, :id => @another_listing, :listing => @attr
-        response.should redirect_to @another_listing
-      end
-
-      it "should have a flash error message" do
-        put :update, :id => @another_listing, :listing => @attr
-        flash[:error].should =~ /invalid/i
-      end
-
-      it "should not change the listing" do
+      it "should raise RecordNotFound error and not change the listing" do
         @before_listing = @another_listing
-        put :update, :id => @another_listing, :listing => @attr
+        lambda {
+          put :update, :id => @another_listing, :listing => @attr
+        }.should raise_error(ActiveRecord::RecordNotFound)
         @another_listing.reload
         @another_listing.description.should_not == @attr[:description]
         @another_listing.description.should == @before_listing.description
@@ -288,3 +275,4 @@ describe ListingsController do
   end
 
 end
+

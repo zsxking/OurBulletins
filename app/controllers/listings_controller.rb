@@ -15,7 +15,7 @@ class ListingsController < ApplicationController
   end
 
   def show
-    @listing = current_user.listings.unscoped.find(params[:id]) || Listing.find(params[:id])
+    @listing = Listing.unscoped.find_by_id_and_user_id(params[:id], current_user) || Listing.find(params[:id])
   end
 
   def new
@@ -37,12 +37,13 @@ class ListingsController < ApplicationController
   end
 
   def edit
-    @listing = current_user.listings.unscoped.find(params[:id])
+    #@listing = current_user.listings.unscoped.find(params[:id])
+    @listing = Listing.unscoped.find_by_id_and_user_id!(params[:id], current_user)
     @title = "Edit | #{@listing.title}"
   end
 
   def update
-    @listing = current_user.listings.unscoped.find(params[:id])
+    @listing = Listing.unscoped.find_by_id_and_user_id!(params[:id], current_user)
     if @listing.update_attributes(params[:listing])
       flash[:success] = "Listing updated."
       redirect_to @listing
@@ -124,3 +125,4 @@ class ListingsController < ApplicationController
 end
 
 end
+
