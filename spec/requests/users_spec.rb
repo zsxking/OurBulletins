@@ -25,10 +25,10 @@ describe "Users" do
       it "should make a new user" do
         lambda do
           visit new_user_registration_path
-          fill_in "Name",         :with => "Example User"
-          fill_in "email",        :with => "user@university.edu"
-          fill_in "Password",     :with => "asdf1234"
-          fill_in "Password confirmation", :with => "asdf1234"
+          fill_in "user_name",         :with => "Example User"
+          fill_in "user_email",        :with => "user@university.edu"
+          fill_in "user_password",     :with => "asdf1234"
+          fill_in "user_password_confirmation", :with => "asdf1234"
           click_button 'Sign up'
           response.should have_selector("div.flash.notice",
                                         :content => "signed up successfully")
@@ -86,3 +86,4 @@ describe "Users" do
   #end
 
 end
+

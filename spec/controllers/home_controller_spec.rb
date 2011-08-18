@@ -7,17 +7,12 @@ describe HomeController do
   before (:each) do
     @base_title = "OurBulletins";
   end
-  
+
   describe "GET 'index'" do
-    it "should be successful" do
+    it "should show a search bar" do
       get 'index'
       response.should be_success
-    end
-
-    it "should have the right title" do
-      get 'index'
-      response.should have_selector("title",
-                        :content => @base_title)
+      response.should have_selector("input#search_q[type='text']")
     end
   end
 
@@ -48,3 +43,4 @@ describe HomeController do
   end
 
 end
+
