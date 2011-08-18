@@ -17,7 +17,7 @@ class Listing < ActiveRecord::Base
   validates :condition,   :presence => true,
                           :inclusion => CONDITION_LIST
 
-  default_scope joins(:users).where(:conditions => {:closed_at => nil}).order('listings.created_at DESC')
+  default_scope joins(:user).where(:closed_at => nil).order('listings.created_at DESC')
   scope :other, :conditions => {:saleable_id => nil}
 
   # just include the Tanker module
