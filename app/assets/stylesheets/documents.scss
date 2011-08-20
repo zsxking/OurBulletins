@@ -1,0 +1,16 @@
+.documents {
+  font-size: 14px;
+  p, li {
+    line-height: 22px;
+  }
+  ul {
+    list-style-type: disc
+  }
+  ol {
+    list-style: lower-alpha;
+    margin-left: 0;
+    ol {
+      list-style: lower-roman;
+    }
+  }
+}

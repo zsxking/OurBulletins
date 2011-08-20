@@ -37,13 +37,18 @@
         %section.content= yield
         .clear
 
-      -#%footer.container_12
-      -#  %nav.grid_12
-      -#    %ul
-      -#      %li= link_to "About", about_path
-      -#      %li= link_to "Contact", contact_path
-      -#      %li= link_to "Help", help_path
-      -#  .clear
+      %footer.container_12
+        %nav.grid_12
+          ©#{Time.new.year} #{app_name}
+          &nbsp;-&nbsp;
+          = link_to "Terms", tos_path
+          &nbsp;-&nbsp;
+          = link_to "Privacy", privacy_path
+          &nbsp;-&nbsp;
+          = link_to "About", about_path
+          &nbsp;-&nbsp;
+          = link_to "Help", help_path
+        .clear
       %br=debug(params) if Rails.env.development?
 
 

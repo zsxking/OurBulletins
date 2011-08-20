@@ -6,6 +6,8 @@ OurBulletins::Application.routes.draw do
   match '/contact', :to => 'home#contact'
   match '/about', :to => 'home#about'
   match '/help', :to => 'home#help'
+  match '/privacy', :to => 'home#privacy'
+  match '/tos', :to => 'home#tos'
 
   match '/search', :to => 'searches#index'
 

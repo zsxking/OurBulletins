@@ -15,6 +15,8 @@ gem 'haml'
 gem 'sass-rails', "~> 3.1.0.rc"
 gem 'coffee-script'
 gem 'uglifier'
+# Markdown
+gem 'rdiscount'
 
 gem 'devise'
 
