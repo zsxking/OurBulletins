@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0.rc5'
+gem 'rails', '3.1.0'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -12,7 +12,7 @@ gem 'amazon-ecs'
 # Asset template engines
 gem 'jquery-rails'
 gem 'haml'
-gem 'sass-rails', "~> 3.1.0.rc"
+gem 'sass-rails'
 gem 'coffee-script'
 gem 'uglifier'
 # Markdown
@@ -20,7 +20,7 @@ gem 'rdiscount'
 
 gem 'devise'
 
-gem 'tanker', :git => 'git://github.com/zsxking/tanker.git'
+gem 'tanker'
 
 gem 'kaminari'
 gem 'gravatar_image_tag'
