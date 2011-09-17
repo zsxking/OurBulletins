@@ -31,6 +31,16 @@ describe ListingsController do
         get :edit, :id => @listing
         response.should redirect_to(new_user_session_path)
       end
+
+      it "should deny access to get reply" do
+        get :new_reply, :id => @listing
+        response.should redirect_to(new_user_session_path)
+      end
+
+      it "should deny access to post reply" do
+        post :create_reply, :id => @listing
+        response.should redirect_to(new_user_session_path)
+      end
     end
 
   end
@@ -271,6 +281,49 @@ describe ListingsController do
         @another_listing.description.should_not == @attr[:description]
         @another_listing.description.should == @before_listing.description
       end
+    end
+  end
+
+  describe "GET 'reply'" do
+    login_user
+    before(:each) do
+      @listing = Factory(:listing, :user => @user)
+    end
+
+    it 'should be success with html' do
+      get :new_reply, :id => @listing
+      response.should be_success
+      response.should render_template('listings/_listing_reply_form')
+    end
+
+    it 'should be success with js' do
+      xhr :get, :new_reply, :id => @listing
+      response.should be_success
+      response.should render_template('listings/_listing_reply_form')
+    end
+  end
+
+  describe "POST 'reply'" do
+    login_user
+    before(:each) do
+      @listing = Factory(:listing, :user => @user)
+    end
+
+    it 'should be success with html' do
+      lambda do
+        post :create_reply, :id => @listing
+        response.should redirect_to @listing
+        flash[:success].should contain('Reply was successfully sent.')
+      end.should change(@listing.replies, :count).by(1)
+    end
+
+    it 'should be success with js' do
+      lambda do
+        xhr :post, :create_reply, :id => @listing
+        response.should be_success
+        flash[:success].should contain('Reply was successfully sent.')
+        response.should render_template('shared/_flash')
+      end.should change(@listing.replies, :count).by(1)
     end
   end
 
