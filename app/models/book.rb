@@ -2,8 +2,9 @@ class Book < ActiveRecord::Base
   #require 'open-uri'
   require 'amazon/ecs'
   Amazon::Ecs.configure do |options|
-        options[:aWS_access_key_id] = 'AKIAJLFSLR3OKNGCPENQ'
-        options[:aWS_secret_key] = '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'
+        options[:associate_tag] = 'ourbul-20'
+        options[:AWS_access_key_id] = 'AKIAJT6USOHTAMEJOO4A'
+        options[:AWS_secret_key] = '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'
   end
 
   attr_readonly :title, :author, :description, :ean, :isbn,
@@ -70,8 +71,8 @@ class Book < ActiveRecord::Base
   end
 
   def self.grab_books_amazon(keywords)
-    res = Amazon::Ecs.item_search(keywords, :response_group => 'Medium',
-                                  :search_index => 'Books')
+    res = Amazon::Ecs.item_search(keywords, {:response_group => 'Medium',
+                                  :search_index => 'Books'})
     if (res.total_results <= 0)
       return nil
     end
