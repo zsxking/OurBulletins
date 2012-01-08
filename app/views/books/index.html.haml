@@ -1,19 +1,19 @@
 =form_tag({}, :method => :get, :id => :search_option_form) do
   .form_body
-    .grid_6
+    .grid_5
       =paginate @books
       &nbsp;
 
-    .grid_4.right
+    .grid_5.right
       = render 'shared/search_form', :subindex => 'book'
 
     .grid_2
       .field.switch
         %label.cb-enable
-          %span Listed Only
-        %label.cb-disable
           %span All
-        = check_box_tag :listed, 1, @listed, :id => 'has_offer_checkbox'
+        %label.cb-disable
+          %span Active Listing
+        = check_box_tag :list_all, 1, @list_all, :id => 'has_offer_checkbox'
 
     .clear
 

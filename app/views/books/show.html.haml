@@ -15,10 +15,13 @@
 
 .clear
 %br
-- if @book.listings.size > 0
+- if @book.listings.active.size > 0
   %h4.grid_12
     %p Current Listings:
-  =render @book.listings
+  =render @book.listings.active
+%h4.grid_12
+  %p List History
+=render @book.listings(:limit => 10, :order => :created_at, :sort => :desc)
 
 -if @book.description?
   .grid_12.vendor-decr

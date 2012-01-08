@@ -7,15 +7,15 @@ class ListingsController < ApplicationController
 
     @keywords = params[:q]
     if @keywords && !@keywords.empty?
-      @listings = Listing.other.search_tank(@keywords, :page => params[:page], :per_page => 25)
+      @listings = Listing.other.active.search_tank(@keywords, :page => params[:page], :per_page => 25)
     else
-      @listings = Listing.other.page(params[:page]).per(25)
+      @listings = Listing.other.active.page(params[:page]).per(25)
     end
 
   end
 
   def show
-    @listing = Listing.unscoped.find_by_id_and_user_id(params[:id], current_user) || Listing.find(params[:id])
+    @listing = current_user ? current_user.listings.find_by_id(params[:id]) || Listing.active.find(params[:id]) : Listing.active.find(params[:id])
   end
 
   def new
@@ -37,13 +37,13 @@ class ListingsController < ApplicationController
   end
 
   def edit
-    #@listing = current_user.listings.unscoped.find(params[:id])
-    @listing = Listing.unscoped.find_by_id_and_user_id!(params[:id], current_user)
+    @listing = current_user.listings.find(params[:id])
+    #@listing = Listing.unscoped.find_by_id_and_user_id!(params[:id], current_user)
     @title = "Edit | #{@listing.title}"
   end
 
   def update
-    @listing = Listing.unscoped.find_by_id_and_user_id!(params[:id], current_user)
+    @listing = current_user.listings.find(params[:id], :readonly => false)
     if @listing.update_attributes(params[:listing])
       flash[:success] = "Listing updated."
       redirect_to @listing
@@ -54,7 +54,7 @@ class ListingsController < ApplicationController
   end
 
   def close
-    @listing = current_user.listings.find(params[:id], :readonly => false)
+    @listing = current_user.listings.active.find(params[:id], :readonly => false)
     @listing.closed_at = Time.new
     if (@listing.save)
       flash[:success] = 'The listing is closed.'
@@ -65,7 +65,7 @@ class ListingsController < ApplicationController
   end
 
   def reopen
-    @listing = current_user.listings.unscoped.find(params[:id])
+    @listing = current_user.listings.find(params[:id])
     @listing.closed_at = nil
     if (@listing.save)
       flash[:success] = 'The listing is now opened.'

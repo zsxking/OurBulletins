@@ -1,6 +1,6 @@
 
 
-.list-item
+.list-item{:class => listing.closed_at ? 'closed' : 'active'}
   .grid_1
     .price= '$' + ("%.2f" % listing.price.to_f)
   .grid_2.cond
@@ -18,6 +18,9 @@
       = listing.user_name #link_to listing.user_name, listing.user
 
   .list-action.grid_2
-    =super_button_link_to 'Contect Seller', reply_listing_path(listing), :remote => true, :class => 'green'
+    -if listing.closed_at
+      Closed at #{listing.closed_at}
+    -else
+      =super_button_link_to 'Contect Seller', reply_listing_path(listing), :remote => true, :class => 'green'
 
   .clear
