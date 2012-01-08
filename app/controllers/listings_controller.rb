@@ -54,7 +54,7 @@ class ListingsController < ApplicationController
   end
 
   def close
-    @listing = current_user.listings.find(params[:id])
+    @listing = current_user.listings.find(params[:id], :readonly => false)
     @listing.closed_at = Time.new
     if (@listing.save)
       flash[:success] = 'The listing is closed.'
