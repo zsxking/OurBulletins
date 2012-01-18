@@ -15,4 +15,4 @@
 
   -if current_user == @listing.user && @listing.closed? != true
     %p= link_to 'Edit', edit_listing_path(@listing), :class => 'green button'
-    %p= link_to 'Close', close_listing_path(@listing), :class => 'yellow button'
+    %p= button_to 'Close', close_listing_path(@listing), :class => 'yellow button'
