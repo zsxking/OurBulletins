@@ -9,10 +9,11 @@ class BooksController < ApplicationController
   
     if @list_all  #
     #if @listed #
-      scoped_book = Book.have_offers
+      scoped_book = Book.is_offering  # this is books currently listed
+      #scoped_book = Book.have_offers # this is books that were ever listed
     else
-      #scoped_book = Book.is_offering  #
-      scoped_book = Book.order('title') #
+      #scoped_book = Book.is_offering  # this is books currently listed
+      scoped_book = Book.order('title') # This is all the book in database
     end
 
     if @keywords && !@keywords.empty?
