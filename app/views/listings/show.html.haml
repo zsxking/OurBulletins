@@ -16,8 +16,8 @@
   -if current_user == @listing.user
     %p= link_to 'Edit', edit_listing_path(@listing), :class => 'green button'
     -if @listing.closed?
-      %p= button_to 'Reopen', reopen_listing_path(@listing),
-          :class => 'yellow button'
+/*      %p= button_to 'Reopen', reopen_listing_path(@listing), */
+/*         :class => 'yellow button' */
     -else
       %p= button_to 'Close', close_listing_path(@listing),
           :class => 'yellow button'
