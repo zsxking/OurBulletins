@@ -13,11 +13,6 @@
   %p Condition: #{@listing.condition}
   %p Description: #{@listing.description}
 
-  -if current_user == @listing.user
+  -if current_user == @listing.user && @listing.closed? != true
     %p= link_to 'Edit', edit_listing_path(@listing), :class => 'green button'
-    -if @listing.closed?
-      %p= button_to 'Reopen', reopen_listing_path(@listing),
-          :class => 'yellow button'
-    -else
-      %p= button_to 'Close', close_listing_path(@listing),
-          :class => 'yellow button'
+    %p= button_to 'Close', close_listing_path(@listing), :class => 'yellow button'

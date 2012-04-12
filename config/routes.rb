@@ -3,7 +3,7 @@ OurBulletins::Application.routes.draw do
   #get "home/index"
   root :to => 'home#index'
 
-  match '/contact', :to => 'home#contact'
+  #match '/contact', :to => 'home#contact'
   match '/about', :to => 'home#about'
   match '/help', :to => 'home#help'
   match '/privacy', :to => 'home#privacy'

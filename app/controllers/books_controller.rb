@@ -4,11 +4,16 @@ class BooksController < ApplicationController
   def index
     @title = 'Books'
     @keywords = params[:q]
-    @list_all = params[:list_all]
-    if @list_all
-      scoped_book = Book.have_offers
+    @list_all = params[:list_all]  #
+    #@listed = params[:listed] #
+  
+    if @list_all  #
+    #if @listed #
+      scoped_book = Book.is_offering  # this is books currently listed
+      #scoped_book = Book.have_offers # this is books that were ever listed
     else
-      scoped_book = Book.is_offering
+      #scoped_book = Book.is_offering  # this is books currently listed
+      scoped_book = Book.order('title') # This is all the book in database
     end
 
     if @keywords && !@keywords.empty?

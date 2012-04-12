@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   validates_format_of :password, {:with => password_regex, :allow_blank => true,
                                   :message => 'must contain both numbers and letters.'}
 
-  has_many :listings
+  has_many :listings, :dependent => :destroy
 
   has_many :replies
 
